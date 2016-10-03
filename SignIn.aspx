@@ -145,25 +145,25 @@
     </div>
     <!-- /.navbar -->
 
-       <div class="login">
+    <div class="login">
         <%--  <div class="login-triangle"></div>--%>
 
         <h2 class="login-header">Log in</h2>
 
         <form runat="server" class="login-container">
             <p>
-                <asp:TextBox runat="server" ID="txtEmail" placeholder="Email" TextMode="Email"/>
-                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Email missing" ControlToValidate="txtEmail" EnableClientScript="False" ForeColor="Red"></asp:RequiredFieldValidator>
-               
+                <asp:TextBox runat="server" ID="txtEmail" placeholder="Email" TextMode="Email" />
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Email missing" ControlToValidate="txtEmail" EnableClientScript="False" ForeColor="Red"></asp:RequiredFieldValidator>
+
             </p>
             <p>
-                <asp:TextBox runat="server" ID="txtPassword" placeholder="Password" TextMode="Password"  />
+                <asp:TextBox runat="server" ID="txtPassword" placeholder="Password" TextMode="Password" />
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Password missing" ControlToValidate="txtPassword" EnableClientScript="False" ForeColor="Red"></asp:RequiredFieldValidator>
             </p>
             <p>
                 <asp:Button runat="server" ID="btnLogin" Text="Log in" OnClick="btnLogin_Click" />
                 <asp:Label ID="lbl" runat="server" ForeColor="Red"></asp:Label>
-                
+
             </p>
 
         </form>
