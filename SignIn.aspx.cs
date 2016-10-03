@@ -58,7 +58,7 @@ public partial class SignIn : System.Web.UI.Page
                 }
 
                 else
-                {
+                { lbl.Text = "invalid username or password";
                     Response.Write("<Script>alert('WRONG Email OR Password!') </Script>");
                 }
             }
