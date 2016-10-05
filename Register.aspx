@@ -39,7 +39,7 @@
                     <ul class="nav navbar-nav pull-right mainNav">
                         <li class="active"><a href="Home.aspx">Home</a></li>
                         <li><a href="About.aspx">About</a></li>
-                        <li><a href="Contact.aspx">Contact</a></li>
+                        <li><a href="#">Contact</a></li>
                         <li><a href="Register.aspx">Register</a></li>
                         <li><a href="SignIn.aspx">Sign In</a></li>
 
@@ -232,6 +232,7 @@
                         <div class="form-group">
                             <label>Country</label>
                             <asp:DropDownList ID="ddlCountry" runat="server" class="form-control" placeholder="Country">
+                                <asp:ListItem Selected="True">--Select--</asp:ListItem>
                             </asp:DropDownList>
                         </div>
                     </div>
@@ -284,7 +285,7 @@
                             <p class="simplenav">
                                 <a href="Home.aspx">Home</a> |
                                 <a href="About.aspx">About</a> |
-                                <a href="Contact.aspx">Contact</a> |
+                                <a href="#">Contact</a> |
                                 <a href="Register.aspx">Register</a> |
                                 <a href="SignIn.aspx">Sign In</a>
                             </p>

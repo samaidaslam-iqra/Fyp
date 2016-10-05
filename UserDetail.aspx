@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="SignIn.aspx.cs" Inherits="SignIn" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="UserDetail.aspx.cs" Inherits="UserDetail" %>
 
 <!DOCTYPE html>
 
@@ -20,12 +20,14 @@
     <link rel="stylesheet" href="assets/css/style.css" />
 
 </head>
-
 <body>
     <!-- Fixed navbar -->
     <div class="navbar navbar-inverse">
+
         <div class="container">
             <nav class="navbar navbar-default top-navbar" role="navigation">
+
+
                 <div class="navbar-header">
                     <!-- Button for smallest screens -->
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
@@ -33,13 +35,16 @@
                         <img src="assets/images/logoicon.png" alt="Ink" />
                     </a>
                 </div>
+
                 <div class="navbar-collapse collapse">
+
                     <ul class="nav navbar-nav pull-right mainNav">
                         <li class="active"><a href="Home.aspx">Home</a></li>
                         <li><a href="About.aspx">About</a></li>
                         <li><a href="#">Contact</a></li>
                         <li><a href="Register.aspx">Register</a></li>
                         <li><a href="SignIn.aspx">Sign In</a></li>
+
                         <%--         <comment>
                       <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
@@ -138,38 +143,110 @@
                         <!-- /.dropdown 
     </comment> --%>
                     </ul>
+
                 </div>
+
                 <!--/.nav-collapse -->
             </nav>
         </div>
+
     </div>
     <!-- /.navbar -->
+    <div class="container">
 
-    <div class="login">
-        <%--  <div class="login-triangle"></div>--%>
+        <div class="col-md-6">
 
-        <h2 class="login-header">Log in</h2>
+            <form runat="server" class="form-light mt-20" role="form">
 
-        <form runat="server" class="login-container">
-            <p>
-                <asp:TextBox runat="server" ID="txtEmail" placeholder="Email" TextMode="Email" />
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Email missing" ControlToValidate="txtEmail" EnableClientScript="False" ForeColor="Red"></asp:RequiredFieldValidator>
+                <h3 class="section-title">Register Now For Free!!!
+                </h3>
+                <p>
+                </p>
 
-            </p>
-            <p>
-                <asp:TextBox runat="server" ID="txtPassword" placeholder="Password" TextMode="Password" />
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Password missing" ControlToValidate="txtPassword" EnableClientScript="False" ForeColor="Red"></asp:RequiredFieldValidator>
-            </p>
-            <p>
-                <asp:Button runat="server" ID="btnLogin" Text="Log in" OnClick="btnLogin_Click" />
-                <asp:Label ID="lbl" runat="server" ForeColor="Red"></asp:Label>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>First Name</label>
+                            <asp:TextBox ID="txtFName" runat="server" class="form-control" placeholder="Your name" />
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="First name missing" ControlToValidate="txtFName" ForeColor="Red" EnableClientScript="False"></asp:RequiredFieldValidator>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Last Name</label>
+                            <asp:TextBox runat="server" ID="txtLName" class="form-control" placeholder="Your name" />
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Last name missing" ControlToValidate="txtLName" EnableClientScript="False" ForeColor="Red"></asp:RequiredFieldValidator>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Email</label>
 
-            </p>
+                            <asp:TextBox runat="server" ID="txtEmail" class="form-control" placeholder="Email address" TextMode="Email" />
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ErrorMessage="Email missing" ControlToValidate="txtEmail" EnableClientScript="False" ForeColor="Red"></asp:RequiredFieldValidator>
+                            <br>
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Email format invalid" ControlToValidate="txtEmail" EnableClientScript="False" ForeColor="#FF3300" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Phone</label>
 
-        </form>
+                            <asp:TextBox runat="server" ID="txtPhone" class="form-control" placeholder="Phone number" TextMode="Number" />
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="Phone no missing" ControlToValidate="txtPhone" EnableClientScript="False" ForeColor="Red"></asp:RequiredFieldValidator>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Gender</label>
+                            <asp:DropDownList ID="ddlGender" runat="server" class="form-control" placeholder="Gender">
+                                <asp:ListItem>Male</asp:ListItem>
+                                <asp:ListItem>Female</asp:ListItem>
+                                <asp:ListItem>Other</asp:ListItem>
+                                <asp:ListItem Selected="True">Gender</asp:ListItem>
+                            </asp:DropDownList>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Country</label>
+                            <asp:DropDownList ID="ddlCountry" runat="server" class="form-control" placeholder="Country">
+                                <asp:ListItem Selected="True">--Select--</asp:ListItem>
+                            </asp:DropDownList>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Date Of Birth</label>
+                            <asp:TextBox ID="txtDob" runat="server" class="form-control" placeholder="mm/dd/yyyy" TextMode="DateTime" />
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ErrorMessage="DOB missing" ControlToValidate="txtDob" EnableClientScript="False" ForeColor="Red"></asp:RequiredFieldValidator>
+                            <asp:TextBox ID="txtDoJoining" class="form-control" runat="server" Enabled="False"></asp:TextBox>
+                        </div>
+                    </div>
+                </div>
+
+                <%-- <asp:Button runat="server" ID="btnRegister" Text="Register" class="btn btn-two" OnClick="btnRegister_Click"></asp:Button>--%>
+                <p>
+                    <br />
+                </p>
+
+                <asp:Button ID="btnSave" runat="server" CssClass=" btn-primary" Text="Save" Style="margin-left: 150px" OnClick="btnSave_Click" />
+                <asp:Button ID="btnCancel" runat="server"  CssClass="  btn-primary" Text="Cancel" OnClick="btnCancel_Click" Style="margin-left: 100px" />
+
+                <br />
+
+                <asp:HiddenField ID="hfId" runat="server" />
+                <asp:HiddenField ID="hfMode" runat="server" />
+            </form>
+
+        </div>
+
     </div>
-
-
     <footer id="footer">
         <div class="container">
             <div class="social text-center">
@@ -220,6 +297,5 @@
     <script src="assets/js/jquery.cslider.js"></script>
 
 </body>
-
 
 </html>

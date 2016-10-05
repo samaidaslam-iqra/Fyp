@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="SignIn.aspx.cs" Inherits="SignIn" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="UserList.aspx.cs" Inherits="UserList" %>
 
 <!DOCTYPE html>
 
@@ -20,12 +20,14 @@
     <link rel="stylesheet" href="assets/css/style.css" />
 
 </head>
-
 <body>
     <!-- Fixed navbar -->
     <div class="navbar navbar-inverse">
+
         <div class="container">
             <nav class="navbar navbar-default top-navbar" role="navigation">
+
+
                 <div class="navbar-header">
                     <!-- Button for smallest screens -->
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
@@ -33,13 +35,16 @@
                         <img src="assets/images/logoicon.png" alt="Ink" />
                     </a>
                 </div>
+
                 <div class="navbar-collapse collapse">
+
                     <ul class="nav navbar-nav pull-right mainNav">
                         <li class="active"><a href="Home.aspx">Home</a></li>
                         <li><a href="About.aspx">About</a></li>
                         <li><a href="#">Contact</a></li>
                         <li><a href="Register.aspx">Register</a></li>
                         <li><a href="SignIn.aspx">Sign In</a></li>
+
                         <%--         <comment>
                       <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
@@ -138,39 +143,42 @@
                         <!-- /.dropdown 
     </comment> --%>
                     </ul>
+
                 </div>
+
                 <!--/.nav-collapse -->
             </nav>
         </div>
+
     </div>
     <!-- /.navbar -->
 
-    <div class="login">
-        <%--  <div class="login-triangle"></div>--%>
 
-        <h2 class="login-header">Log in</h2>
+    <form id="form1" runat="server">
+        <div>
+            <asp:Button ID="btnNew" Text=" New " CssClass="btn btn-two" runat="server" OnClick="btnNew_Click" Style="margin-left: 630px" />
+            <asp:GridView runat="server" ID="gridList" CssClass="grid" RowStyle-CssClass="rows" HeaderStyle-CssClass="header" OnRowCommand="gridList_RowCommand" Width="830px" AutoGenerateColumns="False">
+                <Columns>
+                    <asp:BoundField DataField="UserFirstName" HeaderText="First Name" />
+                    <asp:BoundField DataField="UserLastName" HeaderText="Last Name" />
+                    <asp:BoundField DataField="UserEmail" HeaderText="Email" />
+                    <asp:BoundField DataField="UserGender" HeaderText="Gender" />
+                    <asp:BoundField DataField="UserPhone" HeaderText="Phone" />
+                    <%--  <asp:BoundField DataField="UserPhi" HeaderText="StudentCode" />--%>
 
-        <form runat="server" class="login-container">
-            <p>
-                <asp:TextBox runat="server" ID="txtEmail" placeholder="Email" TextMode="Email" />
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Email missing" ControlToValidate="txtEmail" EnableClientScript="False" ForeColor="Red"></asp:RequiredFieldValidator>
-
-            </p>
-            <p>
-                <asp:TextBox runat="server" ID="txtPassword" placeholder="Password" TextMode="Password" />
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Password missing" ControlToValidate="txtPassword" EnableClientScript="False" ForeColor="Red"></asp:RequiredFieldValidator>
-            </p>
-            <p>
-                <asp:Button runat="server" ID="btnLogin" Text="Log in" OnClick="btnLogin_Click" />
-                <asp:Label ID="lbl" runat="server" ForeColor="Red"></asp:Label>
-
-            </p>
-
-        </form>
-    </div>
-
-
-    <footer id="footer">
+                    <asp:TemplateField HeaderText="Actions">
+                        <ItemTemplate>
+                            <asp:ImageButton ToolTip="Edit" ImageUrl="~/images/edit.png" ID="Edit" runat="server" CssClass="btnLink" CausesValidation="False" CommandName="Edt" CommandArgument='<%# Eval("UserId") %>' Text="Edit"></asp:ImageButton>
+                            &nbsp;<asp:ImageButton ToolTip="View" ImageUrl="~/images/view.png" ID="View" runat="server" CssClass="btnLink" CausesValidation="False" CommandName="View" CommandArgument='<%# Eval("UserId") %>' Text="View"></asp:ImageButton>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                </Columns>
+                <HeaderStyle />
+                <RowStyle />
+            </asp:GridView>
+        </div>
+    </form>
+  <footer id="footer">
         <div class="container">
             <div class="social text-center">
                 <a href="#"><i class="fa fa-twitter"></i></a>
@@ -220,6 +228,5 @@
     <script src="assets/js/jquery.cslider.js"></script>
 
 </body>
-
 
 </html>
