@@ -158,8 +158,7 @@
 
             <form runat="server" class="form-light mt-20" role="form">
 
-                <h3 class="section-title">Register Now For Free!!!
-                </h3>
+                <h3 class="section-title">                </h3>
                 <p>
                 </p>
 
@@ -167,14 +166,14 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>First Name</label>
-                            <asp:TextBox ID="txtFName" runat="server" class="form-control" placeholder="Your name" />
+                            <asp:TextBox ID="txtFName" runat="server" cssclass="form-control" placeholder="Your name" />
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="First name missing" ControlToValidate="txtFName" ForeColor="Red" EnableClientScript="False"></asp:RequiredFieldValidator>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Last Name</label>
-                            <asp:TextBox runat="server" ID="txtLName" class="form-control" placeholder="Your name" />
+                            <asp:TextBox runat="server" ID="txtLName" CssClass="form-control" class="form-control" placeholder="Your name" />
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Last name missing" ControlToValidate="txtLName" EnableClientScript="False" ForeColor="Red"></asp:RequiredFieldValidator>
                         </div>
                     </div>
@@ -184,7 +183,7 @@
                         <div class="form-group">
                             <label>Email</label>
 
-                            <asp:TextBox runat="server" ID="txtEmail" class="form-control" placeholder="Email address" TextMode="Email" />
+                            <asp:TextBox runat="server" ID="txtEmail" cssclass="form-control" placeholder="Email address" TextMode="Email" />
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ErrorMessage="Email missing" ControlToValidate="txtEmail" EnableClientScript="False" ForeColor="Red"></asp:RequiredFieldValidator>
                             <br>
                             <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Email format invalid" ControlToValidate="txtEmail" EnableClientScript="False" ForeColor="#FF3300" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
@@ -194,7 +193,7 @@
                         <div class="form-group">
                             <label>Phone</label>
 
-                            <asp:TextBox runat="server" ID="txtPhone" class="form-control" placeholder="Phone number" TextMode="Number" />
+                            <asp:TextBox runat="server" ID="txtPhone" cssclass="form-control" placeholder="Phone number" TextMode="Number" />
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="Phone no missing" ControlToValidate="txtPhone" EnableClientScript="False" ForeColor="Red"></asp:RequiredFieldValidator>
 
                         </div>
@@ -204,7 +203,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Gender</label>
-                            <asp:DropDownList ID="ddlGender" runat="server" class="form-control" placeholder="Gender">
+                            <asp:DropDownList ID="ddlGender" runat="server" cssclass="form-control" placeholder="Gender">
                                 <asp:ListItem>Male</asp:ListItem>
                                 <asp:ListItem>Female</asp:ListItem>
                                 <asp:ListItem>Other</asp:ListItem>
@@ -215,7 +214,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Country</label>
-                            <asp:DropDownList ID="ddlCountry" runat="server" class="form-control" placeholder="Country">
+                            <asp:DropDownList ID="ddlCountry" runat="server" cssclass="form-control" placeholder="Country">
                                 <asp:ListItem Selected="True">--Select--</asp:ListItem>
                             </asp:DropDownList>
                         </div>
@@ -223,9 +222,15 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Date Of Birth</label>
-                            <asp:TextBox ID="txtDob" runat="server" class="form-control" placeholder="mm/dd/yyyy" TextMode="DateTime" />
+                            <asp:TextBox ID="txtDob" runat="server" cssclass="form-control" placeholder="mm/dd/yyyy" TextMode="DateTime" />
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ErrorMessage="DOB missing" ControlToValidate="txtDob" EnableClientScript="False" ForeColor="Red"></asp:RequiredFieldValidator>
-                            <asp:TextBox ID="txtDoJoining" class="form-control" runat="server" Enabled="False"></asp:TextBox>
+
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Date Of Joininig</label>
+                            <asp:TextBox ID="txtDoJoining" cssclass="form-control" runat="server" placeholder="" Enabled="False"></asp:TextBox>
                         </div>
                     </div>
                 </div>
@@ -235,8 +240,8 @@
                     <br />
                 </p>
 
-                <asp:Button ID="btnSave" runat="server" CssClass=" btn-primary" Text="Save" Style="margin-left: 150px" OnClick="btnSave_Click" />
-                <asp:Button ID="btnCancel" runat="server"  CssClass="  btn-primary" Text="Cancel" OnClick="btnCancel_Click" Style="margin-left: 100px" />
+                <asp:Button ID="btnSave" runat="server" CssClass="btn btn-two" Text="Save" Style="margin-left: 150px" OnClick="btnSave_Click" />
+                <asp:Button ID="btnCancel" runat="server" CssClass=" btn btn-two" Text="Cancel" OnClick="btnCancel_Click" Style="margin-left: 100px" />
 
                 <br />
 

@@ -12,7 +12,7 @@ public partial class UserDetail : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["UserEmail"] == null && Session["UserPassword"] == null)
+        if (Session["UserEmail"] == null && Session["UserPassword"] == null )
         {
             Session.Abandon();
             Session.Clear();
@@ -20,20 +20,13 @@ public partial class UserDetail : System.Web.UI.Page
         }
         else
         {
-            // AddDefaultFirstRecord();
             if (!IsPostBack)
             {
-
-                int temp = GetMaxRecord();
+               // int temp = GetMaxRecord();
                 if (Request.QueryString["Mode"] != null || Request.QueryString["Mode"] != "")
                 {
                     if (Request.QueryString["Mode"].ToString() == "Edit")
                     {
-                        //if (dtCurrentTable.Rows[0][0].ToString() == "" && gridDetail.Rows.Count != 0)
-                        //{
-                        //    dtCurrentTable.Rows[0].Delete();
-                        //    dtCurrentTable.AcceptChanges();
-                        //}
                         btnSave.Text = "Update";
                         hfMode.Value = Request.QueryString["Mode"];
                         hfId.Value = Request.QueryString["UserId"].ToString();
@@ -41,33 +34,23 @@ public partial class UserDetail : System.Web.UI.Page
                     }
                     else if (Request.QueryString["Mode"].ToString() == "View")
                     {
-                        //if (dtCurrentTable.Rows[0][0].ToString() == "" && gridDetail.Rows.Count != 0)
-                        //{
-                        //    dtCurrentTable.Rows[0].Delete();
-                        //    dtCurrentTable.AcceptChanges();
-                        //}
                         btnSave.Visible = false;
                         hfId.Value = Request.QueryString["UserId"].ToString();
                         hfMode.Value = Request.QueryString["Mode"];
                         GetData(Convert.ToInt32(hfId.Value));
                         btnCancel.Text = "Back";
-                        //  gridDetail.Columns[2].Visible = false;
-
-                        //  disable(); //text Fields
-
+                        disableFields();
                     }
-
                     else
                     {
                         Response.Write("<Script>'Invalid Url'</Script>");
                     }
                 }
-
             }
         }
-
     }
-    public int GetMaxRecord()
+
+    protected int GetMaxRecord()
     {
         int MaxId = 0;
         DataTable getDataTable = new DataTable();
@@ -99,7 +82,7 @@ public partial class UserDetail : System.Web.UI.Page
         }
         return MaxId;
     }
-    public void GetData(int id)
+    private void GetData(int id)
     {
         DataTable getDataTable = new DataTable();
 
@@ -107,7 +90,7 @@ public partial class UserDetail : System.Web.UI.Page
 
         try
         {
-            string sql = @" select * from inkUser where UserId= '"+id+"'";
+            string sql = @" select * from inkUser where UserId= '" + id + "'";
 
             using (SqlCommand sqlCommand = new SqlCommand(sql, sqlConnection))
             {
@@ -145,7 +128,7 @@ public partial class UserDetail : System.Web.UI.Page
         //return getDataTable;
     }
 
-    public int InsertRecord(string FName, string LName, string Email, string Gender, string Country, string Phone, string DoB)
+    protected int InsertRecord(string FName, string LName, string Email, string Gender, string Country, string Phone, string DoB)
     {
 
         SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbCon"].ConnectionString);
@@ -184,7 +167,7 @@ public partial class UserDetail : System.Web.UI.Page
 
     }
 
-    public void UpdateRecord(int UserId, string FName, string LName, string Email, string Gender, string Country, string Phone, string DoB)
+    protected void UpdateRecord(int UserId, string FName, string LName, string Email, string Gender, string Country, string Phone, string DoB)
     {
 
         SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbCon"].ConnectionString);
@@ -207,6 +190,7 @@ public partial class UserDetail : System.Web.UI.Page
                     sqlCommand.Parameters.AddWithValue("@Country", Country);
                     sqlCommand.Parameters.AddWithValue("@Phone", Phone);
                     sqlCommand.Parameters.AddWithValue("@DoB", DoB);
+                    sqlCommand.Parameters.AddWithValue("@UserId", hfId.Value);
                     sqlCommand.ExecuteNonQuery();
                 }
             }
@@ -282,12 +266,23 @@ public partial class UserDetail : System.Web.UI.Page
         Response.Redirect("UserList.aspx");
     }
 
-    public void ClearFields()
+    private void ClearFields()
     {
 
         txtFName.Text = txtLName.Text = txtEmail.Text = txtPhone.Text = txtDob.Text = txtDoJoining.Text = "";
-        ddlCountry.SelectedValue = "-- Country --";
-        ddlGender.SelectedValue = "- Gender -";
+        ddlCountry.SelectedValue = "--Select--";
+        ddlGender.SelectedValue = "Gender";
+    }
+    private void disableFields()
+    {
+        txtFName.Enabled = false;
+        txtLName.Enabled = false;
+        txtEmail.Enabled = false;
+        txtPhone.Enabled = false;
+        txtDob.Enabled = false;
+        txtDoJoining.Enabled = false;
+        ddlCountry.Enabled = false;
+        ddlGender.Enabled = false;
     }
 }
 

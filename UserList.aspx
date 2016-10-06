@@ -157,7 +157,7 @@
     <form id="form1" runat="server">
         <div>
             <asp:Button ID="btnNew" Text=" New " CssClass="btn btn-two" runat="server" OnClick="btnNew_Click" Style="margin-left: 630px" />
-            <asp:GridView runat="server" ID="gridList" CssClass="grid" RowStyle-CssClass="rows" HeaderStyle-CssClass="header" OnRowCommand="gridList_RowCommand" Width="830px" AutoGenerateColumns="False">
+            <asp:GridView runat="server" ID="gridList" CssClass="grid" RowStyle-CssClass="rows" HeaderStyle-CssClass="header" OnRowCommand="gridList_RowCommand" AutoGenerateColumns="False" Width="830px">
                 <Columns>
                     <asp:BoundField DataField="UserFirstName" HeaderText="First Name" />
                     <asp:BoundField DataField="UserLastName" HeaderText="Last Name" />
