@@ -10,7 +10,6 @@
     <meta name="author" content="Ink" />
 
     <title>Ink 'Online Volunteer Academy'</title>
-
     <link rel="favicon" href="assets/images/favicon.png" />
     <link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700" />
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
@@ -18,14 +17,15 @@
     <link rel="stylesheet" href="assets/css/bootstrap-theme.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="assets/css/da-slider.css" />
     <link rel="stylesheet" href="assets/css/style.css" />
-       
+
+
 </head>
 <body>
     <!-- Fixed navbar -->
     <form id="form1" runat="server">
- 
-        <div id="wrapper">
-             <div class="navbar navbar-inverse">
+
+        <div id="wrapper"></div>
+        <div class="navbar navbar-inverse">
 
             <div class="container">
                 <nav class="navbar navbar-default top-navbar" role="navigation">
@@ -43,10 +43,7 @@
 
                         <ul class="nav navbar-nav pull-right mainNav">
                             <li class="active"><a href="Home.aspx">Home</a></li>
-                            <%--<li><a href="About.aspx">About</a></%--li>
-                        <li><a href="Contact.aspx">Contact</a></li>
-                        <li><a href="Register.aspx">Register</a></li>
-                        <li><a href="SignIn.aspx">Sign In</a></li>--%>
+
 
 
                             <li class="dropdown">
@@ -138,75 +135,87 @@
                                     </li>
                                     <li class="divider"></li>
                                     <li>
-                                        <a href="#"><i class="fa fa-sign-out fa-fw"></i>Logout</a>
+                                        <asp:LinkButton ID="linkbtnLogout" runat="server" OnClick="btnLogout_Click"><i class="fa fa-sign-out fa-fw"> </i> LogOut</asp:LinkButton>
+
                                     </li>
                                 </ul>
                                 <!-- /.dropdown-user -->
                             </li>
                             <!-- /.dropdown 
   
-                    </ul>
-
-                </div>
-
+                
                 <!--/.nav-collapse -->
+                        </ul>
+
+                    </div>
+
                 </nav>
             </div>
 
         </div>
         <!-- /.navbar -->
-            <nav class="navbar-default navbar-side" role="navigation">
-                <div class="sidebar-collapse">
-                    <ul class="nav" id="main-menu">
-                        <li class="divider"></li>
-                        <li class="divider"></li>
-                        <li>
-
-                            <div class="active-menu">
-                                <asp:TextBox ID="txtSearchBox" runat="server" cssclass="form-control" placeholder="Search here"> </asp:TextBox>
-                            </div>
-                        </li>
-                        <li class="divider">
-                            <br />
-                        </li>
-
-
-                        <li>
-                            <a class="active-menu" href="#"><i class="fa fa-dashboard"></i>Dashboard</a>
-                        </li>
-                        <li>
-                            <a href="profile.html"><i class="fa fa-desktop"></i>Profile</a>
-                        </li>
-                        <li>
-                            <a href="stats.html"><i class="fa fa-bar-chart-o"></i>Stats</a>
-                        </li>
-
-                        <li>
-                            <a href="#"><i class="fa fa-table"></i>Settings</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-edit"></i>Whiteboard </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li class="divider"></li>
-
-                        <li class="divider"></li>
-                        <li>
-                            <asp:LinkButton ID="linkbtnLogout" cssclass="btn-link" runat="server" OnClick="btnLogout_Click"><i class="fa fa-sign-out fa-fw">LogOut</i> </asp:LinkButton>
-                        </li>
-                  
-                    </ul>
-
+        <nav class="navbar navbar-inverse sidebar" role="navigation">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-sidebar-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Brand</a>
                 </div>
-            </nav>
-        </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Home<span style="font-size: 16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-home"></span></a></li>
+                        <li><a href="#">Profile<span style="font-size: 16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-user"></span></a></li>
+                        <li><a href="#">Messages<span style="font-size: 16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-envelope"></span></a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Settings <span class="caret"></span><span style="font-size: 16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-cog"></span></a>
+                            <ul class="dropdown-menu forAnimate" role="menu">
+                                <li><a href="#">Action</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something else here</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Separated link</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">One more separated link</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Home<span style="font-size: 16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-home"></span></a></li>
+                        <li><a href="#">Profile<span style="font-size: 16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-user"></span></a></li>
+                        <li><a href="#">Messages<span style="font-size: 16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-envelope"></span></a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Settings <span class="caret"></span><span style="font-size: 16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-cog"></span></a>
+                            <ul class="dropdown-menu forAnimate" role="menu">
+                                <li><a href="#">Action</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something else here</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Separated link</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">One more separated link</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
 
-        <div>
-            <asp:Label ID="Label2" runat="server" Text=" "></asp:Label>
-            <asp:Label ID="Label1" runat="server" Text=" "></asp:Label>
-            <asp:Button ID="btnLogout" runat="server" class="btn btn-two" Text="Logout" OnClick="btnLogout_Click"></asp:Button>
 
+        <div id="page-wrapper">
+            <div id="page-inner">
+                <div class="row">
+                    <div class="col-md-12">
+                        <asp:Label ID="Label2" runat="server" Text=" "></asp:Label>
+                        <asp:Label ID="Label1" runat="server" Text=" "></asp:Label>
+                        <asp:Button ID="btnLogout" runat="server" class="btn btn-two" Text="Logout" OnClick="btnLogout_Click"></asp:Button>
+                    </div>
+                </div>
 
+            </div>
         </div>
 
         <footer id="footer">
@@ -253,20 +262,13 @@
         </footer>
     </form>
 
-      <!-- jQuery Js -->
-    <script src="assets/js/jquery-1.10.2.js"></script>
-    <!-- Bootstrap Js -->
-    <script src="assets/js/bootstrap.min.js"></script>
-    <!-- Metis Menu Js -->
-    <script src="assets/js/jquery.metisMenu.js"></script>
-   
-    <!-- Custom Js -->
-    <script src="assets/js/custom-scripts.js"></script>
+
     <script src="assets/js/modernizr-latest.js"></script>
     <script src="ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="bootstrap/3.0.0/js/bootstrap.min.js"></script>
     <script src="assets/js/custom.js"></script>
     <script src="assets/js/jquery.cslider.js"></script>
+
 </body>
 
 </html>

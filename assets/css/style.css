@@ -1,56 +1,6 @@
 
 @import url(http://fonts.googleapis.com/css?family=Lato:400,700);
 
-.rows {
-    background-color: #f4f4f4;
-    font-family: Arial;
-    font-size: 14px;
-    color: #000;
-    min-height: 25px;
-    text-align: left;
-    border: none 0px transparent;
-}
-
-.header {
-    background-color: #008dde;
-    font-family: 'Open Sans', Arial, Helvetica, sans-serif;
-    color: #fff;
-    border: none 0px transparent;
-    height: 25px;
-    text-align: center;
-    font-size: 16px;
-    margin: 5px;
-    padding: 5px;
-}
-
-.rows:hover {
-    background-color: #284E98;
-    font-family: Arial;
-    color: #fff;
-    text-align: left;
-}
-
-
-.grid {
-    cursor: pointer;
-    font-family: 'Open Sans', Arial, Helvetica, sans-serif;
-    background-color: #f4f4f4;
-    margin: 5px 0 10px 0;
-    cursor: pointer;
-    border-collapse: collapse;
-    font-family: Calibri;
-    color: #474747;
-    align-items: center;
-    justify-content: center;
-    border-radius: 3px;
-    -moz-border-radius: 3px;
-    -webkit-border-radius: 3px;
-    margin: 5px;
-    align-items: center;
-    justify-content: center;
-    -webkit-appearance: none;
-    padding: 5px;
-}
 body {
     font-family: 'Lato', sans-serif;
     font-weight: normal;
