@@ -17,6 +17,7 @@ public partial class Dashboard : System.Web.UI.Page
             }
             else
             {
+                p1.InnerText = Session["UserEmail"].ToString();
                 Label2.Text = "Logged in as :   ";
                 Label1.Text = Session["UserEmail"].ToString();
                            }

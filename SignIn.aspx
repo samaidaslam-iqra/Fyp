@@ -202,7 +202,7 @@
                     <div class="col-md-6 panel">
                         <div class="panel-body">
                             <p class="text-right">
-                                Copyright &copy; 2016 Design By  Mohammad haisam
+                                Copyright &copy; 2016 Design By Samaid Aslam
                             </p>
                         </div>
                     </div>

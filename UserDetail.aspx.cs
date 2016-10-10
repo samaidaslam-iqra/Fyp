@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -12,7 +13,7 @@ public partial class UserDetail : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["UserEmail"] == null && Session["UserPassword"] == null )
+        if (Session["UserEmail"] == null && Session["UserPassword"] == null)
         {
             Session.Abandon();
             Session.Clear();
@@ -22,7 +23,10 @@ public partial class UserDetail : System.Web.UI.Page
         {
             if (!IsPostBack)
             {
-               // int temp = GetMaxRecord();
+                ddlCountry.Items.Insert(0, "--Select--");
+                ddlCountry.DataSource = countryList();
+                ddlCountry.DataBind();
+                // int temp = GetMaxRecord();
                 if (Request.QueryString["Mode"] != null || Request.QueryString["Mode"] != "")
                 {
                     if (Request.QueryString["Mode"].ToString() == "Edit")
@@ -49,7 +53,30 @@ public partial class UserDetail : System.Web.UI.Page
             }
         }
     }
+    
+    public static List<string> countryList()
+    {
+        try
+        {
+            List<string> countries = new List<string>();
+            CultureInfo[] getCultureInfo = CultureInfo.GetCultures(CultureTypes.SpecificCultures);
+            foreach (CultureInfo getCulture in getCultureInfo)
+            {
+                RegionInfo getRegionInfo = new RegionInfo(getCulture.Name);
+                if (!(countries.Contains(getRegionInfo.EnglishName)))
+                {
+                    countries.Add(getRegionInfo.EnglishName);
+                }
+            }
+            countries.Sort();
+            return countries;
+        }
 
+        catch (ArgumentException)
+        {
+            throw;
+        }
+    }
     protected int GetMaxRecord()
     {
         int MaxId = 0;
@@ -127,7 +154,6 @@ public partial class UserDetail : System.Web.UI.Page
         }
         //return getDataTable;
     }
-
     protected int InsertRecord(string FName, string LName, string Email, string Gender, string Country, string Phone, string DoB)
     {
 
@@ -166,7 +192,6 @@ public partial class UserDetail : System.Web.UI.Page
         return id;
 
     }
-
     protected void UpdateRecord(int UserId, string FName, string LName, string Email, string Gender, string Country, string Phone, string DoB)
     {
 
@@ -211,7 +236,6 @@ public partial class UserDetail : System.Web.UI.Page
 
 
     }
-
     protected void btnSave_Click(object sender, EventArgs e)
     {
 
@@ -259,18 +283,15 @@ public partial class UserDetail : System.Web.UI.Page
         }
 
     }
-
     protected void btnCancel_Click(object sender, EventArgs e)
     {
         ClearFields();
         Response.Redirect("UserList.aspx");
     }
-
     private void ClearFields()
     {
 
         txtFName.Text = txtLName.Text = txtEmail.Text = txtPhone.Text = txtDob.Text = txtDoJoining.Text = "";
-        ddlCountry.SelectedValue = "--Select--";
         ddlGender.SelectedValue = "Gender";
     }
     private void disableFields()
