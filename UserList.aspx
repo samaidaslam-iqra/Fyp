@@ -10,12 +10,14 @@
     <meta name="author" content="Ink" />
 
     <title>Ink 'Online Volunteer Academy'</title>
-
+    <link href="plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" />
     <link rel="favicon" href="assets/images/favicon.png" />
     <link href="assets/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" />
     <link href="assets/css/font-awesome.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="assets/css/bootstrap-theme.css" media="screen" />
     <link rel="stylesheet" href="assets/css/style.css" />
+    <link href="assets/css/AdminLTE.min.css" rel="stylesheet" />
+
 </head>
 <body>
     <!-- Fixed navbar -->
@@ -56,27 +58,31 @@
 
 
     <form id="form1" runat="server">
-        <div>
-            <asp:Button ID="btnNew" Text=" New " CssClass="btn btn-two" runat="server" OnClick="btnNew_Click" Style="margin-left: 630px" />
-            <asp:GridView runat="server" ID="gridList" CssClass="grid" RowStyle-CssClass="rows" HeaderStyle-CssClass="header" OnRowCommand="gridList_RowCommand" AutoGenerateColumns="False" Width="830px">
-                <Columns>
-                    <asp:BoundField DataField="UserFirstName" HeaderText="First Name" />
-                    <asp:BoundField DataField="UserLastName" HeaderText="Last Name" />
-                    <asp:BoundField DataField="UserEmail" HeaderText="Email" />
-                    <asp:BoundField DataField="UserGender" HeaderText="Gender" />
-                    <asp:BoundField DataField="UserPhone" HeaderText="Phone" />
-                    <%--  <asp:BoundField DataField="UserPhi" HeaderText="StudentCode" />--%>
+        <div class="box">
+            <div class="box-body">
+                <asp:Button ID="btnNew" Text=" New " CssClass="btn btn-two" runat="server" OnClick="btnNew_Click" Style="margin-left: 630px" /><br />
+                <asp:GridView runat="server" ID="gridList" CssClass="table table-bordered table-striped" RowStyle-CssClass="rows" HeaderStyle-CssClass="header" OnRowCommand="gridList_RowCommand" AutoGenerateColumns="False" Width="830px">
+                    <Columns>
+                        <asp:BoundField DataField="UserFirstName" HeaderText="First Name" />
+                        <asp:BoundField DataField="UserLastName" HeaderText="Last Name" />
+                        <asp:BoundField DataField="UserEmail" HeaderText="Email" />
+                        <asp:BoundField DataField="UserGender" HeaderText="Gender" />
+                        <asp:BoundField DataField="UserPhone" HeaderText="Phone" />
+                        <%--  <asp:BoundField DataField="UserPhi" HeaderText="StudentCode" />--%>
 
-                    <asp:TemplateField HeaderText="Actions">
-                        <ItemTemplate>
-                            <asp:ImageButton ToolTip="Edit" ImageUrl="~/images/edit.png" ID="Edit" runat="server" CssClass="btnLink" CausesValidation="False" CommandName="Edt" CommandArgument='<%# Eval("UserId") %>' Text="Edit"></asp:ImageButton>
-                            &nbsp;<asp:ImageButton ToolTip="View" ImageUrl="~/images/view.png" ID="View" runat="server" CssClass="btnLink" CausesValidation="False" CommandName="View" CommandArgument='<%# Eval("UserId") %>' Text="View"></asp:ImageButton>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                </Columns>
-                <HeaderStyle />
-                <RowStyle />
-            </asp:GridView>
+                        <asp:TemplateField HeaderText="Actions">
+                            <ItemTemplate>
+                                 <span style="visibility:hidden;">..</span>
+                                <asp:ImageButton ToolTip=" Edit "  ID="Edit" runat="server" CssClass="btnLink"  ImageUrl="~/assets/images/edit.png" CausesValidation="False" CommandName="Edt" CommandArgument='<%# Eval("UserId") %>' Text=" Edit "> </asp:ImageButton>
+                                <span style="visibility:hidden;">. .</span>
+                                &nbsp;<asp:ImageButton ToolTip=" View "  ID="View" runat="server" CssClass="btnLink" ImageUrl="~/assets/images/view.png"  CausesValidation="False" CommandName="View" CommandArgument='<%# Eval("UserId") %>' Text=" View "></asp:ImageButton>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                    </Columns>
+                    <HeaderStyle />
+                    <RowStyle />
+                </asp:GridView>
+            </div>
         </div>
     </form>
     <footer id="footer">
@@ -121,6 +127,8 @@
             </div>
         </div>
     </footer>
+    <script src="plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="plugins/datatables/dataTables.bootstrap.min.js"></script>
     <script src="assets/js/custom.js"></script>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/3.2.0/js/bootstrap.min.js"></script>
