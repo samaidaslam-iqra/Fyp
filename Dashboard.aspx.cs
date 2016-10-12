@@ -11,22 +11,25 @@ public partial class Dashboard : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-            if (Session["UserEmail"] == null)
+            if (Session["UserEmail"] == null || Session["UserFirstName"] == null)
             {
                 Response.Redirect("Signin.aspx");
             }
             else
             {
-                p1.InnerText = Session["UserEmail"].ToString();
-                Label2.Text = "Logged in as :   ";
+                p1.InnerText = p2.InnerText = span1.InnerText = Session["UserFirstName"].ToString() + " " + Session["UserLastName"].ToString();
+                p2 = p1;
+
+                Label2.Text = "Logged in from :   ";
                 Label1.Text = Session["UserEmail"].ToString();
-                           }
+            }
         }
         else
         {
-            Response.Write("<Script>alert('byee !')</Script>");
+
         }
     }
+
     protected void btnLogout_Click(object sender, EventArgs e)
     {
         Session.RemoveAll();

@@ -21,7 +21,7 @@ public partial class SignIn : System.Web.UI.Page
         SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["dbCon"].ConnectionString);
         try
         {
-            string query = @"Select UserEmail , UserPassword from InkUser where UserEmail=@Email and UserPassword=@Password";
+            string query = @"Select UserFirstName,UserLastName, UserEmail , UserPassword from InkUser where UserEmail=@Email and UserPassword=@Password";
             SqlCommand cmd = new SqlCommand(query, sqlcon);
             sqlcon.Open();
             cmd.Parameters.AddWithValue("@Email", UserEmail);
@@ -50,6 +50,8 @@ public partial class SignIn : System.Web.UI.Page
                 DataTable dt = Login(txtEmail.Text, txtPassword.Text);
                 if (dt.Rows.Count > 0)
                 {
+                    Session["UserFirstName"] = dt.Rows[0]["UserFirstName"].ToString();
+                    Session["UserLastName"] = dt.Rows[0]["UserLastName"].ToString();
                     Session["UserPassword"] = dt.Rows[0]["UserPassword"].ToString();
                     Session["UserEmail"] = dt.Rows[0]["UserEmail"].ToString();
                     Session.Timeout = 30;
