@@ -12,11 +12,9 @@
     <title>Ink 'Online Volunteer Academy'</title>
 
     <link rel="favicon" href="assets/images/favicon.png" />
-    <link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700" />
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="assets/css/font-awesome.min.css" />
+    <link href="assets/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/css/font-awesome.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="assets/css/bootstrap-theme.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="assets/css/da-slider.css" />
     <link rel="stylesheet" href="assets/css/style.css" />
 
 </head>
@@ -45,103 +43,6 @@
                         <li><a href="Register.aspx">Register</a></li>
                         <li><a href="SignIn.aspx">Sign In</a></li>
 
-                        <%--         <comment>
-                      <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
-                                <i class="fa fa-envelope fa-fw"></i><i class="fa fa-caret-down"></i>
-                            </a>
-                            <ul class="dropdown-menu dropdown-messages">
-                                <li>
-                                    <a href="#">
-                                        <div>
-                                            <strong>Haisam</strong>
-                                            <span class="pull-right text-muted">
-                                                <em>Today</em>
-                                            </span>
-                                        </div>
-                                        <div>Hey can you give me some of your time?? I want to learn C#??</div>
-                                    </a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <a href="#">
-                                        <div>
-                                            <strong>Shezy</strong>
-                                            <span class="pull-right text-muted">
-                                                <em>Yesterday</em>
-                                            </span>
-                                        </div>
-                                        <div>Thanks for your help.. Really appreciate that..</div>
-                                    </a>
-                                </li>
-
-                                <li class="divider"></li>
-                                <li>
-                                    <a class="text-center" href="#">
-                                        <strong>Read All Messages</strong>
-                                        <i class="fa fa-angle-right"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                            <!-- /.dropdown-messages -->
-
-
-                        </li>
-                        <!-- /.dropdown -->
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
-                                <i class="fa fa-bell fa-fw"></i><i class="fa fa-caret-down"></i>
-                            </a>
-                            <ul class="dropdown-menu dropdown-alerts">
-                                <li>
-                                    <a href="#">
-                                        <div>
-                                            <i class="fa fa-db fa-fw"></i>Haisam Uploaded a New File
-                                            <span class="pull-right text-muted small">4 min</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <a href="#">
-                                        <div>
-                                            <i class="fa fa-twitter fa-fw"></i>3 New Followers
-                                            <span class="pull-right text-muted small">12 min</span>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="divider"></li>
-                                <li>
-                                    <a class="text-center" href="#">
-                                        <strong>See All Alerts</strong>
-                                        <i class="fa fa-angle-right"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                            <!-- /.dropdown-alerts -->
-                        </li>
-                        <!-- /.dropdown -->
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
-                                <i class="fa fa-user fa-fw"></i><i class="fa fa-caret-down"></i>
-                            </a>
-                            <ul class="dropdown-menu dropdown-user">
-                                <li>
-                                    <a href="#"><i class="fa fa-user fa-fw"></i>User Profile</a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa fa-gear fa-fw"></i>Settings</a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <a href="#"><i class="fa fa-sign-out fa-fw"></i>Logout</a>
-                                </li>
-                            </ul>
-                            <!-- /.dropdown-user -->
-                        </li>
-                        <!-- /.dropdown 
-    </comment> --%>
                     </ul>
 
                 </div>
@@ -158,7 +59,7 @@
 
             <form runat="server" class="form-light mt-20" role="form">
 
-                <h3 class="section-title">                </h3>
+                <h3 class="section-title"></h3>
                 <p>
                 </p>
 
@@ -166,7 +67,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>First Name</label>
-                            <asp:TextBox ID="txtFName" runat="server" cssclass="form-control" placeholder="Your name" />
+                            <asp:TextBox ID="txtFName" runat="server" CssClass="form-control" placeholder="Your name" />
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="First name missing" ControlToValidate="txtFName" ForeColor="Red" EnableClientScript="False"></asp:RequiredFieldValidator>
                         </div>
                     </div>
@@ -183,7 +84,7 @@
                         <div class="form-group">
                             <label>Email</label>
 
-                            <asp:TextBox runat="server" ID="txtEmail" cssclass="form-control" placeholder="Email address" TextMode="Email" />
+                            <asp:TextBox runat="server" ID="txtEmail" CssClass="form-control" placeholder="Email address" TextMode="Email" />
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ErrorMessage="Email missing" ControlToValidate="txtEmail" EnableClientScript="False" ForeColor="Red"></asp:RequiredFieldValidator>
                             <br>
                             <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Email format invalid" ControlToValidate="txtEmail" EnableClientScript="False" ForeColor="#FF3300" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
@@ -193,7 +94,7 @@
                         <div class="form-group">
                             <label>Phone</label>
 
-                            <asp:TextBox runat="server" ID="txtPhone" cssclass="form-control" placeholder="Phone number" TextMode="Number" />
+                            <asp:TextBox runat="server" ID="txtPhone" CssClass="form-control" placeholder="Phone number" TextMode="Number" />
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="Phone no missing" ControlToValidate="txtPhone" EnableClientScript="False" ForeColor="Red"></asp:RequiredFieldValidator>
 
                         </div>
@@ -203,7 +104,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Gender</label>
-                            <asp:DropDownList ID="ddlGender" runat="server" cssclass="form-control" placeholder="Gender">
+                            <asp:DropDownList ID="ddlGender" runat="server" CssClass="form-control" placeholder="Gender">
                                 <asp:ListItem>Male</asp:ListItem>
                                 <asp:ListItem>Female</asp:ListItem>
                                 <asp:ListItem>Other</asp:ListItem>
@@ -214,7 +115,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Country</label>
-                            <asp:DropDownList ID="ddlCountry" runat="server" cssclass="form-control" placeholder="Country">
+                            <asp:DropDownList ID="ddlCountry" runat="server" CssClass="form-control" placeholder="Country">
                                 <asp:ListItem Selected="True">--Select--</asp:ListItem>
                             </asp:DropDownList>
                         </div>
@@ -222,7 +123,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Date Of Birth</label>
-                            <asp:TextBox ID="txtDob" runat="server" cssclass="form-control" placeholder="mm/dd/yyyy" TextMode="DateTime" />
+                            <asp:TextBox ID="txtDob" runat="server" CssClass="form-control" placeholder="mm/dd/yyyy" TextMode="DateTime" />
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ErrorMessage="DOB missing" ControlToValidate="txtDob" EnableClientScript="False" ForeColor="Red"></asp:RequiredFieldValidator>
 
                         </div>
@@ -230,7 +131,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Date Of Joininig</label>
-                            <asp:TextBox ID="txtDoJoining" cssclass="form-control" runat="server" placeholder="" Enabled="False"></asp:TextBox>
+                            <asp:TextBox ID="txtDoJoining" CssClass="form-control" runat="server" placeholder="" Enabled="False"></asp:TextBox>
                         </div>
                     </div>
                 </div>
@@ -295,11 +196,9 @@
         </div>
     </footer>
 
-    <script src="assets/js/modernizr-latest.js"></script>
-    <script src="ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="bootstrap/3.0.0/js/bootstrap.min.js"></script>
     <script src="assets/js/custom.js"></script>
-    <script src="assets/js/jquery.cslider.js"></script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
 </body>
 

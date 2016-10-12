@@ -10,9 +10,8 @@
     <title>Ink 'Online Volunteer Academy'</title>
 
     <link rel="favicon" href="assets/images/favicon.png" />
-    <link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700" />
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="assets/css/font-awesome.min.css" />
+    <link href="assets/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/css/font-awesome.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="assets/css/bootstrap-theme.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="assets/css/da-slider.css" />
     <link rel="stylesheet" href="assets/css/style.css" />
@@ -39,107 +38,10 @@
                     <ul class="nav navbar-nav pull-right mainNav">
                         <li class="active"><a href="Home.aspx">Home</a></li>
                         <li><a href="About.aspx">About</a></li>
-                        <li><a href="Contact.aspx">Contact</a></li>
+
                         <li><a href="Register.aspx">Register</a></li>
                         <li><a href="SignIn.aspx">Sign In</a></li>
 
-                        <%--         <comment>
-                      <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
-                                <i class="fa fa-envelope fa-fw"></i><i class="fa fa-caret-down"></i>
-                            </a>
-                            <ul class="dropdown-menu dropdown-messages">
-                                <li>
-                                    <a href="#">
-                                        <div>
-                                            <strong>Haisam</strong>
-                                            <span class="pull-right text-muted">
-                                                <em>Today</em>
-                                            </span>
-                                        </div>
-                                        <div>Hey can you give me some of your time?? I want to learn C#??</div>
-                                    </a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <a href="#">
-                                        <div>
-                                            <strong>Shezy</strong>
-                                            <span class="pull-right text-muted">
-                                                <em>Yesterday</em>
-                                            </span>
-                                        </div>
-                                        <div>Thanks for your help.. Really appreciate that..</div>
-                                    </a>
-                                </li>
-
-                                <li class="divider"></li>
-                                <li>
-                                    <a class="text-center" href="#">
-                                        <strong>Read All Messages</strong>
-                                        <i class="fa fa-angle-right"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                            <!-- /.dropdown-messages -->
-
-
-                        </li>
-                        <!-- /.dropdown -->
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
-                                <i class="fa fa-bell fa-fw"></i><i class="fa fa-caret-down"></i>
-                            </a>
-                            <ul class="dropdown-menu dropdown-alerts">
-                                <li>
-                                    <a href="#">
-                                        <div>
-                                            <i class="fa fa-db fa-fw"></i>Haisam Uploaded a New File
-                                            <span class="pull-right text-muted small">4 min</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <a href="#">
-                                        <div>
-                                            <i class="fa fa-twitter fa-fw"></i>3 New Followers
-                                            <span class="pull-right text-muted small">12 min</span>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="divider"></li>
-                                <li>
-                                    <a class="text-center" href="#">
-                                        <strong>See All Alerts</strong>
-                                        <i class="fa fa-angle-right"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                            <!-- /.dropdown-alerts -->
-                        </li>
-                        <!-- /.dropdown -->
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
-                                <i class="fa fa-user fa-fw"></i><i class="fa fa-caret-down"></i>
-                            </a>
-                            <ul class="dropdown-menu dropdown-user">
-                                <li>
-                                    <a href="#"><i class="fa fa-user fa-fw"></i>User Profile</a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa fa-gear fa-fw"></i>Settings</a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <a href="#"><i class="fa fa-sign-out fa-fw"></i>Logout</a>
-                                </li>
-                            </ul>
-                            <!-- /.dropdown-user -->
-                        </li>
-                        <!-- /.dropdown 
-    </comment> --%>
                     </ul>
 
                 </div>
@@ -247,13 +149,13 @@
             </div>
             <div class="row">
 
-                <div class="col-md-3 col-sm-6 col-xs-6">
+                <div class="col-md-4 col-sm-4 col-xs-4">
                     <!-- Team Member -->
                     <div class="team-member">
                         <!-- Image Hover Block -->
                         <div class="member-img">
                             <!-- Image  -->
-                            <img class="img-responsive" src="assets/images/p1.jpg" alt=""/>
+                            <img class="img-responsive" src="assets/images/p1.jpg" alt="" />
                         </div>
                         <!-- Member Details -->
                         <h4>Samaid Aslam</h4>
@@ -268,34 +170,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-6 col-xs-6">
+
+                <div class="col-md-4 col-sm-4 col-xs-4">
                     <!-- Team Member -->
                     <div class="team-member pDark">
                         <!-- Image Hover Block -->
                         <div class="member-img">
                             <!-- Image  -->
-                            <img class="img-responsive" src="assets/images/photo-2.jpg" alt=""/>
-                        </div>
-                        <!-- Member Details -->
-                        <h4>Larry Doe</h4>
-                        <!-- Designation -->
-                        <span class="pos">Art Director</span>
-                        <div class="team-socials">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-google-plus"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-dribbble"></i></a>
-                            <a href="#"><i class="fa fa-github"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6 col-xs-6">
-                    <!-- Team Member -->
-                    <div class="team-member pDark">
-                        <!-- Image Hover Block -->
-                        <div class="member-img">
-                            <!-- Image  -->
-                            <img class="img-responsive" src="assets/images/p2.jpg" alt=""/>
+                            <img class="img-responsive" src="assets/images/p2.jpg" alt="" />
                         </div>
                         <!-- Member Details -->
                         <h4>Shahzad Iqbal</h4>
@@ -310,13 +192,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-6 col-xs-6">
+                <div class="col-md-4 col-sm-4 col-xs-4">
                     <!-- Team Member -->
                     <div class="team-member pDark">
                         <!-- Image Hover Block -->
                         <div class="member-img">
                             <!-- Image  -->
-                            <img class="img-responsive" src="assets/images/p3.jpg" alt=""/>
+                            <img class="img-responsive" src="assets/images/p3.jpg" alt="" />
                         </div>
                         <!-- Member Details -->
                         <h4>Muhammad Haisam</h4>
@@ -359,9 +241,7 @@
                             <p class="simplenav">
                                 <a href="Home.aspx">Home</a> |
                                 <a href="About.aspx">About</a> |
-                              
-                                <a href="Contact.aspx">Contact</a> |
-                                <a href="Register.aspx">Register</a> |
+                              <a href="Register.aspx">Register</a> |
                                 <a href="SignIn.aspx">Sign In</a>
                             </p>
                         </div>
@@ -381,11 +261,11 @@
         </div>
     </footer>
 
-    <script src="assets/js/modernizr-latest.js"></script>
-    <script src="ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="bootstrap/3.0.0/js/bootstrap.min.js"></script>
-    <script src="assets/js/custom.js"></script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script src="assets/js/jquery.cslider.js"></script>
+    <script src="assets/js/custom.js"></script>
+    <script src="assets/js/modernizr-latest.js"></script>
 
 </body>
 
