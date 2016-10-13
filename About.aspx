@@ -9,7 +9,7 @@
 
     <title>Ink 'Online Volunteer Academy'</title>
 
-    <link rel="favicon" href="assets/images/favicon.png" />
+  <link rel="shortcut icon" runat="server" href="~/assets/images/ico.png"  type="image/x-icon" />
     <link href="assets/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" />
     <link href="assets/css/font-awesome.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="assets/css/bootstrap-theme.css" media="screen" />
