@@ -16,8 +16,9 @@
     <link href="assets/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" />
     <link href="assets/css/font-awesome.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="assets/css/bootstrap-theme.css" media="screen" />
-    <link rel="stylesheet" href="assets/css/style.css" />
     <link href="assets/css/AdminLTE.min.css" rel="stylesheet" />
+     <link rel="stylesheet" href="assets/css/style.css" />
+   
 
 </head>
 <body>

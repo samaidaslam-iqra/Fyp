@@ -7,6 +7,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Globalization;
+using System.Text;
+using System.Security.Cryptography;
+using System.IO;
 public partial class Register : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
@@ -34,7 +37,7 @@ public partial class Register : System.Web.UI.Page
             return countries;
         }
 
-        catch (ArgumentException )
+        catch (ArgumentException)
         {
 
             throw;
@@ -52,8 +55,9 @@ public partial class Register : System.Web.UI.Page
                 using (SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["dbCon"].ConnectionString))
                 {
                     sqlcon.Open();
+                    string encrypted = Encrypt(txtPassword.Text);
                     string query = @"insert into inkUser (UserFirstName, UserLastName, UserEmail, UserPassword, UserGender, UserCountry ,UserPhone,UserDoB,DateOfJoining) values
-                               ('" + txtFName.Text + "','" + txtLName.Text + "','" + txtEmail.Text + "','" + txtPassword.Text + "','" + ddlGender.SelectedValue.ToString() + "','" + ddlCountry.SelectedValue.ToString() + "', '" + txtPhone.Text + "','" + txtDob.Text + "','" + "2006" + "' )";
+                               ('" + txtFName.Text + "','" + txtLName.Text + "','" + txtEmail.Text + "','" + encrypted + "','" + ddlGender.SelectedValue.ToString() + "','" + ddlCountry.SelectedValue.ToString() + "', '" + txtPhone.Text + "','" + txtDob.Text + "','" + "2006" + "' )";
                     SqlCommand cmd = new SqlCommand(query, sqlcon);
                     cmd.ExecuteNonQuery();
                     sqlcon.Close();
@@ -66,4 +70,55 @@ public partial class Register : System.Web.UI.Page
             }
         }
     }
+
+    string Encryptionkey = "S1A2M3";
+
+    public string Encrypt(string originalText)
+    {
+
+        byte[] originalbytes = Encoding.Unicode.GetBytes(originalText);
+        using (Aes encryptor = Aes.Create())
+        {
+            Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(Encryptionkey, new Byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x76 });
+            encryptor.Key = pdb.GetBytes(32);
+            encryptor.IV = pdb.GetBytes(16);
+            using (MemoryStream ms = new MemoryStream())
+            {
+                using (CryptoStream cs = new CryptoStream(ms, encryptor.CreateEncryptor(), CryptoStreamMode.Write))
+                {
+                    cs.Write(originalbytes, 0, originalbytes.Length);
+                    cs.Close();
+                }
+                originalText = Convert.ToBase64String(ms.ToArray());
+            }
+        }
+        return originalText;
+
+    }
+
+    public string Decrypt(string cipherText)
+    {
+
+        Byte[] cipherBytes = Convert.FromBase64String(cipherText);
+        using (Aes encryptor = Aes.Create())
+        {
+            Rfc2898DeriveBytes pbd = new Rfc2898DeriveBytes(Encryptionkey, new Byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x76 });
+            encryptor.Key = pbd.GetBytes(32);
+            encryptor.IV = pbd.GetBytes(16);
+            using (MemoryStream ms = new MemoryStream())
+            {
+                using (CryptoStream cs = new CryptoStream(ms, encryptor.CreateDecryptor(), CryptoStreamMode.Write))
+                {
+                    cs.Write(cipherBytes, 0, cipherBytes.Length);
+                    cs.Close();
+                }
+                cipherText = Encoding.Unicode.GetString(ms.ToArray());
+            }
+
+        }
+
+        return cipherText;
+    }
+
+
 }

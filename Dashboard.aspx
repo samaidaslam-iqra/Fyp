@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Dashboard.aspx.cs" Inherits="Dashboard" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Dashboard.aspx.cs" Inherits="Dashboard"  %>
 
 <!DOCTYPE html>
 
@@ -11,20 +11,16 @@
 
     <title>Ink 'Online Volunteer Academy'</title>
 
-    
-    <link rel="favicon" href="assets/images/favicon.png" />
+     <link rel="shortcut icon" runat="server" href="~/assets/images/favicon.ico"  type="image/x-icon" />
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport" />
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
+    
+    <link href="assets/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" />
     <link href="assets/css/font-awesome.min.css" rel="stylesheet" />
-    <!-- jvectormap 
-    <link rel="stylesheet" href="plugins/jvectormap/jquery-jvectormap-1.2.2.css" />-->
-    <!-- Theme style -->
-    <link rel="stylesheet" href="dist/css/AdminLTE.min.css" />
-    <!-- AdminLTE Skins. Choose a skin from the css/skins
-       folder instead of downloading all of them to reduce the load. 
-    <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css" />  -->
-    <link href="dist/css/skins/skin-blue.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="assets/css/font-awesome.min.css" />
+    <link href="assets/css/AdminLTE.min.css" rel="stylesheet" />
+
+       
+    <link href="assets/css/skins/skin-blue.min.css" rel="stylesheet" />
+
     <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -278,7 +274,7 @@
                                             <a href="#" class="btn btn-default btn-flat">Profile</a>
                                         </div>
                                         <div class="pull-right">
-                                            <asp:LinkButton runat="server" ID="linkbtnLogout" class="btn btn-default btn-flat" OnClick="btnLogout_Click">Sign out</asp:LinkButton>
+                                            <asp:LinkButton runat="server" ID="linkbtnLogout" cssclass="btn btn-default btn-flat" OnClick="btnLogout_Click">Sign out</asp:LinkButton>
                                         </div>
                                     </li>
                                 </ul>
@@ -301,9 +297,9 @@
                     </div>
                     <div class="sidebar-form">
                         <div class="input-group">
-                            <asp:TextBox runat="server" ID="txtSearch" name="q" class="form-control" />
+                            <asp:TextBox runat="server" ID="txtSearch" cssclass="form-control" />
                             <span class="input-group-btn">
-                                <asp:LinkButton runat="server" ID="btnSearch" class="btn btn-flat" CssClass="btn btn-flat"> <i class="fa fa-search"></i></asp:LinkButton>
+                                <asp:LinkButton runat="server" ID="btnSearch" CssClass="btn btn-flat"> <i class="fa fa-search"></i></asp:LinkButton>
                             </span>
                         </div>
                     </div>
@@ -326,7 +322,7 @@
 
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="Profile.aspx">
                                 <i class="fa fa-th"></i><span>Profile</span>
                                 <span class="pull-right-container">
                                     <small class="label pull-right bg-green"></small>
@@ -358,7 +354,7 @@
                         <asp:Label ID="Label2" runat="server" Text=" "></asp:Label>
                         <asp:Label ID="Label1" runat="server" Font-Size="Medium" Font-Bold="true" Text=" "></asp:Label>
                         <br />
-                        <asp:Button ID="btnLogout" runat="server" class="btn btn-two" Width="150px" BorderWidth="2px" Text="Logout" OnClick="btnLogout_Click"></asp:Button>
+                        <asp:Button ID="btnLogout" runat="server" cssclass="btn btn-two" Width="150px" BorderWidth="2px" Text="Logout" OnClick="btnLogout_Click"></asp:Button>
                     </div>
                 </div>
 
@@ -863,15 +859,11 @@
 
     </form>
     <script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
-    <script src="plugins/fastclick/fastclick.js"></script>
-    <script src="plugins/sparkline/jquery.sparkline.min.js"></script>
-    <script src="plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
-    <script src="plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
-    <script src="plugins/slimScroll/jquery.slimscroll.min.js"></script>
-    <script src="plugins/chartjs/Chart.min.js"></script>
-    <script src="dist/js/pages/dashboard2.js"></script>
-    <script src="dist/js/demo.js"></script>
+    <script src="assets/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="assets/js/dashboard2.js"></script>
+    <script src="assets/js/dashboard.js"></script>
+    <script src="assets/js/custom.js"></script>
+    <script src="assets/js/demo.js"></script>
 
 </body>
 
