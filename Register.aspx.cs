@@ -10,6 +10,7 @@ using System.Globalization;
 using System.Text;
 using System.Security.Cryptography;
 using System.IO;
+using System.Data;
 public partial class Register : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
@@ -120,5 +121,26 @@ public partial class Register : System.Web.UI.Page
         return cipherText;
     }
 
+    protected void CustomValidator1_ServerValidate(object source, ServerValidateEventArgs args)
+    {
+        string UserEmail = args.Value;
+        using (SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["dbCon"].ConnectionString))
+        {
+            SqlCommand cmd = new SqlCommand(@"SELECT * FROM InkUser WHERE UserEmail=@UserEmail", sqlcon);
+            cmd.Parameters.AddWithValue("@UserEmail", UserEmail);
+            sqlcon.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
 
+            if (reader.HasRows)
+            {
+                args.IsValid = false;
+            }
+            else
+            {
+                args.IsValid = true;
+            }
+        }
+
+    }
+   
 }

@@ -9,8 +9,8 @@
 
     <title>Ink 'Online Volunteer Academy'</title>
 
-    
-  <link rel="shortcut icon" runat="server" href="~/assets/images/favicon.ico"  type="image/x-icon" />
+
+    <link rel="shortcut icon" runat="server" href="~/assets/images/favicon.ico" type="image/x-icon" />
     <link href="assets/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" />
     <link href="assets/css/font-awesome.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="assets/css/bootstrap-theme.css" media="screen" />
@@ -93,7 +93,7 @@
                             <label>Confirm Password</label>
                             <asp:TextBox runat="server" ID="txtConfirmPassword" class="form-control" placeholder="Confirm Password" TextMode="Password" />
                             <asp:CompareValidator ID="CompareValidator1" runat="server" ErrorMessage="Miss match Password" ControlToCompare="txtPassword" ControlToValidate="txtConfirmPassword" EnableClientScript="False" ForeColor="Red"></asp:CompareValidator>
-                            <br>
+                            <br />
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Confirm Password missing" ControlToValidate="txtConfirmPassword" EnableClientScript="False" ForeColor="Red"></asp:RequiredFieldValidator>
                         </div>
                     </div>
@@ -105,7 +105,8 @@
 
                             <asp:TextBox runat="server" ID="txtEmail" class="form-control" placeholder="Email address" TextMode="Email" />
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ErrorMessage="Email missing" ControlToValidate="txtEmail" EnableClientScript="False" ForeColor="Red"></asp:RequiredFieldValidator>
-                            <br>
+                            <br />
+                            <asp:CustomValidator ID="CustomValidator1" runat="server" ErrorMessage="Email already exists!! " ControlToValidate="txtEmail" OnServerValidate="CustomValidator1_ServerValidate" EnableClientScript="False" ForeColor="Red"></asp:CustomValidator>
                             <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Email format invalid" ControlToValidate="txtEmail" EnableClientScript="False" ForeColor="#FF3300" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
                         </div>
                     </div>
@@ -211,7 +212,7 @@
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
-    
+
 </body>
 
 </html>
