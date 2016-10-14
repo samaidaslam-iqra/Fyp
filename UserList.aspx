@@ -10,130 +10,182 @@
     <meta name="author" content="Ink" />
 
     <title>Ink 'Online Volunteer Academy'</title>
-    <link href="plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" />
-   
-  <link rel="shortcut icon" runat="server" href="~/assets/images/favicon.ico"  type="image/x-icon" />
+    <link rel="shortcut icon" runat="server" href="~/assets/images/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="assets/css/bootstrap-theme.css" media="screen" />
     <link href="assets/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" />
     <link href="assets/css/font-awesome.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="assets/css/bootstrap-theme.css" media="screen" />
     <link href="assets/css/AdminLTE.min.css" rel="stylesheet" />
-     <link rel="stylesheet" href="assets/css/style.css" />
-   
-
+    <link href="assets/css/skins/skin-blue.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/style.css" />
 </head>
-<body>
-    <!-- Fixed navbar -->
-    <div class="navbar navbar-inverse">
-
-        <div class="container">
-            <nav class="navbar navbar-default top-navbar" role="navigation">
-
-
-                <div class="navbar-header">
-                    <!-- Button for smallest screens -->
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="home.aspx">
-                        <img src="assets/images/logoicon.png" alt="Ink" />
-                    </a>
-                </div>
-
-                <div class="navbar-collapse collapse">
-
-                    <ul class="nav navbar-nav pull-right mainNav">
-                        <li class="active"><a href="Home.aspx">Home</a></li>
-                        <li><a href="About.aspx">About</a></li>
-                        <li><a href="#">Contact</a></li>
-                        <li><a href="Register.aspx">Register</a></li>
-                        <li><a href="SignIn.aspx">Sign In</a></li>
-                    </ul>
-
-                </div>
-
-                <!--/.nav-collapse -->
-            </nav>
-        </div>
-
-    </div>
-    <!-- /.navbar -->
-
+<body class="hold-transition skin-blue sidebar-mini">
 
     <form id="form1" runat="server">
-        <div class="box">
-            <div class="box-body">
-                <asp:Button ID="btnNew" Text=" New " CssClass="btn btn-two" runat="server" OnClick="btnNew_Click" Style="margin-left: 630px" /><br />
-                <asp:GridView runat="server" ID="gridList" CssClass="table table-bordered table-striped" RowStyle-CssClass="rows" HeaderStyle-CssClass="header" OnRowCommand="gridList_RowCommand" AutoGenerateColumns="False" Width="830px">
-                    <Columns>
-                        <asp:BoundField DataField="UserFirstName" HeaderText="First Name" />
-                        <asp:BoundField DataField="UserLastName" HeaderText="Last Name" />
-                        <asp:BoundField DataField="UserEmail" HeaderText="Email" />
-                        <asp:BoundField DataField="UserGender" HeaderText="Gender" />
-                        <asp:BoundField DataField="UserPhone" HeaderText="Phone" />
-                        <%--  <asp:BoundField DataField="UserPhi" HeaderText="StudentCode" />--%>
+        <div class="wrapper">
+            <header class="main-header">
 
-                        <asp:TemplateField HeaderText="Actions">
-                            <ItemTemplate>
-                                 <span style="visibility:hidden;">..</span>
-                                <asp:ImageButton ToolTip=" Edit "  ID="Edit" runat="server" CssClass="btnLink"  ImageUrl="~/assets/images/edit.png" CausesValidation="False" CommandName="Edt" CommandArgument='<%# Eval("UserId") %>' Text=" Edit "> </asp:ImageButton>
-                                <span style="visibility:hidden;">. .</span>
-                                &nbsp;<asp:ImageButton ToolTip=" View "  ID="View" runat="server" CssClass="btnLink" ImageUrl="~/assets/images/view.png"  CausesValidation="False" CommandName="View" CommandArgument='<%# Eval("UserId") %>' Text=" View "></asp:ImageButton>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                    </Columns>
-                    <HeaderStyle />
-                    <RowStyle />
-                </asp:GridView>
+                <a href="Dashboard.aspx" class="logo">
+
+                    <span class="logo-lg">
+                        <img src="assets/images/logo.png" alt="Ink" /><b>Ink </b>Academy </span>
+
+                </a>
+                <nav class="navbar navbar-static-top">
+                    <div class="navbar-custom-menu">
+                        <ul class="nav navbar-nav">
+
+                            <li class="dropdown user user-menu">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <img src="assets/images/p1.jpg" class="user-image" alt="User Image" />
+                                    <span id="span1" runat="server" class="hidden-xs"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <!-- User image -->
+                                    <li class="user-header">
+                                        <img src="assets/images/p1.jpg" class="img-circle" alt="User Image" />
+
+                                        <p id="p2" runat="server">
+
+
+                                            <%--   <small></small>--%>
+                                        </p>
+                                    </li>
+                                    <!-- Menu Body -->
+                                    <li class="user-body">
+                                        <div class="row">
+                                            <div class="col-xs-4 text-center">
+                                                <a href="#">Followers</a>
+                                            </div>
+                                            <div class="col-xs-4 text-center">
+                                                <a href="#">Chats</a>
+                                            </div>
+                                            <div class="col-xs-4 text-center">
+                                                <a href="#">Friends</a>
+                                            </div>
+                                        </div>
+                                        <!-- /.row -->
+                                    </li>
+                                    <!-- Menu Footer-->
+                                    <li class="user-footer">
+                                        <div class="pull-left">
+                                            <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                        </div>
+                                        <div class="pull-right">
+                                            <asp:LinkButton runat="server" ID="linkbtnLogout" CssClass="btn btn-default btn-flat" OnClick="btnLogout_Click">Sign out</asp:LinkButton>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+
+            <aside class="main-sidebar">
+                <section class="sidebar">
+                    <div class="user-panel">
+                        <div class="pull-left image">
+                            <img src="assets/images/p1.jpg" class="img-circle" alt="User Image" />
+                        </div>
+                        <div class="pull-left info">
+                            <p id="p1" runat="server"></p>
+                            <a href="#"><i class="fa fa-circle text-success"></i>Online</a>
+                        </div>
+                    </div>
+                    <div class="sidebar-form">
+                        <div class="input-group">
+                            <asp:TextBox runat="server" ID="txtSearch" CssClass="form-control" />
+                            <span class="input-group-btn">
+                                <asp:LinkButton runat="server" ID="btnSearch" CssClass="btn btn-flat"> <i class="fa fa-search"></i></asp:LinkButton>
+                            </span>
+                        </div>
+                    </div>
+                    <ul class="sidebar-menu">
+                        <li class="header"></li>
+                        <li class="active treeview">
+                            <a href="dashboard.aspx">
+                                <i class="fa fa-dashboard"></i><span>Dashboard</span>
+                            </a>
+                        </li>
+
+                        <li class="treeview">
+                            <a href="UserList.aspx">
+                                <i class="fa fa-files-o"></i>
+                                <span>Users List</span>
+                                <span class="pull-right-container">
+                                    <span class="label label-primary pull-right"></span>
+                                </span>
+                            </a>
+
+                        </li>
+                        <li>
+                            <a href="UserProfile.aspx">
+                                <i class="fa fa-th"></i><span>Profile</span>
+                                <span class="pull-right-container">
+                                    <small class="label pull-right bg-green"></small>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+
+                </section>
+
+            </aside>
+
+            <div class="content-wrapper">
+                <section class="content">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="box">
+                                <div class="box-body table-responsive no-padding">
+                                    <asp:Button ID="btnNew" Text=" New " CssClass="btn btn-two" runat="server" OnClick="btnNew_Click" Style="margin-left: 630px" /><br />
+
+                                    <asp:GridView runat="server" ID="gridList" CssClass="table table-bordered table-striped" OnPageIndexChanging="gridList_PageIndexChanging" OnRowCommand="gridList_RowCommand" AutoGenerateColumns="False" AllowPaging="true" PageSize="5">
+                                        <Columns>
+                                            <asp:BoundField DataField="UserFirstName" HeaderText="First Name" />
+                                            <asp:BoundField DataField="UserLastName" HeaderText="Last Name" />
+                                            <asp:BoundField DataField="UserEmail" HeaderText="Email" />
+                                            <asp:BoundField DataField="UserGender" HeaderText="Gender" />
+                                            <asp:BoundField DataField="UserPhone" HeaderText="Phone" />
+                                            <%--  <asp:BoundField DataField="UserPhi" HeaderText="StudentCode" />--%>
+
+                                            <asp:TemplateField HeaderText="Actions">
+                                                <ItemTemplate>
+                                                    <span style="visibility: hidden;">..</span>
+                                                    <asp:ImageButton ToolTip=" Edit " ID="Edit" runat="server" CssClass="btnLink" ImageUrl="~/assets/images/edit.png" CausesValidation="False" CommandName="Edt" CommandArgument='<%# Eval("UserId") %>' Text=" Edit "></asp:ImageButton>
+                                                    <span style="visibility: hidden;">. .</span>
+                                                    &nbsp;<asp:ImageButton ToolTip=" View " ID="View" runat="server" CssClass="btnLink" ImageUrl="~/assets/images/view.png" CausesValidation="False" CommandName="View" CommandArgument='<%# Eval("UserId") %>' Text=" View "></asp:ImageButton>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                        </Columns>
+                                        <HeaderStyle />
+                                        <RowStyle />
+                                        <PagerSettings FirstPageText="&amp;lt; &amp;lt;" LastPageText="&amp;gt; &amp;gt;" />
+                                        <PagerStyle Font-Underline="False" />
+                                    </asp:GridView>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
             </div>
+
+            <footer class="main-footer">
+                <div class="pull-right hidden-xs">
+                    <b>Ink </b>Online Academy
+                </div>
+                <strong>Copyright &copy; 2016 <a href="#">Samaid Aslam</a>.</strong> All rights reserved.
+            </footer>
+
         </div>
     </form>
-    <footer id="footer">
-        <div class="container">
-            <div class="social text-center">
-                <a href="#"><i class="fa fa-twitter"></i></a>
-                <a href="#"><i class="fa fa-facebook"></i></a>
-                <a href="#"><i class="fa fa-dribbble"></i></a>
-                <a href="#"><i class="fa fa-flickr"></i></a>
-                <a href="#"><i class="fa fa-github"></i></a>
-            </div>
-
-            <div class="clear"></div>
-            <!--CLEAR FLOATS-->
-        </div>
-        <div class="footer2">
-            <div class="container">
-                <div class="row">
-
-                    <div class="col-md-6 panel">
-                        <div class="panel-body">
-                            <p class="simplenav">
-                                <a href="Home.aspx">Home</a> |
-                                <a href="About.aspx">About</a> |
-                                <a href="#">Contact</a> |
-                                <a href="Register.aspx">Register</a> |
-                                <a href="SignIn.aspx">Sign In</a>
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 panel">
-                        <div class="panel-body">
-                            <p class="text-right">
-                                Copyright &copy; 2016 Design By  Samaid Aslam
-                            </p>
-                        </div>
-                    </div>
-
-                </div>
-                <!-- /row of panels -->
-            </div>
-        </div>
-    </footer>
-    <script src="plugins/datatables/jquery.dataTables.min.js"></script>
-    <script src="plugins/datatables/dataTables.bootstrap.min.js"></script>
-    <script src="assets/js/custom.js"></script>
-    <script src="assets/js/jquery.min.js"></script>
+    <script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
     <script src="assets/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="assets/js/dashboard2.js"></script>
+    <script src="assets/js/dashboard.js"></script>
+    <script src="assets/js/custom.js"></script>
+    <script src="assets/js/demo.js"></script>
 
 </body>
 

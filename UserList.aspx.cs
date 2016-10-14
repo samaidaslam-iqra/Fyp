@@ -86,4 +86,15 @@ public partial class UserList : System.Web.UI.Page
             throw;
         }
     }
+    protected void btnLogout_Click(object sender, EventArgs e)
+    {
+        Session.RemoveAll();
+        Response.Redirect("Home.aspx");
+    }
+    protected void gridList_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        gridList.DataSource = GetAllRecord();
+        gridList.PageIndex = e.NewPageIndex;
+        gridList.DataBind();
+    }
 }
