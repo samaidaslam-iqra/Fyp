@@ -11,6 +11,7 @@ using System.Text;
 using System.Security.Cryptography;
 using System.IO;
 using System.Data;
+using System.Net.Mail;
 public partial class Register : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
@@ -47,8 +48,6 @@ public partial class Register : System.Web.UI.Page
 
     protected void btnRegister_Click(object sender, EventArgs e)
     {
-
-
         if (Page.IsValid)
         {
             try
@@ -63,6 +62,7 @@ public partial class Register : System.Web.UI.Page
                     cmd.ExecuteNonQuery();
                     sqlcon.Close();
                 }
+                SendMessage(txtEmail.Text);
                 Response.Redirect("Dashboard.aspx");
             }
             catch (Exception)
@@ -142,5 +142,25 @@ public partial class Register : System.Web.UI.Page
         }
 
     }
-   
+
+    protected void SendMessage(string UserEmail)
+    {
+        MailMessage mm = new MailMessage("sa.imam@hotmail.com", UserEmail);//sender reciver
+        mm.IsBodyHtml = true;
+        mm.Subject = "Ink Online Volunteer Academy";
+        mm.Body = "<br/>" + "Dear  " + txtFName.Text + " ," + " <br/> Thank You For Using Ink." + "<br />";
+        SmtpClient smtp = new SmtpClient();
+        smtp.Host = "smtp.live.com";
+        smtp.EnableSsl = true;
+        System.Net.NetworkCredential NetworkCred = new System.Net.NetworkCredential();
+
+        smtp.UseDefaultCredentials = false;
+        NetworkCred.UserName = "sa.imam@hotmail.com";
+        NetworkCred.Password = "732873abC";
+
+        smtp.Credentials = NetworkCred;
+        smtp.Port = 587;
+        smtp.Send(mm);
+
+    }
 }
