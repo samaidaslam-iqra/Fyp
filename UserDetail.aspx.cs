@@ -53,7 +53,7 @@ public partial class UserDetail : System.Web.UI.Page
             }
         }
     }
-    
+
     public static List<string> countryList()
     {
         try
@@ -306,4 +306,3 @@ public partial class UserDetail : System.Web.UI.Page
         ddlGender.Enabled = false;
     }
 }
-
