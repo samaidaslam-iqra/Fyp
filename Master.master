@@ -41,13 +41,13 @@
 
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <img src="assets/images/p1.jpg" class="user-image" alt="User Image" />
+                                    <img id="userImage1" src="#" runat="server" class="user-image" alt="User Image" />
                                     <span id="span1" runat="server" class="hidden-xs"></span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- User image -->
                                     <li class="user-header">
-                                        <img src="assets/images/p1.jpg" class="img-circle" alt="User Image" />
+                                        <img id="userImage2" src="#" runat="server" class="img-circle" alt="User Image" />
 
                                         <p id="p2" runat="server">
                                         </p>
@@ -55,15 +55,15 @@
                                     <!-- Menu Body -->
                                     <li class="user-body">
                                         <div class="row">
-                                            <div class="col-xs-4 text-center">
-                                                <a href="#">Followers</a>
+                                            <div class="col-xs-6 text">
+                                                <asp:LinkButton ID="changePicture" runat="server">Change Picture</asp:LinkButton>
                                             </div>
-                                            <div class="col-xs-4 text-center">
-                                                <a href="#">Chats</a>
+                                            <div class="col-xs-6 text">
+                                                <asp:LinkButton runat="server">Change Password</asp:LinkButton>
                                             </div>
-                                            <div class="col-xs-4 text-center">
+                                            <%-- <div class="col-xs-4 text-center">
                                                 <a href="#">Friends</a>
-                                            </div>
+                                            </div>--%>
                                         </div>
                                         <!-- /.row -->
                                     </li>
@@ -87,7 +87,7 @@
                 <section class="sidebar">
                     <div class="user-panel">
                         <div class="pull-left image">
-                            <img src="assets/images/p1.jpg" class="img-circle" alt="User Image" />
+                            <img runat="server" src="#" id="userImage3" class="img-circle" alt="User Image" />
                         </div>
                         <div class="pull-left info">
                             <p id="p1" runat="server"></p>
@@ -135,6 +135,9 @@
             </aside>
 
             <div class="content-wrapper">
+                <asp:FileUpload ID="FileUpload1" runat="server" />
+                <asp:Button ID="btnUpload" runat="server" Text="Upload"
+                    OnClick="btnUpload_Click" />
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                 </asp:ContentPlaceHolder>
             </div>
@@ -147,6 +150,7 @@
                 <strong>Copyright &copy; 2016 <a href="#">Samaid Aslam</a>.</strong> All rights reserved.
             </footer>
         </div>
+        <asp:HiddenField ID="hfId" runat="server" />
     </form>
 
     <script src="plugins/jQuery/jquery-2.2.3.min.js"></script>

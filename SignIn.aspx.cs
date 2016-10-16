@@ -27,7 +27,7 @@ public partial class SignIn : System.Web.UI.Page
         SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["dbCon"].ConnectionString);
         try
         {
-            string query = @"Select UserFirstName,UserLastName, UserEmail , UserPassword from InkUser where UserEmail=@Email and UserPassword=@Password";
+            string query = @"Select UserId, UserFirstName,UserLastName, UserEmail , UserPassword from InkUser where UserEmail=@Email and UserPassword=@Password";
             SqlCommand cmd = new SqlCommand(query, sqlcon);
             sqlcon.Open();
             string encrypted = Encrypt(UserPassword);
@@ -57,6 +57,7 @@ public partial class SignIn : System.Web.UI.Page
                 DataTable dt = Login(txtEmail.Text, txtPassword.Text);
                 if (dt.Rows.Count > 0)
                 {
+                    Session["UserId"] = dt.Rows[0]["UserId"].ToString();
                     Session["UserFirstName"] = dt.Rows[0]["UserFirstName"].ToString();
                     Session["UserLastName"] = dt.Rows[0]["UserLastName"].ToString();
                     Session["UserPassword"] = dt.Rows[0]["UserPassword"].ToString();
