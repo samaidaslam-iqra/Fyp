@@ -17,20 +17,21 @@ public partial class Master : System.Web.UI.MasterPage
         {
             if (Session["UserId"] == null || Session["UserEmail"] == null || Session["UserFirstName"] == null)
             {
-                Response.Redirect("Signin.aspx");
+                Response.Redirect("SignIn.aspx");
             }
+
             else
             {
+                FileUpload1.Attributes["onchange"] = "UploadFile(this)";
 
                 hfId.Value = (Session["UserId"].ToString());
                 p1.InnerText = p2.InnerText = span1.InnerText = Session["UserFirstName"].ToString() + " " + Session["UserLastName"].ToString();
                 p2 = p1;
-                ImageLoader();
-            }
-        }
-        else
-        {
 
+
+
+            }
+            ImageLoader();
         }
     }
 
@@ -42,42 +43,43 @@ public partial class Master : System.Web.UI.MasterPage
 
     protected void btnUpload_Click(object sender, EventArgs e)
     {
-
-
+        //FileUpload1.SaveAs(Server.MapPath("~/Uploads/" + Path.GetFileName(FileUpload1.FileName)));
         int length = FileUpload1.PostedFile.ContentLength;
         byte[] UserPhoto = new byte[length];
-
-
         FileUpload1.PostedFile.InputStream.Read(UserPhoto, 0, length);
-
-
-        try
+        if (length > 0)
         {
-            SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbCon"].ConnectionString);
-            int UserId = Convert.ToInt32(hfId.Value);
-            string sql = @"INSERT INTO inkUserDetail(inkUserDetail.UserId ,UserPhoto) SELECT  @UserId ,@UserPhoto  FROM inkUser
+            try
+            {
+                SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbCon"].ConnectionString);
+                int UserId = Convert.ToInt32(hfId.Value);
+                string sql = @"INSERT INTO inkUserDetail(inkUserDetail.UserId ,UserPhoto) SELECT  @UserId ,@UserPhoto  FROM inkUser
  WHERE inkUser.UserId = @UserId";
 
-            using (SqlCommand sqlCommand = new SqlCommand(sql, sqlConnection))
-            {
-                sqlConnection.Open();
-                sqlCommand.Parameters.AddWithValue("@UserId", UserId);
-                sqlCommand.Parameters.AddWithValue("@UserPhoto", UserPhoto);
-                sqlCommand.ExecuteNonQuery();
+                using (SqlCommand sqlCommand = new SqlCommand(sql, sqlConnection))
+                {
+                    sqlConnection.Open();
+                    sqlCommand.Parameters.AddWithValue("@UserId", UserId);
+                    sqlCommand.Parameters.AddWithValue("@UserPhoto", UserPhoto);
+                    sqlCommand.ExecuteNonQuery();
+                }
+                Response.Write("<Script>alert('Uploaded Successully') </Script>");
+                FileUpload1.Dispose();
             }
-            Response.Write("<Script>alert('Uploaded Successully') </Script>");
-            FileUpload1.Dispose();
+            catch (Exception)
+            {
+                throw;
+            }
         }
-        catch (Exception)
+        else
         {
-            throw;
+            Response.Write("<Script>alert('invalid') </Script>");
         }
-
     }
 
     protected void ImageLoader()
     {
-             try
+        try
         {
             SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbCon"].ConnectionString);
             int UserId = Convert.ToInt32(hfId.Value);
@@ -98,15 +100,11 @@ public partial class Master : System.Web.UI.MasterPage
                     userImage1.Src = "data:Image/png;base64," + str;
                     userImage2.Src = userImage3.Src = userImage1.Src;
                 }
-
             }
-
         }
         catch (Exception)
         {
             throw;
         }
-
-
     }
 }
