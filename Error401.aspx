@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="~/ErrorPage.aspx.cs" Inherits="oops" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="~/Error401.aspx.cs" Inherits="oops" %>
 
 <!DOCTYPE html>
 
@@ -110,7 +110,8 @@
         img {
             max-width: 100%;
         }
-
+        /*end reset*
+ */
         body {
             background: url(../assets/images/bg1.png);
             font-family: "Century Gothic",Arial, Helvetica, sans-serif;
@@ -282,7 +283,7 @@
             </div>
         </div>
         <div class="content">
-            <img src="assets/images/error-img.png" title="error" />
+            <img src="assets/images/error-401.png" title="error" />
 
             <p>
                 <span>

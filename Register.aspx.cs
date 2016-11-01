@@ -57,7 +57,7 @@ public partial class Register : System.Web.UI.Page
                     sqlcon.Open();
                     string encrypted = Encrypt(txtPassword.Text);
                     string query = @"insert into inkUser (UserFirstName, UserLastName, UserEmail, UserPassword, UserGender, UserCountry ,UserPhone,UserDoB,DateOfJoining) values
-                               ('" + txtFName.Text + "','" + txtLName.Text + "','" + txtEmail.Text + "','" + encrypted + "','" + ddlGender.SelectedValue.ToString() + "','" + ddlCountry.SelectedValue.ToString() + "', '" + txtPhone.Text + "','" + txtDob.Text + "','" + "2006" + "' )";
+                               ('" + txtFName.Text + "','" + txtLName.Text + "','" + txtEmail.Text + "','" + encrypted + "','" + ddlGender.SelectedValue.ToString() + "','" + ddlCountry.SelectedValue.ToString() + "', '" + txtPhone.Text + "','" + txtDob.Text + "','" + DateTime.UtcNow + "' )";
                     SqlCommand cmd = new SqlCommand(query, sqlcon);
                     cmd.ExecuteNonQuery();
                     sqlcon.Close();
