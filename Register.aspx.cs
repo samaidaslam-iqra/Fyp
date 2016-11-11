@@ -16,9 +16,12 @@ public partial class Register : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        ddlCountry.Items.Insert(0, "--Select--");
-        ddlCountry.DataSource = countryList();
-        ddlCountry.DataBind();
+        if (!IsPostBack)
+        {
+            ddlCountry.Items.Insert(0, "--Select--");
+            ddlCountry.DataSource = countryList();
+            ddlCountry.DataBind();
+        }
     }
 
     public static List<string> countryList()
@@ -62,7 +65,9 @@ public partial class Register : System.Web.UI.Page
                     cmd.ExecuteNonQuery();
                     sqlcon.Close();
                 }
-                SendMessage(txtEmail.Text);
+              //  SendMessage(txtEmail.Text);
+                Response.Write("<Script>alert'Successfull'</Script>");
+               
                 Response.Redirect("Dashboard.aspx");
             }
             catch (Exception)

@@ -65,6 +65,7 @@ public partial class Master : System.Web.UI.MasterPage
                 }
                 Response.Write("<Script>alert('Uploaded Successully') </Script>");
                 FileUpload1.Dispose();
+                Response.Redirect(Request.RawUrl);
             }
             catch (Exception)
             {

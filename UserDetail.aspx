@@ -1,6 +1,27 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.master" AutoEventWireup="true" CodeFile="UserDetail.aspx.cs" Inherits="UserDetail" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+      <script type="text/javascript">
+          function CheckNumeric(e) {
+
+              if (window.event) // IE 
+              {
+                  if ((e.keyCode < 48 || e.keyCode > 57) & e.keyCode != 8) {
+                      event.returnValue = false;
+                      return false;
+
+                  }
+              }
+              else { // Fire Fox
+                  if ((e.which < 48 || e.which > 57) & e.which != 8) {
+                      e.preventDefault();
+                      return false;
+
+                  }
+              }
+          }
+
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <div class="container">
@@ -44,7 +65,7 @@
                         <div class="form-group">
                             <label>Phone</label>
 
-                            <asp:TextBox runat="server" ID="txtPhone" CssClass="form-control" placeholder="Phone number" TextMode="Number" />
+                            <asp:TextBox runat="server" ID="txtPhone" onkeypress="CheckNumeric(event);" CssClass="form-control" placeholder="Phone number" TextMode="Phone" />
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="Phone no missing" ControlToValidate="txtPhone" EnableClientScript="False" ForeColor="Red"></asp:RequiredFieldValidator>
 
                         </div>
@@ -73,7 +94,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Date Of Birth</label>
-                            <asp:TextBox ID="txtDob" runat="server" CssClass="form-control" placeholder="mm/dd/yyyy" TextMode="DateTime" />
+                            <asp:TextBox ID="txtDob" runat="server" CssClass="form-control" placeholder="mm/dd/yyyy" TextMode="Date" />
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ErrorMessage="DOB missing" ControlToValidate="txtDob" EnableClientScript="False" ForeColor="Red"></asp:RequiredFieldValidator>
 
                         </div>

@@ -15,8 +15,29 @@
     <link href="assets/css/font-awesome.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="assets/css/bootstrap-theme.css" media="screen" />
     <link rel="stylesheet" href="assets/css/style.css" />
+    <script type="text/javascript">
+        function CheckNumeric(e) {
 
+            if (window.event) // IE 
+            {
+                if ((e.keyCode < 48 || e.keyCode > 57) & e.keyCode != 8) {
+                    event.returnValue = false;
+                    return false;
+
+                }
+            }
+            else { // Fire Fox
+                if ((e.which < 48 || e.which > 57) & e.which != 8) {
+                    e.preventDefault();
+                    return false;
+
+                }
+            }
+        }
+
+    </script>
 </head>
+
 <body>
     <!-- Fixed navbar -->
     <div class="navbar navbar-inverse">
@@ -68,14 +89,14 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>First Name</label>
-                            <asp:TextBox ID="txtFName" runat="server" cssclass="form-control" placeholder="Your name" />
+                            <asp:TextBox ID="txtFName" runat="server" CssClass="form-control" placeholder="Your name" />
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="First name missing" ControlToValidate="txtFName" ForeColor="Red" EnableClientScript="False"></asp:RequiredFieldValidator>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Last Name</label>
-                            <asp:TextBox runat="server" ID="txtLName" cssclass="form-control" placeholder="Your name" />
+                            <asp:TextBox runat="server" ID="txtLName" CssClass="form-control" placeholder="Your name" />
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Last name missing" ControlToValidate="txtLName" EnableClientScript="False" ForeColor="Red"></asp:RequiredFieldValidator>
                         </div>
                     </div>
@@ -84,14 +105,14 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Password</label>
-                            <asp:TextBox ID="txtPassword" runat="server" cssclass="form-control" placeholder="Your Password" TextMode="Password" />
+                            <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control" placeholder="Your Password" TextMode="Password" />
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Password missing" ControlToValidate="txtPassword" EnableClientScript="False" ForeColor="Red"></asp:RequiredFieldValidator>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Confirm Password</label>
-                            <asp:TextBox runat="server" ID="txtConfirmPassword" cssclass="form-control" placeholder="Confirm Password" TextMode="Password" />
+                            <asp:TextBox runat="server" ID="txtConfirmPassword" CssClass="form-control" placeholder="Confirm Password" TextMode="Password" />
                             <asp:CompareValidator ID="CompareValidator1" runat="server" ErrorMessage="Miss match Password" ControlToCompare="txtPassword" ControlToValidate="txtConfirmPassword" EnableClientScript="False" ForeColor="Red"></asp:CompareValidator>
                             <br />
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Confirm Password missing" ControlToValidate="txtConfirmPassword" EnableClientScript="False" ForeColor="Red"></asp:RequiredFieldValidator>
@@ -103,7 +124,7 @@
                         <div class="form-group">
                             <label>Email</label>
 
-                            <asp:TextBox runat="server" ID="txtEmail" cssclass="form-control" placeholder="Email address" TextMode="Email" />
+                            <asp:TextBox runat="server" ID="txtEmail" CssClass="form-control" placeholder="Email address" TextMode="Email" />
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ErrorMessage="Email missing" ControlToValidate="txtEmail" EnableClientScript="False" ForeColor="Red"></asp:RequiredFieldValidator>
                             <br />
                             <asp:CustomValidator ID="CustomValidator1" runat="server" ErrorMessage="Email already exists!! " ControlToValidate="txtEmail" OnServerValidate="CustomValidator1_ServerValidate" EnableClientScript="False" ForeColor="Red"></asp:CustomValidator>
@@ -114,9 +135,8 @@
                         <div class="form-group">
                             <label>Phone</label>
 
-                            <asp:TextBox runat="server" ID="txtPhone" cssclass="form-control" placeholder="Phone number" TextMode="Number" />
+                            <asp:TextBox runat="server" ID="txtPhone" onkeypress="CheckNumeric(event);" CssClass="form-control" placeholder="Phone number" TextMode="Phone" />
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="Phone no missing" ControlToValidate="txtPhone" EnableClientScript="False" ForeColor="Red"></asp:RequiredFieldValidator>
-
                         </div>
                     </div>
                 </div>
@@ -124,7 +144,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Gender</label>
-                            <asp:DropDownList ID="ddlGender" runat="server" cssclass="form-control" placeholder="Gender">
+                            <asp:DropDownList ID="ddlGender" runat="server" CssClass="form-control" placeholder="Gender">
                                 <asp:ListItem>Male</asp:ListItem>
                                 <asp:ListItem>Female</asp:ListItem>
                                 <asp:ListItem>Other</asp:ListItem>
@@ -135,7 +155,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Country</label>
-                            <asp:DropDownList ID="ddlCountry" runat="server" cssclass="form-control" placeholder="Country">
+                            <asp:DropDownList ID="ddlCountry" runat="server" CssClass="form-control" placeholder="Country">
                                 <asp:ListItem Selected="True">--Select--</asp:ListItem>
                             </asp:DropDownList>
                         </div>
@@ -143,14 +163,14 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Date Of Birth</label>
-                            <asp:TextBox ID="txtDob" runat="server" cssclass="form-control" placeholder="mm/dd/yyyy" TextMode="DateTime" />
+                            <asp:TextBox ID="txtDob" runat="server" CssClass="form-control" TextMode="Date" />
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ErrorMessage="DOB missing" ControlToValidate="txtDob" EnableClientScript="False" ForeColor="Red"></asp:RequiredFieldValidator>
 
                         </div>
                     </div>
                 </div>
 
-                <asp:Button runat="server" ID="btnRegister" Text="Register" cssclass="btn btn-two" OnClick="btnRegister_Click"></asp:Button>
+                <asp:Button runat="server" ID="btnRegister" Text="Register" CssClass="btn btn-two" OnClick="btnRegister_Click"></asp:Button>
                 <p>
                     <br />
                 </p>
