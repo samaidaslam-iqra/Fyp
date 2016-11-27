@@ -11,7 +11,9 @@
 
                 <!-- About Me Box -->
                 <div class="box box-primary">
-                    <div class="box-header with-border"></div>
+                    <div class="box-header with-border">
+                        <asp:LinkButton  ID="linkbtnEdit"  runat="server" OnClick="linkbtnEdit_Click" Text="Edit Details"> <i class="fa fa-pencil"></i> Edit </asp:LinkButton>
+                    </div>
 
                     <div class="box-body">
                         <strong class="box-title"><i class="fa fa-file-text-o margin-r-5"></i>About Me</strong>

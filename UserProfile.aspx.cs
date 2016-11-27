@@ -36,14 +36,14 @@ public partial class UserProfile : System.Web.UI.Page
                 Education.InnerText = dt.Rows[0]["UserEducation"].ToString();
                 Employee.InnerText = dt.Rows[0]["UserEmployement"].ToString();
 
-                string[] separators = { ",", ".", "!", "?", ";", ":" };
+                string[] separators = { ",", ".", "!", "?", ";", ":" ," "};
                 string value = dt.Rows[0]["UserSkills"].ToString();
                 string[] words = value.Split(separators, StringSplitOptions.RemoveEmptyEntries);
                 foreach (var word in words)
                 {
                     if (!words.Equals("") || words != null)
                     {
-                        sp1.InnerText = words[1];
+                        sp1.InnerText = words[0];
 
                         if (!words.Equals("") || words != null)
                         {
@@ -78,5 +78,9 @@ public partial class UserProfile : System.Web.UI.Page
         {
             throw;
         }
+    }
+    protected void linkbtnEdit_Click(object sender, EventArgs e)
+    {
+        Server.Transfer("EditDetails.aspx");
     }
 }
