@@ -1,7 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.master" AutoEventWireup="true" CodeFile="UserProfile.aspx.cs" Inherits="UserProfile" %>
-
+<%@ MasterType VirtualPath="~/Master.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <section class="content">
 
@@ -10,47 +11,46 @@
 
                 <!-- About Me Box -->
                 <div class="box box-primary">
-                    <div class="box-header with-border"> </div>
-                       <div class="box-body"> 
-                       <strong class="box-title">  <i class="fa fa-file-text-o margin-r-5"></i> About Me</strong>
-                         <p id="aboutMe" class="text-muted">
-                            B.S. in Computer Science from the University of Tennessee at Knoxville
-             
+                    <div class="box-header with-border"></div>
+
+                    <div class="box-body">
+                        <strong class="box-title"><i class="fa fa-file-text-o margin-r-5"></i>About Me</strong>
+                        <p id="aboutMe" runat="server" class="text-muted">
+                            
                         </p>
-                   <hr /></div>
+                        <hr />
+                    </div>
                     <!-- /.box-header -->
                     <div class="box-body">
-                        <strong><i class="fa fa-book margin-r-5"></i>Education</strong>
+                        <strong onclick="showtxt()"><i class="fa fa-book margin-r-5"></i>Education</strong>
+                        <p id="Education" runat="server" class="text-muted">
+                            </p>
+                        <hr />
+                    </div>
 
-                        <p id="Education" class="text-muted">
-                            B.S. in Computer Science from the University of Tennessee at Knoxville
-             
-                        </p>
+                    <div class="box-body">
+                        <strong><i class="fa fa-black-tie margin-r-5"></i>Employement</strong>
+
+                        <p id="Employee" runat="server" class="text-muted"></p>
 
                         <hr />
+                    </div>
 
-                        <strong><i class="fa fa-map-marker margin-r-5"></i>Location</strong>
-
-                        <p id="location" class ="text-muted">Malibu, California</p>
-
-                        <hr />
-
+                    <div class="box-body">
                         <strong><i class="fa fa-pencil margin-r-5"></i>Skills</strong>
 
-                        <p id="Skills">
-                            <span class="label label-danger">UI Design</span>
-                            <span class="label label-success">Coding</span>
-                            <span class="label label-info">Javascript</span>
-                            <span class="label label-warning">PHP</span>
-                            <span class="label label-primary">Node.js</span>
+                        <p id="Skills" runat="server">
+                            <span id="sp1" runat="server" class="label label-danger"></span>
+                            <span id="sp2" runat="server" class ="label label-success"></span>
+                            <span id="sp3" runat="server" class="label label-info"></span>
+                            <span id="sp4" runat="server" class="label label-warning"></span>
+                            <span id="sp5" runat="server" class="label label-primary"></span>
                         </p>
 
                         <hr />
-
-                        <strong><i class="fa fa-file-text-o margin-r-5"></i>Notes</strong>
-
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
                     </div>
+
+             
                     <!-- /.box-body -->
                 </div>
             </div>

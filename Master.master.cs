@@ -11,6 +11,8 @@ using System.Web.UI.WebControls;
 
 public partial class Master : System.Web.UI.MasterPage
 {
+    public int UserId;
+
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
@@ -23,13 +25,9 @@ public partial class Master : System.Web.UI.MasterPage
             else
             {
                 FileUpload1.Attributes["onchange"] = "UploadFile(this)";
-
                 hfId.Value = (Session["UserId"].ToString());
                 p1.InnerText = p2.InnerText = span1.InnerText = Session["UserFirstName"].ToString() + " " + Session["UserLastName"].ToString();
                 p2 = p1;
-
-
-
             }
             ImageLoader();
         }
@@ -52,7 +50,7 @@ public partial class Master : System.Web.UI.MasterPage
             try
             {
                 SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbCon"].ConnectionString);
-                int UserId = Convert.ToInt32(hfId.Value);
+                UserId = Convert.ToInt32(hfId.Value);
                 string sql = @"INSERT INTO inkUserDetail(inkUserDetail.UserId ,UserPhoto) SELECT  @UserId ,@UserPhoto  FROM inkUser
  WHERE inkUser.UserId = @UserId";
 
@@ -83,7 +81,7 @@ public partial class Master : System.Web.UI.MasterPage
         try
         {
             SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbCon"].ConnectionString);
-            int UserId = Convert.ToInt32(hfId.Value);
+            UserId = Convert.ToInt32(hfId.Value);
             string sql = @"  select Top 1 UserPhoto from inkUserDetail where Userid= @UserId";
 
             using (SqlCommand sqlCommand = new SqlCommand(sql, sqlConnection))
@@ -107,5 +105,10 @@ public partial class Master : System.Web.UI.MasterPage
         {
             throw;
         }
+    }
+    
+    public Int32 ids
+    {
+        get { return Convert.ToInt32(Session["UserId"]); }
     }
 }

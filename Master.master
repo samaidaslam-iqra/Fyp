@@ -23,11 +23,10 @@
         }
 
         function UploadFile(fileUpload) {
-
             if (fileUpload.value != '') {
                 document.getElementById("<%=btnUpload.ClientID %>").click();
-            }
-        }
+                        }
+                    }
     </script>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
@@ -152,14 +151,13 @@
                 <asp:Button ID="btnUpload" runat="server" Text="Upload" OnClick="btnUpload_Click" CssClass="hidden" />
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                 </asp:ContentPlaceHolder>
-           
-         
-		
-		
-                </div>
-                 
+
+
+
+
+            </div>
+
             <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
-          
             </asp:ContentPlaceHolder>
 
             <footer class="main-footer">
