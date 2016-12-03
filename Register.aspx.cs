@@ -65,10 +65,9 @@ public partial class Register : System.Web.UI.Page
                     cmd.ExecuteNonQuery();
                     sqlcon.Close();
                 }
-              //  SendMessage(txtEmail.Text);
-                Response.Write("<Script>alert'Successfull'</Script>");
-               
-                Response.Redirect("Dashboard.aspx");
+                //  SendMessage(txtEmail.Text);
+
+                createEntry();
             }
             catch (Exception)
             {
@@ -77,7 +76,46 @@ public partial class Register : System.Web.UI.Page
         }
     }
 
-    string Encryptionkey = "S1A2M3";
+    public void createEntry()
+    {
+        int userId;
+        try
+        {
+            DataTable dt = new DataTable();
+            using (SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["dbCon"].ConnectionString))
+            {
+                // select  userId, UserFirstName ,UserLastName,UserPassword ,UserEmail from InkUser where userid=(select MAX(UserId) as UserId from inkUser);               
+                sqlcon.Open();
+
+                string query1 = "select  UserId , UserFirstName ,UserLastName,UserPassword ,UserEmail from InkUser where UserId=(select MAX(UserId) as UserId from inkUser)";
+                SqlCommand cmd1 = new SqlCommand(query1, sqlcon);
+                SqlDataAdapter sqlAdapter = new SqlDataAdapter(cmd1);
+                sqlAdapter.Fill(dt);
+                userId = Convert.ToInt32(dt.Rows[0]["UserId"]);
+                cmd1.ExecuteNonQuery();
+
+                string query = "insert into inkUserDetail (UserId , UserAboutMe, UserEducation, UserEmployement , UserSkills, UserPhoto) values( '" + userId + "' , null , null , null , null , null )";
+
+                SqlCommand cmd = new SqlCommand(query, sqlcon);
+                cmd.ExecuteNonQuery();
+                sqlcon.Close();
+            }
+
+            Session["UserId"] = userId;
+            Session["UserFirstName"] = dt.Rows[0]["UserFirstName"].ToString();
+            Session["UserLastName"] = dt.Rows[0]["UserLastName"].ToString();
+            Session["UserPassword"] = dt.Rows[0]["UserPassword"].ToString();
+            Session["UserEmail"] = dt.Rows[0]["UserEmail"].ToString();
+            Session.Timeout = 30;
+            Response.Redirect("Dashboard.aspx");
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+    }
+
+    static string Encryptionkey = "S1A2M3";
 
     public string Encrypt(string originalText)
     {

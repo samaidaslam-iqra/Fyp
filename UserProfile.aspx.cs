@@ -13,6 +13,7 @@ public partial class UserProfile : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+
         getData();
     }
 
@@ -25,6 +26,7 @@ public partial class UserProfile : System.Web.UI.Page
 
             SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbCon"].ConnectionString);
             string sql = @"select * from inkUserDetail  WHERE inkUserDetail.UserId = @UserId";
+
             using (SqlCommand sqlCommand = new SqlCommand(sql, sqlConnection))
             {
                 sqlConnection.Open();
@@ -32,46 +34,65 @@ public partial class UserProfile : System.Web.UI.Page
                 SqlDataAdapter sqlAdapter = new SqlDataAdapter(sqlCommand);
                 sqlAdapter.Fill(dt);
                 sqlCommand.ExecuteNonQuery();
-                aboutMe.InnerText = dt.Rows[0]["UserAboutMe"].ToString();
-                Education.InnerText = dt.Rows[0]["UserEducation"].ToString();
-                Employee.InnerText = dt.Rows[0]["UserEmployement"].ToString();
-
-                string[] separators = { ",", ".", "!", "?", ";", ":" ," "};
-                string value = dt.Rows[0]["UserSkills"].ToString();
-                string[] words = value.Split(separators, StringSplitOptions.RemoveEmptyEntries);
-                foreach (var word in words)
-                {
-                    if (!words.Equals("") || words != null)
-                    {
-                        sp1.InnerText = words[0];
-
-                        if (!words.Equals("") || words != null)
-                        {
-                            sp2.InnerText = words[1];
-                        }
-                        if (!words.Equals("") || words != null)
-                        {
-                            sp3.InnerText = words[2];
-                        }
-                        if (!words.Equals("") || words != null)
-                        {
-                            sp4.InnerText = words[3];
-                        }
-                        if (!words.Equals("") || words != null)
-                        {
-                            sp5.InnerText = words[4];
-                        }
-                    }
-                    else
-                    {
-                    }
-                }
-
-                //sp1.InnerText = dt.Rows[0]["UserSkills"].ToString().Substring(0, dt.Rows[0]["UserSkills"].ToString().IndexOf(",") + 1);
-                //  sp2.InnerText = dt.Rows[0]["UserSkills"].ToString().Substring(1, dt.Rows[0]["UserSkills"].ToString().IndexOf(",") + 2);
-                //sp1.InnerText = dt.Rows[0]["UserSkills"].ToString().Split(',').First();
-                //sp2.InnerText = dt.Rows[0]["UserSkills"].ToString().Split(',').Last();
             }
+            aboutMe.InnerText = dt.Rows[0]["UserAboutMe"].ToString();
+            Education.InnerText = dt.Rows[0]["UserEducation"].ToString();
+            Employee.InnerText = dt.Rows[0]["UserEmployement"].ToString();
+            // sp1.InnerText = dt.Rows[0]["UserSkills"].ToString();
+            string value;
+
+            value = dt.Rows[0]["UserSkills"].ToString();
+
+            string[] separators = { "," };
+            string[] words = value.Split(separators, StringSplitOptions.RemoveEmptyEntries);
+            int q = words.Length + 1;
+            ////if (words[0] == null || words[0] == "")
+            ////{
+            ////    sp1.InnerText = sp2.InnerText = sp3.InnerText = sp4.InnerText = sp5.InnerText = "Skills";
+            ////}
+            foreach (var word in words)
+            {
+                if (q > 1)
+                {
+                    sp1.InnerText = word;
+                    q--;
+                }
+                if (q > 1)
+                {
+                    sp2.InnerText = words[1];
+                    q--;
+                }
+                if (q > 1)
+                {
+                    sp3.InnerText = words[2];
+                    q--;
+                }
+                if (q > 1)
+                {
+                    sp4.InnerText = words[3];
+                    q--;
+                }
+                if (q > 1)
+                {
+                    sp5.InnerText = words[4];
+                    q--;
+                }
+                else if (q==0)
+                {
+                    Response.Redirect("about.aspx");
+                }
+                else
+                {
+
+                }
+            }
+
+
+            //  sp2.InnerText = dt.Rows[0]["UserSkills"].ToString().Substring(1, dt.Rows[0]["UserSkills"].ToString().IndexOf(",") + 2);
+            //sp1.InnerText = dt.Rows[0]["UserSkills"].ToString().Split(',').First();
+            //sp2.InnerText = dt.Rows[0]["UserSkills"].ToString().Split(',').Last();
+            //}//
+
 
         }
         catch (Exception)

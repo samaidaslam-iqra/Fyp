@@ -28,14 +28,18 @@ public partial class Master : System.Web.UI.MasterPage
                 hfId.Value = (Session["UserId"].ToString());
                 p1.InnerText = p2.InnerText = span1.InnerText = Session["UserFirstName"].ToString() + " " + Session["UserLastName"].ToString();
                 p2 = p1;
+                ImageLoader();
             }
-            ImageLoader();
+
         }
     }
 
     protected void btnLogout_Click(object sender, EventArgs e)
     {
+        Session.Clear();
+
         Session.RemoveAll();
+        Session.Abandon();
         Response.Redirect("SignIn.aspx");
     }
 
@@ -51,8 +55,7 @@ public partial class Master : System.Web.UI.MasterPage
             {
                 SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbCon"].ConnectionString);
                 UserId = Convert.ToInt32(hfId.Value);
-                string sql = @"INSERT INTO inkUserDetail(inkUserDetail.UserId ,UserPhoto) SELECT  @UserId ,@UserPhoto  FROM inkUser
- WHERE inkUser.UserId = @UserId";
+                string sql = @"Update inkUserDetail set UserPhoto=@Userphoto WHERE inkUserDetail.UserId = @UserId";
 
                 using (SqlCommand sqlCommand = new SqlCommand(sql, sqlConnection))
                 {
@@ -82,7 +85,7 @@ public partial class Master : System.Web.UI.MasterPage
         {
             SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbCon"].ConnectionString);
             UserId = Convert.ToInt32(hfId.Value);
-            string sql = @"  select Top 1 UserPhoto from inkUserDetail where Userid= @UserId";
+            string sql = @"  select UserPhoto from inkUserDetail where Userid= @UserId and UserPhoto Is Not Null ";
 
             using (SqlCommand sqlCommand = new SqlCommand(sql, sqlConnection))
             {
@@ -106,7 +109,7 @@ public partial class Master : System.Web.UI.MasterPage
             throw;
         }
     }
-    
+
     public Int32 ids
     {
         get { return Convert.ToInt32(Session["UserId"]); }

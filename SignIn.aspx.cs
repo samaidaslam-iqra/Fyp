@@ -17,7 +17,7 @@ public partial class SignIn : System.Web.UI.Page
     {
         if (Session["UserEmail"] != null && Session["UserFirstName"] != null)
         {
-            Response.Redirect("Dashboard.aspx",false);
+            Response.Redirect("Dashboard.aspx", false);
         }
     }
 
