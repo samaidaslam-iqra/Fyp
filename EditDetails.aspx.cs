@@ -76,6 +76,6 @@ public partial class EditDetails : System.Web.UI.Page
 
     protected void btnCancel_Click(object sender, EventArgs e)
     {
-        Server.Transfer("UserProfile.aspx");
+        Response.Redirect("UserProfile.aspx");
     }
 }

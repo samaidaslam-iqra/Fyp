@@ -28,7 +28,7 @@ public partial class Master : System.Web.UI.MasterPage
                 hfId.Value = (Session["UserId"].ToString());
                 p1.InnerText = p2.InnerText = span1.InnerText = Session["UserFirstName"].ToString() + " " + Session["UserLastName"].ToString();
                 p2 = p1;
-                ImageLoader();
+                ImageLoader(Convert.ToInt32(Session["UserId"]));
             }
 
         }
@@ -45,14 +45,11 @@ public partial class Master : System.Web.UI.MasterPage
 
     protected void btnUpload_Click(object sender, EventArgs e)
     {
-        //FileUpload1.SaveAs(Server.MapPath("~/Uploads/" + Path.GetFileName(FileUpload1.FileName)));
-        int length = FileUpload1.PostedFile.ContentLength;
-        byte[] UserPhoto = new byte[length];
-        FileUpload1.PostedFile.InputStream.Read(UserPhoto, 0, length);
-        if (length > 0)
+        if (FileUpload1.HasFile)
         {
             try
             {
+                FileUpload1.PostedFile.SaveAs(Server.MapPath("~/UserProfilePictures/") + Session["UserFirstName"].ToString() + Session["UserLastName"].ToString() + FileUpload1.PostedFile.FileName);
                 SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbCon"].ConnectionString);
                 UserId = Convert.ToInt32(hfId.Value);
                 string sql = @"Update inkUserDetail set UserPhoto=@Userphoto WHERE inkUserDetail.UserId = @UserId";
@@ -61,7 +58,7 @@ public partial class Master : System.Web.UI.MasterPage
                 {
                     sqlConnection.Open();
                     sqlCommand.Parameters.AddWithValue("@UserId", UserId);
-                    sqlCommand.Parameters.AddWithValue("@UserPhoto", UserPhoto);
+                    sqlCommand.Parameters.AddWithValue("@UserPhoto", FileUpload1.PostedFile.FileName);
                     sqlCommand.ExecuteNonQuery();
                 }
                 Response.Write("<Script>alert('Uploaded Successully') </Script>");
@@ -79,7 +76,7 @@ public partial class Master : System.Web.UI.MasterPage
         }
     }
 
-    protected void ImageLoader()
+    protected void ImageLoader(int id)
     {
         try
         {
@@ -89,7 +86,6 @@ public partial class Master : System.Web.UI.MasterPage
 
             using (SqlCommand sqlCommand = new SqlCommand(sql, sqlConnection))
             {
-                byte[] imgByte = null;
                 sqlConnection.Open();
                 sqlCommand.Parameters.AddWithValue("@UserId", UserId);
                 DataSet ds = new DataSet();
@@ -97,9 +93,8 @@ public partial class Master : System.Web.UI.MasterPage
                 da.Fill(ds);
                 foreach (DataRow dr in ds.Tables[0].Rows)
                 {
-                    imgByte = (byte[])(dr["UserPhoto"]);
-                    string str = Convert.ToBase64String(imgByte);
-                    userImage1.Src = "data:Image/png;base64," + str;
+                    string str = (dr["UserPhoto"].ToString());
+                    userImage1.Src = "~/UserProfilePictures/" + Session["UserFirstName"].ToString() + Session["UserLastName"].ToString() + str;
                     userImage2.Src = userImage3.Src = userImage1.Src;
                 }
             }

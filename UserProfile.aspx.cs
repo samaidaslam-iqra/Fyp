@@ -77,7 +77,7 @@ public partial class UserProfile : System.Web.UI.Page
                     sp5.InnerText = words[4];
                     q--;
                 }
-                else if (q==0)
+                else if (q == 0)
                 {
                     Response.Redirect("about.aspx");
                 }
@@ -101,6 +101,10 @@ public partial class UserProfile : System.Web.UI.Page
         }
     }
     protected void linkbtnEdit_Click(object sender, EventArgs e)
+    {
+        Server.Transfer("EditDetails.aspx");
+    }
+    protected void linkbtnEdit1_Click(object sender, EventArgs e)
     {
         Server.Transfer("EditDetails.aspx");
     }

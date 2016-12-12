@@ -57,6 +57,58 @@
                 </div>
             </div>
         </div>
+
+        <div class="row">
+            <div class="col-md-12">
+
+                <!-- About Me Box -->
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <asp:LinkButton ID="linkbtnEdit1" runat="server" OnClick="linkbtnEdit1_Click" Text="Edit Details"> <i class="fa fa-pencil"></i> Edit </asp:LinkButton>
+                    </div>
+
+                    <div class="box-body">
+                        <strong class="box-title"><i class="fa fa-file-text-o margin-r-5"></i>About Me</strong>
+                        <p id="P1" runat="server" class="text-muted">
+                        </p>
+                        <hr />
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <strong onclick="showtxt()"><i class="fa fa-book margin-r-5"></i>Education</strong>
+                        <p id="P2" runat="server" class="text-muted">
+                        </p>
+                        <hr />
+                    </div>
+
+                    <div class="box-body">
+                        <strong><i class="fa fa-black-tie margin-r-5"></i>Employement</strong>
+
+                        <p id="P3" runat="server" class="text-muted"></p>
+
+                        <hr />
+                    </div>
+
+                    <div class="box-body">
+                        <strong><i class="fa fa-pencil margin-r-5"></i>Skills</strong>
+
+                        <p id="P4" runat="server">
+                            <span id="Span1" runat="server" class="label label-danger"></span>
+                            <span id="Span2" runat="server" class="label label-success"></span>
+                            <span id="Span3" runat="server" class="label label-info"></span>
+                            <span id="Span4" runat="server" class="label label-warning"></span>
+                            <span id="Span5" runat="server" class="label label-primary"></span>
+                        </p>
+
+                        <hr />
+                    </div>
+
+
+                    <!-- /.box-body -->
+                </div>
+            </div>
+        </div>
+
     </section>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
