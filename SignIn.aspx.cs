@@ -88,30 +88,6 @@ public partial class SignIn : System.Web.UI.Page
 
     string Encryptionkey = "S1A2M3";
 
-    public string Decrypt(string cipherText)
-    {
-
-        Byte[] cipherBytes = Convert.FromBase64String(cipherText);
-        using (Aes encryptor = Aes.Create())
-        {
-            Rfc2898DeriveBytes pbd = new Rfc2898DeriveBytes(Encryptionkey, new Byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x76 });
-            encryptor.Key = pbd.GetBytes(32);
-            encryptor.IV = pbd.GetBytes(16);
-            using (MemoryStream ms = new MemoryStream())
-            {
-                using (CryptoStream cs = new CryptoStream(ms, encryptor.CreateDecryptor(), CryptoStreamMode.Write))
-                {
-                    cs.Write(cipherBytes, 0, cipherBytes.Length);
-                    cs.Close();
-                }
-                cipherText = Encoding.Unicode.GetString(ms.ToArray());
-            }
-
-        }
-
-        return cipherText;
-    }
-
     public string Encrypt(string originalText)
     {
 

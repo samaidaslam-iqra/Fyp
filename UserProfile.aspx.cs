@@ -38,7 +38,6 @@ public partial class UserProfile : System.Web.UI.Page
             aboutMe.InnerText = dt.Rows[0]["UserAboutMe"].ToString();
             Education.InnerText = dt.Rows[0]["UserEducation"].ToString();
             Employee.InnerText = dt.Rows[0]["UserEmployement"].ToString();
-            // sp1.InnerText = dt.Rows[0]["UserSkills"].ToString();
             string value;
 
             value = dt.Rows[0]["UserSkills"].ToString();
@@ -46,10 +45,7 @@ public partial class UserProfile : System.Web.UI.Page
             string[] separators = { "," };
             string[] words = value.Split(separators, StringSplitOptions.RemoveEmptyEntries);
             int q = words.Length + 1;
-            ////if (words[0] == null || words[0] == "")
-            ////{
-            ////    sp1.InnerText = sp2.InnerText = sp3.InnerText = sp4.InnerText = sp5.InnerText = "Skills";
-            ////}
+
             foreach (var word in words)
             {
                 if (q > 1)
@@ -79,33 +75,25 @@ public partial class UserProfile : System.Web.UI.Page
                 }
                 else if (q == 0)
                 {
-                    Response.Redirect("about.aspx");
                 }
                 else
                 {
-
                 }
             }
-
-
-            //  sp2.InnerText = dt.Rows[0]["UserSkills"].ToString().Substring(1, dt.Rows[0]["UserSkills"].ToString().IndexOf(",") + 2);
-            //sp1.InnerText = dt.Rows[0]["UserSkills"].ToString().Split(',').First();
-            //sp2.InnerText = dt.Rows[0]["UserSkills"].ToString().Split(',').Last();
-            //}//
-
-
         }
         catch (Exception)
         {
             throw;
         }
     }
+
     protected void linkbtnEdit_Click(object sender, EventArgs e)
     {
         Server.Transfer("EditDetails.aspx");
     }
+
     protected void linkbtnEdit1_Click(object sender, EventArgs e)
     {
-        Server.Transfer("EditDetails.aspx");
+        Server.Transfer("EditInterest.aspx");
     }
 }

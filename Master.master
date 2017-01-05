@@ -10,7 +10,7 @@
     <meta name="author" content="Ink" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-    <title>Ink 'Online Volunteer Academy'</title>
+    <title>Ink Online Volunteer Academy</title>
 
     <link rel="shortcut icon" runat="server" href="~/assets/images/favicon.ico" type="image/x-icon" />
     <link href="assets/css/skins/skin-blue.min.css" rel="stylesheet" />
@@ -25,8 +25,8 @@
         function UploadFile(fileUpload) {
             if (fileUpload.value != '') {
                 document.getElementById("<%=btnUpload.ClientID %>").click();
-                        }
-                    }
+            }
+        }
     </script>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
@@ -66,12 +66,11 @@
                                     <li class="user-body">
                                         <div class="row">
                                             <div class="col-xs-6 text">
-                                                <a title="Profile Picture" onclick="openfileDialog()">Change Avatar</a>
-                                                <%--          <asp:LinkButton runat="server" ID="open" OnClientClick="openfileDialog()">Change Picture</asp:LinkButton>
-                                                --%>
+                                                <%--        <a title="Profile Picture" onclick="openfileDialog()">Change Avatar</a>--%>
+                                                <input type="button" id="btnProfilePic" class="btn btn-default btn-flat" value="Change Picture" title="Profile Picture" onclick="openfileDialog()" />
                                             </div>
                                             <div class="col-xs-6 text">
-                                                <asp:LinkButton runat="server">Change Password</asp:LinkButton>
+                                                <input type="button" id="btnchangePassword" value="Change Password" title="Change Password" class="btn btn-default btn-flat" runat="server" />
                                             </div>
                                             <%-- <div class="col-xs-4 text-center">
                                                 <a href="#">Friends</a>

@@ -84,7 +84,7 @@ public partial class Register : System.Web.UI.Page
             DataTable dt = new DataTable();
             using (SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["dbCon"].ConnectionString))
             {
-                // select  userId, UserFirstName ,UserLastName,UserPassword ,UserEmail from InkUser where userid=(select MAX(UserId) as UserId from inkUser);               
+                          
                 sqlcon.Open();
 
                 string query1 = "select  UserId , UserFirstName ,UserLastName,UserPassword ,UserEmail from InkUser where UserId=(select MAX(UserId) as UserId from inkUser)";
@@ -138,30 +138,6 @@ public partial class Register : System.Web.UI.Page
         }
         return originalText;
 
-    }
-
-    public string Decrypt(string cipherText)
-    {
-
-        Byte[] cipherBytes = Convert.FromBase64String(cipherText);
-        using (Aes encryptor = Aes.Create())
-        {
-            Rfc2898DeriveBytes pbd = new Rfc2898DeriveBytes(Encryptionkey, new Byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x76 });
-            encryptor.Key = pbd.GetBytes(32);
-            encryptor.IV = pbd.GetBytes(16);
-            using (MemoryStream ms = new MemoryStream())
-            {
-                using (CryptoStream cs = new CryptoStream(ms, encryptor.CreateDecryptor(), CryptoStreamMode.Write))
-                {
-                    cs.Write(cipherBytes, 0, cipherBytes.Length);
-                    cs.Close();
-                }
-                cipherText = Encoding.Unicode.GetString(ms.ToArray());
-            }
-
-        }
-
-        return cipherText;
     }
 
     protected void CustomValidator1_ServerValidate(object source, ServerValidateEventArgs args)

@@ -54,7 +54,7 @@ public partial class UserDetail : System.Web.UI.Page
         }
     }
 
-    public static List<string> countryList()
+       public static List<string> countryList()
     {
         try
         {
@@ -77,6 +77,7 @@ public partial class UserDetail : System.Web.UI.Page
             throw;
         }
     }
+    
     protected int GetMaxRecord()
     {
         int MaxId = 0;
@@ -109,6 +110,7 @@ public partial class UserDetail : System.Web.UI.Page
         }
         return MaxId;
     }
+    
     private void GetData(int id)
     {
         DataTable getDataTable = new DataTable();
@@ -154,6 +156,7 @@ public partial class UserDetail : System.Web.UI.Page
         }
         //return getDataTable;
     }
+    
     protected int InsertRecord(string FName, string LName, string Email, string Gender, string Country, string Phone, string DoB)
     {
 
@@ -192,6 +195,7 @@ public partial class UserDetail : System.Web.UI.Page
         return id;
 
     }
+    
     protected void UpdateRecord(int UserId, string FName, string LName, string Email, string Gender, string Country, string Phone, string DoB)
     {
 
@@ -236,6 +240,7 @@ public partial class UserDetail : System.Web.UI.Page
 
 
     }
+    
     protected void btnSave_Click(object sender, EventArgs e)
     {
 
@@ -283,17 +288,20 @@ public partial class UserDetail : System.Web.UI.Page
         }
 
     }
+    
     protected void btnCancel_Click(object sender, EventArgs e)
     {
         ClearFields();
         Response.Redirect("UserList.aspx");
     }
+    
     private void ClearFields()
     {
 
         txtFName.Text = txtLName.Text = txtEmail.Text = txtPhone.Text = txtDob.Text = txtDoJoining.Text = "";
         ddlGender.SelectedValue = "Gender";
     }
+    
     private void disableFields()
     {
         txtFName.Enabled = false;

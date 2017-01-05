@@ -12,8 +12,88 @@
 
                 <!-- About Me Box -->
                 <div class="box box-primary">
+                    <div class="box-header with-border"><strong class="box-title">Stats <i class="fa fa-bar-chart"></i></strong></div>
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+
+
+                            <div class="info-box">
+                                <span class="info-box-icon bg-aqua"><i class="fa fa-bar-chart-o"></i></span>
+
+                                <div class="info-box-content">
+                                    <span class="info-box-text">No. Of Activities</span>
+                                    <span class="info-box-number">90<small></small></span>
+                                </div>
+                                <!-- /.info-box-content -->
+                            </div>
+                            <!-- /.info-box -->
+                        </div>
+                        <!-- /.col -->
+
+
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+
+                            <div class="info-box">
+                                <span class="info-box-icon bg-red"><i class="fa fa-star-half-empty"></i></span>
+
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Rank</span>
+                                    <span class="info-box-number">Advance</span>
+                                </div>
+                                <!-- /.info-box-content -->
+                            </div>
+                            <!-- /.info-box -->
+                        </div>
+                        <!-- /.col -->
+
+                        <!-- fix for small devices only -->
+                        <div class="clearfix visible-sm-block"></div>
+
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+
+                            <div class="info-box">
+                                <span class="info-box-icon bg-green"><i class="fa fa-tasks"></i></span>
+
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Files Uploaded</span>
+                                    <span class="info-box-number">760</span>
+                                </div>
+                                <!-- /.info-box-content -->
+                            </div>
+                            <!-- /.info-box -->
+
+                        </div>
+
+                        <!-- /.col -->
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+
+                            <div class="info-box">
+                                <span class="info-box-icon bg-yellow"><i class="fa fa-users"></i></span>
+
+                                <div class="info-box-content">
+                                    <span class="info-box-text">No. Of Links</span>
+                                    <span class="info-box-number">2,000</span>
+                                </div>
+                                <!-- /.info-box-content -->
+                            </div>
+                            <!-- /.info-box -->
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="col-md-12">
+
+                <!-- About Me Box -->
+                <div class="box box-primary">
                     <div class="box-header with-border">
-                        <asp:LinkButton ID="linkbtnEdit" runat="server" OnClick="linkbtnEdit_Click" Text="Edit Details"> <i class="fa fa-pencil"></i> Edit </asp:LinkButton>
+                        <strong class="box-title">About </strong>
+                        <asp:LinkButton ID="linkbtnEdit" runat="server" OnClick="linkbtnEdit_Click" Text=" Edit Details"> <i class="fa fa-pencil"></i> Edit </asp:LinkButton>
                     </div>
 
                     <div class="box-body">
@@ -64,32 +144,26 @@
                 <!-- About Me Box -->
                 <div class="box box-primary">
                     <div class="box-header with-border">
-                        <asp:LinkButton ID="linkbtnEdit1" runat="server" OnClick="linkbtnEdit1_Click" Text="Edit Details"> <i class="fa fa-pencil"></i> Edit </asp:LinkButton>
+                        <strong class="box-title">Interests </strong>
+                        <asp:LinkButton ID="linkbtnEdit1" runat="server" OnClick="linkbtnEdit1_Click" Text=" Edit Interests"> <i class="fa fa-pencil"></i> Edit </asp:LinkButton>
                     </div>
 
                     <div class="box-body">
-                        <strong class="box-title"><i class="fa fa-file-text-o margin-r-5"></i>About Me</strong>
+                        <strong class="box-title"><i class="fa fa-file-text-o margin-r-5"></i>Field Type</strong>
                         <p id="P1" runat="server" class="text-muted">
                         </p>
                         <hr />
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
-                        <strong onclick="showtxt()"><i class="fa fa-book margin-r-5"></i>Education</strong>
+                        <strong><i class="fa fa-book margin-r-5"></i>Field Name</strong>
                         <p id="P2" runat="server" class="text-muted">
                         </p>
                         <hr />
                     </div>
 
-                    <div class="box-body">
-                        <strong><i class="fa fa-black-tie margin-r-5"></i>Employement</strong>
 
-                        <p id="P3" runat="server" class="text-muted"></p>
-
-                        <hr />
-                    </div>
-
-                    <div class="box-body">
+                    <%-- <div class="box-body">
                         <strong><i class="fa fa-pencil margin-r-5"></i>Skills</strong>
 
                         <p id="P4" runat="server">
@@ -98,14 +172,13 @@
                             <span id="Span3" runat="server" class="label label-info"></span>
                             <span id="Span4" runat="server" class="label label-warning"></span>
                             <span id="Span5" runat="server" class="label label-primary"></span>
-                        </p>
+                        </p>--%>
 
-                        <hr />
-                    </div>
-
-
-                    <!-- /.box-body -->
+                    <hr />
                 </div>
+
+
+                <!-- /.box-body -->
             </div>
         </div>
 
