@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -61,8 +63,46 @@ public partial class EditInterest : System.Web.UI.Page
 
     protected void gridDetail_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {
-        //dtCurrentTable.Rows.RemoveAt(e.RowIndex);
-        //gridDetail.DataSource = dtCurrentTable;
-        //gridDetail.DataBind();
+        dtCurrentTable.Rows.RemoveAt(e.RowIndex);
+        gridDetail.DataSource = dtCurrentTable;
+        gridDetail.DataBind();
     }
+
+    protected void btnSave_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            int id = Master.ids;
+            int ind = 0;
+            SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbCon"].ConnectionString);
+            sqlConnection.Open();
+            for (ind = 0; ind < gridDetail.Rows.Count; ind++)
+            {
+                string sql = @"Insert into inkFieldsOfInterest (FieldType ,FieldName ,UserId ) values (@FieldType , @FieldName , @UserId);";
+                using (SqlCommand sqlCommand = new SqlCommand(sql, sqlConnection))
+                {
+                    sqlCommand.Parameters.AddWithValue("@FieldType", gridDetail.Rows[ind].Cells[0].Text);
+                    sqlCommand.Parameters.AddWithValue("@FieldName", gridDetail.Rows[ind].Cells[1].Text);
+                    sqlCommand.Parameters.AddWithValue("@UserId", id);
+                    sqlCommand.ExecuteNonQuery(); 
+                }
+            }
+            Response.Redirect("UserProfile.Aspx");
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+        finally
+        {
+            gridDetail.DataSourceID = null;
+            gridDetail.DataBind();
+        }
+    }
+
+    protected void btnCancel_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("UserProfile.aspx");
+    }
+
 }
