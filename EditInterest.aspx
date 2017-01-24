@@ -5,7 +5,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <section class="content">
-
+        <%--k--%>
         <div class="row">
             <div class="col-md-12">
                 <div class="box box-primary">

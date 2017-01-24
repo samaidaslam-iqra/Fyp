@@ -13,7 +13,7 @@ public partial class UserProfile : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        getGridData();
         getData();
     }
 
@@ -81,6 +81,35 @@ public partial class UserProfile : System.Web.UI.Page
                 }
             }
         }
+        catch (Exception)
+        {
+            throw;
+        }
+    }
+
+
+    public void getGridData()
+    {
+        try
+        {
+            int id = Master.ids;
+            DataTable dt = new DataTable();
+
+            SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbCon"].ConnectionString);
+            string sql = @"select * from inkFieldsOfInterest  WHERE inkFieldsOfInterest.UserId = @UserId";
+
+            using (SqlCommand sqlCommand = new SqlCommand(sql, sqlConnection))
+            {
+                sqlConnection.Open();
+                sqlCommand.Parameters.AddWithValue("@UserId", id);
+                SqlDataAdapter sqlAdapter = new SqlDataAdapter(sqlCommand);
+                sqlAdapter.Fill(dt);
+                sqlCommand.ExecuteNonQuery();
+                gridDetail.DataSource = dt;
+                gridDetail.DataBind();
+            }
+        }
+
         catch (Exception)
         {
             throw;

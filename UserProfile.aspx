@@ -149,18 +149,21 @@
                     </div>
 
                     <div class="box-body">
-                        <strong class="box-title"><i class="fa fa-file-text-o margin-r-5"></i>Field Type</strong>
-                        <p id="P1" runat="server" class="text-muted">
-                        </p>
+                        <asp:GridView ID="gridDetail" runat="server" HeaderStyle-CssClass="header" CssClass="table table-bordered table-striped" RowStyle-CssClass="rows" AutoGenerateColumns="False">
+                            <Columns>
+                                <asp:BoundField DataField="FieldType" HeaderText="FieldType" SortExpression="FieldType" />
+                                <asp:BoundField DataField="FieldName" HeaderText="FieldName" SortExpression="FieldName" />
+
+                            </Columns>
+
+                            <HeaderStyle />
+                            <RowStyle />
+
+                        </asp:GridView>
                         <hr />
                     </div>
                     <!-- /.box-header -->
-                    <div class="box-body">
-                        <strong><i class="fa fa-book margin-r-5"></i>Field Name</strong>
-                        <p id="P2" runat="server" class="text-muted">
-                        </p>
-                        <hr />
-                    </div>
+
 
 
                     <%-- <div class="box-body">
