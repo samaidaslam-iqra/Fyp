@@ -36,11 +36,17 @@ public partial class Master : System.Web.UI.MasterPage
 
     protected void btnLogout_Click(object sender, EventArgs e)
     {
-        Session.Clear();
-
-        Session.RemoveAll();
-        Session.Abandon();
-        Response.Redirect("SignIn.aspx");
+        try
+        {
+            Session.Abandon();
+            Session.Clear();
+            Session.RemoveAll();
+            Response.Redirect("SignIn.aspx");
+        }
+        catch (Exception)
+        {
+            throw;
+        }
     }
 
     protected void btnUpload_Click(object sender, EventArgs e)

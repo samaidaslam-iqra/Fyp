@@ -2,38 +2,92 @@
 
 <%@ MasterType VirtualPath="~/Master.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+    <%-- <link href="plugins/chosen_v1.6.1/docsupport/style.css" rel="stylesheet" />--%>
+    <link href="plugins/chosen_v1.6.1/docsupport/prism.css" rel="stylesheet" />
+    <link href="plugins/chosen_v1.6.1/chosen.min.css" rel="stylesheet" />
+    <style type="text/css" media="all">
+        /* fix rtl for demo */
+        .chosen-rtl .chosen-drop {
+            left: -9000px;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
+    <script src="plugins/chosen_v1.6.1/chosen.jquery.min.js"></script>
+    <script src="plugins/chosen_v1.6.1/docsupport/prism.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#<%=ddlFeildType.ClientID%>").change(function () {
+                var arr = $(this).val();
+                console.log(arr)
+            })
+        });
+
+    </script>
+
+    <script type="text/javascript">
+        $('#ddlFeildType').chosen();
+
+        // then, declare how you handle the change event
+        $('#ddlFeildType').chosen().change(function () {
+            var myValues = $('#ddlFeildType').chosen().val();
+            // then do stuff with the array
+            $('#ss').innerText = sssss;
+        });
+        function test() {
+            $('#ddlFeildType').chosen().change(function () {
+                var myValues = $('#ddlFeildType').chosen().val();
+                // then do stuff with the array
+                $('#ss').html= myValues;
+            });
+           
+        
+    </script>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <section class="content">
-        <%--k--%>
+
+
         <div class="row">
             <div class="col-md-12">
                 <div class="box box-primary">
-                    <div class="box-body"> 
+                    <div class="box-body">
                         <strong class="box-title"><i class="fa fa-Edit"></i>Field Type</strong>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <br />
-                                    <asp:Label ID="lblFeildType" runat="server" Text="Feild Type"></asp:Label>
+                                    <asp:Label runat="server" ID="lblFeildType"></asp:Label>
                                     <br />
-                                    <asp:DropDownList runat="server" ID="ddlFieldType" CssClass="form-control">
-                                        <asp:ListItem>--Select--</asp:ListItem>
-                                        <asp:ListItem>Computer</asp:ListItem>
-                                        <asp:ListItem>Science</asp:ListItem>
-                                        <asp:ListItem>Electronics</asp:ListItem>
-                                        <asp:ListItem>Electrical</asp:ListItem>
-                                        <asp:ListItem>Medical</asp:ListItem>
-                                        <asp:ListItem>Mathmatics</asp:ListItem>
-                                        <asp:ListItem>History</asp:ListItem>
-                                    </asp:DropDownList>
+
+                                    <select id="ddlFeildType" name="ddl" data-placeholder="Choose a Country…" class="chosen-select" multiple style="width: 350px;" runat="server">
+                                        <%--  <asp:ListItem Text="Java" Value="1" />
+                                        <asp:ListItem Text="C#" Value="2" />
+                                        <asp:ListItem Text="Asp.net" Value="3" />
+                                        <asp:ListItem Text="SQL" Value="4" />
+                                        <asp:ListItem Text="Jquery" Value="5" />--%>
+                                    </select>
+                                    <script type="text/javascript">
+                                        var config = {
+                                            '.chosen-select': {},
+                                            '.chosen-select-deselect': { allow_single_deselect: true },
+                                            '.chosen-select-no-single': { disable_search_threshold: 10 },
+                                            '.chosen-select-no-results': { no_results_text: 'Oops, nothing found! ' },
+                                            '.chosen-select-width': { width: "95%" }
+                                        }
+                                        for (var selector in config) {
+                                            $(selector).chosen(config[selector]);
+                                        }
+
+                                    </script>
+
+
+                                    <p id="ss"></p>
                                 </div>
                                 <br />
-                                <asp:Label ID="lblFeildName" runat="server" Text="Feild Name"></asp:Label>
-                                <br />
-                                <asp:TextBox ID="txtFeildName" CssClass="form-control" runat="server"></asp:TextBox>
-                                <br />
-                                <asp:Button ID="btnAddInterest" runat="server" Text="Add Interest" CssClass="btn btn-info" OnClick="btnAddInterest_Click" />
+
+                                <asp:Button ID="btnAddInterest" runat="server" Text="Add Interest" CssClass="btn btn-info"  OnClick="btnAddInterest_Click" />
+                                <input type="button" id="btnt" class="btn btn-info" onclick="test()" />
                                 <br />
                             </div>
                         </div>
@@ -41,7 +95,7 @@
                     <asp:GridView ID="gridDetail" runat="server" HeaderStyle-CssClass="header" CssClass="table table-bordered table-striped" RowStyle-CssClass="rows" AutoGenerateColumns="False" OnRowDeleting="gridDetail_RowDeleting" ToolTip="Delete">
                         <Columns>
                             <asp:BoundField DataField="FieldType" HeaderText="FieldType" SortExpression="FieldType" />
-                            <asp:BoundField DataField="FieldName" HeaderText="FieldName" SortExpression="FieldName" />
+                            <%--       <asp:BoundField DataField="FieldName" HeaderText="FieldName" SortExpression="FieldName" />--%>
                             <asp:CommandField HeaderText="Action" InsertVisible="False" ShowCancelButton="False" ShowDeleteButton="True" ButtonType="Image" DeleteImageUrl="~/assets/images/delete.png" />
 
                         </Columns>
