@@ -16,7 +16,11 @@ public partial class Register : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!IsPostBack)
+        if (Page.IsPostBack)
+        {
+            Page.Validate();
+        }
+        else if (!IsPostBack)
         {
             ddlCountry.Items.Insert(0, "--Select--");
             ddlCountry.DataSource = countryList();
@@ -84,7 +88,7 @@ public partial class Register : System.Web.UI.Page
             DataTable dt = new DataTable();
             using (SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["dbCon"].ConnectionString))
             {
-                          
+
                 sqlcon.Open();
 
                 string query1 = "select  UserId , UserFirstName ,UserLastName,UserPassword ,UserEmail from InkUser where UserId=(select MAX(UserId) as UserId from inkUser)";

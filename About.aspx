@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="About.aspx.cs" Inherits="About" %>
+﻿<%@ Page Language="C#" EnableViewState="false" EnableSessionState="False"  AutoEventWireup="true" CodeFile="About.aspx.cs" Inherits="About" %>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">

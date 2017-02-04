@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.master" AutoEventWireup="true" CodeFile="UserList.aspx.cs" Inherits="UserList" %>
+﻿<%@ Page Title="" EnableSessionState="ReadOnly" EnableViewState="false" Language="C#" MasterPageFile="~/Master.master" AutoEventWireup="true" CodeFile="UserList.aspx.cs" Inherits="UserList" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>

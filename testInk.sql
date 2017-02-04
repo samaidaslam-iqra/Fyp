@@ -41,7 +41,7 @@ Update inkUserDetail set UserPhoto=null;
 
 
 CREATE TABLE inkFile  (
-   UploadId INT PRIMARY KEY ,
+   UploadId INT PRIMARY KEY identity(1, 1),
    UploadedBy INT ,
    
    FileName  VARCHAR(45) NULL,
@@ -49,7 +49,7 @@ CREATE TABLE inkFile  (
    FOREIGN KEY ( UploadedBy )  REFERENCES  inkUser  ( UserId ));
 
    CREATE TABLE     inkUserStat  (
-   StatId  INT   PRIMARY KEY  ,
+   StatId  INT   PRIMARY KEY identity(1, 1) ,
    UserId  INT  ,
    ExperineceLevel  INT NULL,
    NoOfLinks  INT NULL,
@@ -59,7 +59,7 @@ CREATE TABLE inkFile  (
   REFERENCES      inkUser  ( UserId ));
 
 CREATE TABLE        inkUserRemark  (
-   RemarksId  INT   PRIMARY KEY  ,
+   RemarksId  INT   PRIMARY KEY identity(1, 1) ,
    RemarksTo  INT ,
    RemarksBy  INT ,
    Content  CHAR NULL,
@@ -68,8 +68,8 @@ CREATE TABLE        inkUserRemark  (
   FOREIGN KEY ( RemarksBy )
    REFERENCES      inkUser  ( UserId ));
 
-CREATE TABLE        inkProfileReport  (
-   ReportId  INT   PRIMARY KEY  ,
+CREATE TABLE      inkProfileReport  (
+   ReportId  INT   PRIMARY KEY identity(1, 1)  ,
    ReportBy  INT ,
    ReportedUser  INT ,
    Reason  VARCHAR(100) NULL,
@@ -79,14 +79,14 @@ CREATE TABLE        inkProfileReport  (
   REFERENCES      inkUser  ( UserId ));
   
 CREATE TABLE inkFieldsOfInterest (
-  InterestId INT NOT NULL,
+  InterestId INT NOT NULL PRIMARY KEY identity(1, 1) ,
   FieldType VARCHAR(45) NULL,
   FieldName VARCHAR(45) NULL DEFAULT NULL,
   UserId INT NULL,
-  PRIMARY KEY (InterestId))
+  )
 
 CREATE TABLE  inkUserChat (
-  ChatId INT primary key,
+  ChatId INT identity(1, 1) primary key,
   SenderId INT NOT NULL DEFAULT NULL,
   ReceiverId INT NULL DEFAULT NULL,
   Content varchar(max) NULL DEFAULT NULL,
@@ -104,7 +104,7 @@ CREATE TABLE  inkUserChat (
 
 CREATE TABLE inkUserInterest (
   UserId INT NOT NULL,
-  InterestId INT primary key ,
+  InterestId INT identity(1, 1) primary key ,
   
 FOREIGN KEY (InterestId)   REFERENCES inkFieldsOfInterest (InterestId),
 

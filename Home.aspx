@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Home.aspx.cs" Inherits="_Default" %>
+﻿<%@ Page Language="C#" EnableViewState="false" EnableSessionState="ReadOnly" AutoEventWireup="true" CodeFile="Home.aspx.cs" Inherits="_Default" %>
 
 <!DOCTYPE html>
 
