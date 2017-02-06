@@ -31,15 +31,8 @@
         $('#ddlFeildType').chosen().change(function () {
             var myValues = $('#ddlFeildType').chosen().val();
             // then do stuff with the array
-            $('#ss').innerText = sssss;
+         
         });
-        function test() {
-            $('#ddlFeildType').chosen().change(function () {
-                var myValues = $('#ddlFeildType').chosen().val();
-                // then do stuff with the array
-                $('#ss').html= myValues;
-            });
-           
         
     </script>
 
@@ -81,14 +74,11 @@
 
                                     </script>
 
-
-                                    <p id="ss"></p>
                                 </div>
                                 <br />
 
                                 <asp:Button ID="btnAddInterest" runat="server" Text="Add Interest" CssClass="btn btn-info"  OnClick="btnAddInterest_Click" />
-                                <input type="button" id="btnt" class="btn btn-info" onclick="test()" />
-                                <br />
+                             <br />
                             </div>
                         </div>
                     </div>

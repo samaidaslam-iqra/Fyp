@@ -21,26 +21,29 @@
         function openfileDialog() {
             $("#FileUpload1").click();
         }
-
         function UploadFile(fileUpload) {
-            if (fileUpload.value != '') {
+            var numBytes = document.getElementById("FileUpload1").files[0].size;
+            var fileSize = numBytes / 1000000;
+            if (fileUpload.value != '' && fileSize <= 3) {
                 document.getElementById("<%=btnUpload.ClientID %>").click();
             }
+            else {
+                alert('\nYour File Size is ' + fileSize + ' MB.\nFile Size should be less than 3 MB.\nPlease Upload Another File.');
+            }
         }
+
     </script>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
+
 <body class="hold-transition skin-blue sidebar-mini">
     <form id="form1" runat="server">
         <div class="wrapper">
             <header class="main-header">
-
                 <a href="Dashboard.aspx" class="logo">
-
                     <span class="logo-lg">
                         <img src="assets/images/logo.png" alt="Ink" /><b>Ink </b>Academy </span>
-
                 </a>
                 <nav class="navbar navbar-static-top">
                     <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
@@ -146,13 +149,9 @@
             </aside>
 
             <div class="content-wrapper">
-                <asp:FileUpload ID="FileUpload1" runat="server" CssClass="hidden" />
-                <asp:Button ID="btnUpload" runat="server" Text="Upload" OnClick="btnUpload_Click" CssClass="hidden" />
+
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                 </asp:ContentPlaceHolder>
-
-
-
 
             </div>
 
@@ -160,6 +159,8 @@
             </asp:ContentPlaceHolder>
 
             <footer class="main-footer">
+                <asp:FileUpload ID="FileUpload1" runat="server" CssClass="hidden" />
+                <asp:Button ID="btnUpload" runat="server" OnClientClick="validate()" Text="Upload" OnClick="btnUpload_Click" CssClass="hidden" />
                 <div class="pull-right hidden-xs">
                     <b>Ink </b>Online Academy
                 </div>

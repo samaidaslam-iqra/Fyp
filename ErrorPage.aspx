@@ -282,7 +282,7 @@
             </div>
         </div>
         <div class="content">
-            <img src="assets/images/error-img.png" title="error" />
+            <img src="assets/images/error-default.png" title="error" />
 
             <p>
                 <span>

@@ -55,7 +55,8 @@ public partial class Master : System.Web.UI.MasterPage
         {
             try
             {
-                FileUpload1.PostedFile.SaveAs(Server.MapPath("~/UserProfilePictures/") + Session["UserFirstName"].ToString() + Session["UserLastName"].ToString() + FileUpload1.PostedFile.FileName);
+                FileInfo inf = new FileInfo(FileUpload1.PostedFile.FileName);
+                FileUpload1.PostedFile.SaveAs(Server.MapPath("~/UserProfilePictures/") + Session["UserEmail"].ToString() + "_" + Session["UserId"].ToString() + inf.Extension);
                 SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbCon"].ConnectionString);
                 UserId = Convert.ToInt32(hfId.Value);
                 string sql = @"Update inkUserDetail set UserPhoto=@Userphoto WHERE inkUserDetail.UserId = @UserId";
@@ -86,6 +87,7 @@ public partial class Master : System.Web.UI.MasterPage
     {
         try
         {
+
             SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbCon"].ConnectionString);
             UserId = Convert.ToInt32(hfId.Value);
             string sql = @"  select UserPhoto from inkUserDetail where Userid= @UserId and UserPhoto Is Not Null ";
@@ -99,8 +101,9 @@ public partial class Master : System.Web.UI.MasterPage
                 da.Fill(ds);
                 foreach (DataRow dr in ds.Tables[0].Rows)
                 {
-                    string str = (dr["UserPhoto"].ToString());
-                    userImage1.Src = "~/UserProfilePictures/" + Session["UserFirstName"].ToString() + Session["UserLastName"].ToString() + str;
+                    //string str
+                    FileInfo inf = new FileInfo((dr["UserPhoto"].ToString()));
+                    userImage1.Src = "~/UserProfilePictures/" + Session["UserEmail"].ToString() + "_" + Session["UserId"].ToString() + inf.Extension;
                     userImage2.Src = userImage3.Src = userImage1.Src;
                 }
             }
