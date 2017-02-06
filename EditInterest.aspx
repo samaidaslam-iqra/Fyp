@@ -29,11 +29,26 @@
 
         // then, declare how you handle the change event
         $('#ddlFeildType').chosen().change(function () {
-            var myValues = $('#ddlFeildType').chosen().val();
+            var myValues = $('.chosen-select :selected').text();
             // then do stuff with the array
-         
+            alert(myValues);
+            
         });
-        
+        function test() {
+          //  var selID = document.getElementById("#ddlFeildType");
+           // var text = selID.options[selID.selectedIndex].text();
+        //    var s = s + $('.chosen-select :selectedIndex').val();
+   //  var s=       $("#<%=ddlFeildType.ClientID%>").children("option").filter(":selected").text‌​();
+            var s = s + $('.chosen-select :selected').text() + ' , ';// then do stuff with the array
+            alert(s +' s s ');
+        }
+        //$(document).ready(function () {
+        //    var ss = $('.chosen-select :updated').val;
+        //    // var cc = $('.chosen-select :selected').text() + ',';
+        //    var cc = ss;
+        //    alert(cc+'sss');
+        //});
+        //$('.my_select_box').trigger('chosen:updated');
     </script>
 
 </asp:Content>
@@ -67,6 +82,7 @@
                                             '.chosen-select-no-single': { disable_search_threshold: 10 },
                                             '.chosen-select-no-results': { no_results_text: 'Oops, nothing found! ' },
                                             '.chosen-select-width': { width: "95%" }
+
                                         }
                                         for (var selector in config) {
                                             $(selector).chosen(config[selector]);
@@ -74,11 +90,14 @@
 
                                     </script>
 
+
+                                    <p id="ss"></p>
                                 </div>
                                 <br />
 
-                                <asp:Button ID="btnAddInterest" runat="server" Text="Add Interest" CssClass="btn btn-info"  OnClick="btnAddInterest_Click" />
-                             <br />
+                                <asp:Button ID="btnAddInterest" runat="server" Text="Add Interest" CssClass="btn btn-info" OnClientClick="test()" OnClick="btnAddInterest_Click" />
+                                <input type="button" id="btnt" class="btn btn-info" value="ss" onclick="test()" />
+                                <br />
                             </div>
                         </div>
                     </div>
