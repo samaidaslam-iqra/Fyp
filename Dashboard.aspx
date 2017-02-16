@@ -175,9 +175,6 @@
     </section>
 
 </asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
-    <embed height="100" width="100" src="#" />
 
-</asp:Content>
 
 

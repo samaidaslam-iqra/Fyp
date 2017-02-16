@@ -18,6 +18,7 @@ public partial class EditInterest : System.Web.UI.Page
         //     AddDefaultFirstRecord();
         //   getGridData();
         if (!IsPostBack)
+    
         {
             //   getGridData();
             FeildOfinterst();

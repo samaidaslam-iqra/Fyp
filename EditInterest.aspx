@@ -19,37 +19,12 @@
             $("#<%=ddlFeildType.ClientID%>").change(function () {
                 var arr = $(this).val();
                 console.log(arr)
+               
             })
         });
 
     </script>
 
-    <script type="text/javascript">
-        $('#ddlFeildType').chosen();
-
-        // then, declare how you handle the change event
-        $('#ddlFeildType').chosen().change(function () {
-            var myValues = $('.chosen-select :selected').text();
-            // then do stuff with the array
-            alert(myValues);
-            
-        });
-        function test() {
-          //  var selID = document.getElementById("#ddlFeildType");
-           // var text = selID.options[selID.selectedIndex].text();
-        //    var s = s + $('.chosen-select :selectedIndex').val();
-   //  var s=       $("#<%=ddlFeildType.ClientID%>").children("option").filter(":selected").text‌​();
-            var s = s + $('.chosen-select :selected').text() + ' , ';// then do stuff with the array
-            alert(s +' s s ');
-        }
-        //$(document).ready(function () {
-        //    var ss = $('.chosen-select :updated').val;
-        //    // var cc = $('.chosen-select :selected').text() + ',';
-        //    var cc = ss;
-        //    alert(cc+'sss');
-        //});
-        //$('.my_select_box').trigger('chosen:updated');
-    </script>
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
@@ -123,7 +98,19 @@
             </div>
         </div>
     </section>
+   
+
+<div id="result" class="bg-info"></div>
+
+<script type="text/javascript">
+    $(".chosen-select").chosen({ enable_search_threshold: 10 }).change(function (event) {
+        if (event.target == this) {
+            var value = $(this).val();
+            $("#result").text(value);
+        }
+    });
+</script>
+    
 </asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
-</asp:Content>
+
 

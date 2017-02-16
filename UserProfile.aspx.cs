@@ -13,8 +13,16 @@ public partial class UserProfile : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        getGridData();
-        getData();
+
+        if (Session["UserId"] == null || Session["UserEmail"] == null || Session["UserFirstName"] == null)
+        {
+            Response.Redirect("SignIn.aspx");
+        }
+        else
+        {
+            getGridData();
+            getData();
+        }
     }
 
     public void getData()
