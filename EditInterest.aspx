@@ -76,10 +76,10 @@
                             </div>
                         </div>
                     </div>
-                    <asp:GridView ID="gridDetail" runat="server" HeaderStyle-CssClass="header" CssClass="table table-bordered table-striped" RowStyle-CssClass="rows" AutoGenerateColumns="False" OnRowDeleting="gridDetail_RowDeleting" ToolTip="Delete">
+                  <%--  <asp:GridView ID="gridDetail" runat="server" HeaderStyle-CssClass="header" CssClass="table table-bordered table-striped" RowStyle-CssClass="rows" AutoGenerateColumns="False" OnRowDeleting="gridDetail_RowDeleting" ToolTip="Delete">
                         <Columns>
                             <asp:BoundField DataField="FieldType" HeaderText="FieldType" SortExpression="FieldType" />
-                            <%--       <asp:BoundField DataField="FieldName" HeaderText="FieldName" SortExpression="FieldName" />--%>
+                                  <asp:BoundField DataField="FieldName" HeaderText="FieldName" SortExpression="FieldName" />
                             <asp:CommandField HeaderText="Action" InsertVisible="False" ShowCancelButton="False" ShowDeleteButton="True" ButtonType="Image" DeleteImageUrl="~/assets/images/delete.png" />
 
                         </Columns>
@@ -87,7 +87,7 @@
                         <HeaderStyle />
                         <RowStyle />
 
-                    </asp:GridView>
+                    </asp:GridView>--%>
 
                     <div class="box-body">
                         <asp:Button ID="btnSave" runat="server" Text="Save" CssClass="btn btn-success" Style="margin-left: 150px" OnClick="btnSave_Click" />
@@ -100,15 +100,18 @@
     </section>
    
 
-<div id="result" class="bg-info"></div>
+<div id="result"  class="box"> 
+    <asp:HiddenField ID="hf1"  runat="server" />
+    </div>
 
-<script type="text/javascript">
-    $(".chosen-select").chosen({ enable_search_threshold: 10 }).change(function (event) {
-        if (event.target == this) {
-            var value = $(this).val();
-            $("#result").text(value);
-        }
-    });
+<script type="text/javascript"> 
+     $(".chosen-select").chosen({ enable_search_threshold: 10 }).change(function (event) {
+         if (event.target == this) {
+             var value = $(this).val();
+             $("#<%=hf1%>").value(value);
+         }
+     });
+ 
 </script>
     
 </asp:Content>

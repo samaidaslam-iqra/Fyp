@@ -56,6 +56,8 @@ public partial class EditInterest : System.Web.UI.Page
 
     protected void btnAddInterest_Click(object sender, EventArgs e)
     {
+        btnCancel.Text = hf1.Value.ToString();
+       // btnCancel.Text= result.InnerText.ToString() ;
         //    DataTable dtCurrentTable = (DataTable)ViewState["EditInterest"];
         //    DataRow drCurrentRow = dtCurrentTable.NewRow();
         ////    drCurrentRow["FieldType"] = ddlFieldType.SelectedValue.ToString();
