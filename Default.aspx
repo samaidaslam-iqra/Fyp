@@ -55,7 +55,6 @@
            </canvas>            
         </div>
      </div>
-    <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script src="assets/js/jquery.cslider.js"></script>
     <script src="assets/js/custom.js"></script>
