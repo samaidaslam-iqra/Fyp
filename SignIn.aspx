@@ -63,7 +63,7 @@
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Password missing" ControlToValidate="txtPassword" EnableClientScript="False" ForeColor="Red"></asp:RequiredFieldValidator>
             </p>
             <p>
-                <asp:Button runat="server" ID="btnLogin" Text="Log in" OnClick="btnLogin_Click" />
+                <asp:Button runat="server" UseSubmitBehavior="true"  ID="btnLogin" Text="Log in" OnClick="btnLogin_Click" />
                 <asp:Label ID="lbl" runat="server" ForeColor="Red"></asp:Label>
 
             </p>

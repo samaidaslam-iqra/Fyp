@@ -11,7 +11,6 @@ using System.Web.UI.WebControls;
 public partial class UserList : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
-    
     {
         if (Session["UserEmail"] == null && Session["UserPassword"] == null)
         {
@@ -21,12 +20,12 @@ public partial class UserList : System.Web.UI.Page
         {
             if (!IsPostBack)
             {
-
                 gridList.DataSource = GetAllRecord();
                 gridList.DataBind();
             }
         }
     }
+
     public DataTable GetAllRecord()
     {
         DataTable dt = new DataTable();
@@ -53,6 +52,7 @@ public partial class UserList : System.Web.UI.Page
         }
         return dt;
     }
+
     protected void gridList_RowCommand(object sender, GridViewCommandEventArgs e)
     {
         try
@@ -76,6 +76,7 @@ public partial class UserList : System.Web.UI.Page
             throw;
         }
     }
+    
     protected void btnNew_Click(object sender, EventArgs e)
     {
         try
@@ -87,11 +88,7 @@ public partial class UserList : System.Web.UI.Page
             throw;
         }
     }
-    protected void btnLogout_Click(object sender, EventArgs e)
-    {
-        Session.RemoveAll();
-        Response.Redirect("Home.aspx");
-    }
+
     protected void gridList_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
         gridList.DataSource = GetAllRecord();

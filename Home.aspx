@@ -11,7 +11,7 @@
 
     <title>Ink 'Online Volunteer Academy'</title>
 
-  <link rel="shortcut icon" runat="server" href="~/assets/images/favicon.ico"  type="image/x-icon" />
+    <link rel="shortcut icon" runat="server" href="~/assets/images/favicon.ico" type="image/x-icon" />
     <link href="assets/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" />
     <link href="assets/css/font-awesome.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="assets/css/bootstrap-theme.css" media="screen" />
@@ -229,7 +229,7 @@
             </div>
         </div>
     </footer>
-     <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script src="assets/js/jquery.cslider.js"></script>
     <script src="assets/js/custom.js"></script>

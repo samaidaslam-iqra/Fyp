@@ -125,15 +125,27 @@
                         </li>
 
                         <li class="treeview">
-                            <a href="UserList.aspx">
-                                <i class="fa fa-files-o"></i>
-                                <span>Users List</span>
+                            <a href="ClassList.aspx?Mode=ClassList">
+                                <i class="fa fa-th-list"></i>
+                                <span>Class List</span>
                                 <span class="pull-right-container">
                                     <span class="label label-primary pull-right"></span>
                                 </span>
                             </a>
 
                         </li>
+
+                           <li class="treeview">
+                            <a href="CreateClass.aspx?Mode=New">
+                                <i class="fa fa-plus-square-o"></i>
+                                <span>Create Class </span>
+                                <span class="pull-right-container">
+                                    <span class="label label-primary pull-right"></span>
+                                </span>
+                            </a>
+
+                        </li>
+
                         <li>
                             <a href="UserProfile.aspx">
                                 <i class="fa fa-th"></i><span>Profile</span>
