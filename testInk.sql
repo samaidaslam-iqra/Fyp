@@ -41,7 +41,7 @@ Update inkUserDetail set UserPhoto=null;
 
 
 CREATE TABLE inkFile  (
-   UploadId INT PRIMARY KEY identity(1, 1),
+   UploadId INT PRIMARY KEY ,
    UploadedBy INT ,
    
    FileName  VARCHAR(45) NULL,
@@ -49,7 +49,7 @@ CREATE TABLE inkFile  (
    FOREIGN KEY ( UploadedBy )  REFERENCES  inkUser  ( UserId ));
 
    CREATE TABLE     inkUserStat  (
-   StatId  INT   PRIMARY KEY identity(1, 1) ,
+   StatId  INT   PRIMARY KEY  ,
    UserId  INT  ,
    ExperineceLevel  INT NULL,
    NoOfLinks  INT NULL,
@@ -59,7 +59,7 @@ CREATE TABLE inkFile  (
   REFERENCES      inkUser  ( UserId ));
 
 CREATE TABLE        inkUserRemark  (
-   RemarksId  INT   PRIMARY KEY identity(1, 1) ,
+   RemarksId  INT   PRIMARY KEY  ,
    RemarksTo  INT ,
    RemarksBy  INT ,
    Content  CHAR NULL,
@@ -68,8 +68,8 @@ CREATE TABLE        inkUserRemark  (
   FOREIGN KEY ( RemarksBy )
    REFERENCES      inkUser  ( UserId ));
 
-CREATE TABLE      inkProfileReport  (
-   ReportId  INT   PRIMARY KEY identity(1, 1)  ,
+CREATE TABLE        inkProfileReport  (
+   ReportId  INT   PRIMARY KEY  ,
    ReportBy  INT ,
    ReportedUser  INT ,
    Reason  VARCHAR(100) NULL,
@@ -79,14 +79,14 @@ CREATE TABLE      inkProfileReport  (
   REFERENCES      inkUser  ( UserId ));
   
 CREATE TABLE inkFieldsOfInterest (
-  InterestId INT NOT NULL PRIMARY KEY identity(1, 1) ,
+  InterestId INT NOT NULL,
   FieldType VARCHAR(45) NULL,
   FieldName VARCHAR(45) NULL DEFAULT NULL,
   UserId INT NULL,
-  )
+  PRIMARY KEY (InterestId))
 
 CREATE TABLE  inkUserChat (
-  ChatId INT identity(1, 1) primary key,
+  ChatId INT primary key,
   SenderId INT NOT NULL DEFAULT NULL,
   ReceiverId INT NULL DEFAULT NULL,
   Content varchar(max) NULL DEFAULT NULL,
@@ -104,8 +104,34 @@ CREATE TABLE  inkUserChat (
 
 CREATE TABLE inkUserInterest (
   UserId INT NOT NULL,
-  InterestId INT identity(1, 1) primary key ,
+  InterestId INT primary key ,
   
 FOREIGN KEY (InterestId)   REFERENCES inkFieldsOfInterest (InterestId),
 
    FOREIGN KEY (UserId)   REFERENCES inkUser (UserId));
+
+   create table inkClass( ClassId int not null primary key identity ,
+   ClassName  varchar(50), 
+   ClassDescription  varchar(100),
+   ClassCategory  varchar(100),
+   ClassCreatedby  int ,
+   ClassStartDate Date ,
+   ClassEndDate Date ,
+   ClassDays Varchar(20) , 
+   ClassTiming time , 
+    );
+
+	create table inkClass( ClassId int not null primary key identity ,
+   ClassName  varchar(50), 
+   ClassDescription  varchar(100),
+   ClassCategory  varchar(100),
+   ClassCreatedby  int ,
+   ClassStartDate Date ,
+   ClassEndDate Date ,
+   ClassDays Varchar(20) , 
+   ClassTiming time , 
+
+    );
+	create table inkjoinedClasses(JoinId int not null primary key identity,
+	 StudentId int ,
+	 ClassId int  );
