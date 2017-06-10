@@ -30,6 +30,13 @@ public partial class CreateClass : System.Web.UI.Page
                         hfId.Value = Request.QueryString["ClassId"].ToString();
                         GetData(Convert.ToInt32(hfId.Value));
                     }
+                    else if (Request.QueryString["Mode"].ToString() == "New")
+                    {
+                        //btnCreateClass.Text = "Update";
+                        hfMode.Value = Request.QueryString["Mode"];
+                        //hfId.Value = Request.QueryString["ClassId"].ToString();
+                        //GetData(Convert.ToInt32(hfId.Value));
+                    }
                     else if (Request.QueryString["Mode"].ToString() == "View")
                     {
                         btnCreateClass.Visible = false;

@@ -28,11 +28,48 @@ public partial class ManageClass : System.Web.UI.Page
                 }
                 else if (Request.QueryString["Mode"].ToString() == "ClassList")
                 {
-                    gridList.DataSource = GetAllRecord();
-                    gridList.DataBind();
+                    if (isJoined())
+                    {
+                        gridList.DataSource = GetAllRecord();
+                        gridList.DataBind();
+                    }
+
                 }
             }
         }
+    }
+
+    private Boolean isJoined()
+    {
+        SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbCon"].ConnectionString);
+        try
+        {
+            string sql = "Select * from inkjoinedClasses where StudentId= '" + Session["UserId"] + "'";
+
+            //     string sql = @"select * from inkClass where ClassCreatedBy Not IN ('" + Session["UserId"] + "')";
+            using (SqlCommand sqlCommand = new SqlCommand(sql, sqlConnection))
+            {
+                sqlConnection.Open();
+                var temp = sqlCommand.ExecuteScalar();
+                if (temp != null) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        catch (Exception exception)
+        {
+            throw new Exception(string.Format("Error occured while getting AllRecord: {0}", exception.Message), exception);
+        }
+        finally
+        {
+            sqlConnection.Close();
+            sqlConnection.Dispose();
+        }
+
+        return false;
+
     }
 
     public DataTable GetAllRecord()
