@@ -28,16 +28,47 @@ public partial class ManageClass : System.Web.UI.Page
                 }
                 else if (Request.QueryString["Mode"].ToString() == "ClassList")
                 {
-                    if (isJoined())
-                    {
+                    if (isJoined()) {
                         gridList.DataSource = GetAllRecord();
                         gridList.DataBind();
+                    } else {
+
+                        gridList.DataSource = GetAllClassList();
+                        gridList.DataBind();
+                            
                     }
 
                 }
             }
         }
     }
+
+    private DataTable GetAllClassList()
+    {
+        //select * from inkClass where ClassCreatedby not in ('2');
+        DataTable dt = new DataTable();
+        SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbCon"].ConnectionString);
+        try {
+                string sql = "select * from inkClass where Classcreatedby not in ('" + Session["UserId"] + "')";
+
+                //     string sql = @"select * from inkClass where ClassCreatedBy Not IN ('" + Session["UserId"] + "')";
+                using (SqlCommand sqlCommand = new SqlCommand(sql, sqlConnection))  {
+                    sqlConnection.Open();
+                    SqlDataAdapter sqlAdapter = new SqlDataAdapter(sqlCommand);
+                    sqlAdapter.Fill(dt);
+                    sqlAdapter.Dispose();
+                }
+        }
+        catch (Exception exception) {
+            throw new Exception(string.Format("Error occured while getting AllRecord: {0}", exception.Message), exception);
+        }
+        finally {
+            sqlConnection.Close();
+            sqlConnection.Dispose();
+        }
+        return dt;
+
+   }
 
     private Boolean isJoined()
     {
@@ -78,7 +109,7 @@ public partial class ManageClass : System.Web.UI.Page
         SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbCon"].ConnectionString);
         try
         {
-            string sql = "Select * FROM inkclass Where classid not in(select classid from inkJoinedClass where StudentId= '" + Session["UserId"] + "') and Classcreatedby not in ('" + Session["UserId"] + "')";
+            string sql = "Select * FROM inkclass Where classid not in(select classid from inkjoinedClasses where StudentId= '" + Session["UserId"] + "') and Classcreatedby not in ('" + Session["UserId"] + "')";
 
             //     string sql = @"select * from inkClass where ClassCreatedBy Not IN ('" + Session["UserId"] + "')";
             using (SqlCommand sqlCommand = new SqlCommand(sql, sqlConnection))
@@ -151,7 +182,7 @@ public partial class ManageClass : System.Web.UI.Page
             using (SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["dbCon"].ConnectionString))
             {
                 sqlcon.Open();
-                string query = @"insert into inkJoinedClass (studentId ,ClassId )values
+                string query = @"insert into inkjoinedClasses (studentId ,ClassId )values
                                ('" + studentId + "','" + classId + "' )";
                 SqlCommand cmd = new SqlCommand(query, sqlcon);
                 cmd.ExecuteNonQuery();
