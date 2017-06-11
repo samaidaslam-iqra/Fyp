@@ -56,7 +56,9 @@
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">Files Uploaded</span>
-                                    <span class="info-box-number">760</span>
+                                    <span class="info-box-number"> <asp:LinkButton ID="FileServer" runat="server" OnClick="File_Click"> <i class="fa fa-pencil"></i> File Server </asp:LinkButton>
+                    
+                                    </span>
                                 </div>
                                 <!-- /.info-box-content -->
                             </div>
