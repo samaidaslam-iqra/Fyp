@@ -26,6 +26,8 @@
                                 <ItemTemplate>
                                     <span style="visibility: hidden;">..</span>
                                     <asp:ImageButton ToolTip=" Cancel " ID="Cancel" runat="server" CssClass="btnLink btn-success" CausesValidation="False" CommandName="cancel" CommandArgument='<%# Eval("ClassId") %>' Text=" Cancel "></asp:ImageButton>
+                                      <asp:ImageButton ToolTip=" Start " ID="Start" runat="server" CssClass="btnLink btn-success" CausesValidation="False" CommandName="start" CommandArgument='<%# Eval("ClassId") %>' Text=" Start "></asp:ImageButton>
+                               
                                 </ItemTemplate>
                             </asp:TemplateField>
                         </Columns>
