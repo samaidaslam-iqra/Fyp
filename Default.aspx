@@ -51,7 +51,7 @@
             </div>
 
             <div class="row">
-                <div class="col-lg-11 col-sm-11 col-xs-11 col-md-11">
+                <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12">
                     <canvas id="canvas" style="border: 5px solid #d3d3d3;">sorry brower not supporting html canvass
                     </canvas>
                 </div>
@@ -97,8 +97,8 @@
         eraser = document.getElementById('eraser'),
         pencil = document.getElementById('pencil');
 
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    canvas.width = 1170;
+    canvas.height = 445;
     context.lineWidth = radius * 2;
 
     ////window.addEventListener('resize', resizeCanvas, false);
