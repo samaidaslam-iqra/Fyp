@@ -114,6 +114,14 @@ public partial class Master : System.Web.UI.MasterPage
         }
     }
 
+    protected void btnSearch_Click(object sender, EventArgs e) {
+
+        if (txtSearch.Text != " ") {
+            Response.Redirect("Search.aspx?User="+txtSearch.Text);
+        }
+
+    }
+    
     public Int32 ids
     {
         get { return Convert.ToInt32(Session["UserId"]); }

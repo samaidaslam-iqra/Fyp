@@ -112,7 +112,7 @@
                         <div class="input-group">
                             <asp:TextBox runat="server" ID="txtSearch" CssClass="form-control" />
                             <span class="input-group-btn">
-                                <asp:LinkButton runat="server" ID="btnSearch" CssClass="btn btn-flat"> <i class="fa fa-search"></i></asp:LinkButton>
+                                <asp:LinkButton runat="server" ID="btnSearch" CssClass="btn btn-flat" OnClick="btnSearch_Click"> <i class="fa fa-search"></i></asp:LinkButton>
                             </span>
                         </div>
                     </div>
