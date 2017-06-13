@@ -75,9 +75,9 @@ public partial class EnrolledClass : System.Web.UI.Page
 
                 Response.Redirect("EnrolledClass.aspx?Mode=ClassList");
             }
-            else if (e.CommandName.Equals("View"))
+            else if (e.CommandName.Equals("start"))
             {
-                Response.Redirect("CreateClass.aspx?Mode=View&ClassId=" + ClassId);
+                Response.Redirect("Default.aspx?Mode=Start&ClassId=" + ClassId);
             }
             else
             {

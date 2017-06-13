@@ -23,7 +23,7 @@
             <div class="row">
                 <div class="col-lg-2 col-sm-2 col-xs-2 col-md-2"></div>
                 <div class="col-lg-8 col-sm-8 col-xs-8 col-md-8">
-                    <div class="navbar center-block">
+                    <div id="dvControls" runat="server" class="navbar center-block">
 
                         <ul class="list-inline navbar-nav navbar-static-top dl-horizontal">
                             <li><span id="radval" class="btn btn-default" title="Click to Reset Radius">Radius : 5</span></li>
@@ -42,6 +42,10 @@
                         </ul>
 
                     </div>
+                    <h3>
+                        <label id="lblClassName" runat="server" class="label-info">TEST demo</label>
+                    </h3>
+
                 </div>
                 <div class="col-lg-2 col-sm-2 col-xs-2 col-md-2"></div>
             </div>
