@@ -5,13 +5,15 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
      <h1> Hello Search</h1>
-    <div class="container">
-        <div class="row">
+    
+    <div class ="container">
+      
             <div id="Users" runat="server" class="col-lg-5">
                 
             </div>
+           
+        </div>   
+        
 
-        </div>    
-    </div>
       
 </asp:Content>

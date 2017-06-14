@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -10,6 +12,7 @@ using System.Web.UI.WebControls;
 public partial class FileServer : System.Web.UI.Page
 {
     String userPath;
+    String File;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Session["UserId"] == null || Session["UserEmail"] == null || Session["UserFirstName"] == null)
@@ -26,7 +29,7 @@ public partial class FileServer : System.Web.UI.Page
         {
             Directory.CreateDirectory(Server.MapPath(userPath));
         }
-
+        
         getDataTable();
     }
   
@@ -44,12 +47,10 @@ public partial class FileServer : System.Web.UI.Page
 
     protected void Button1_Click(object sender, EventArgs e)
     {
-        if (FileUpload1.HasFile)
-        {
-
-
+        if (FileUpload1.HasFile)   {
             FileUpload1.PostedFile.SaveAs(Server.MapPath(userPath) + FileUpload1.FileName);
         }
+        //insertToDb();
         getDataTable();
     }
 
@@ -61,11 +62,34 @@ public partial class FileServer : System.Web.UI.Page
         dt.Columns.Add("Type");
         foreach (string strfile in Directory.GetFiles(Server.MapPath(userPath)))
         {
-            FileInfo fi = new FileInfo(strfile);
+           FileInfo fi = new FileInfo(strfile);
             dt.Rows.Add(fi.Name, fi.Length.ToString(), GetFileTypeByExtension(fi.Extension));
+                 
         } GridView1.DataSource = dt;
         GridView1.DataBind();
+        
+        
     }
+
+    private void insertToDb()
+    {
+    //     try  {
+    //        using (SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["dbCon"].ConnectionString))
+    //        {
+    //            sqlcon.Open();
+    //          //  string query = @"insert into inkFile (UploadedBy,FileName,FileType) values('" + Session["UserId"].ToString() + "','" + userPath + "','"++"' )";
+    //            SqlCommand cmd = new SqlCommand(query, sqlcon);
+    //            cmd.ExecuteNonQuery();
+    //            sqlcon.Close();
+    //        }
+    //    }
+    //    catch (Exception)
+    //    {
+    //        throw;
+    //    }
+    }    
+    
+    
 
     private String GetFileTypeByExtension(string fileExtension)
     {
