@@ -85,9 +85,8 @@ public partial class Master : System.Web.UI.MasterPage
 
     protected void ImageLoader(int id)
     {
-        try
+       try
         {
-
             SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbCon"].ConnectionString);
             UserId = Convert.ToInt32(hfId.Value);
             string sql = @"  select UserPhoto from inkUserDetail where Userid= @UserId and UserPhoto Is Not Null ";
