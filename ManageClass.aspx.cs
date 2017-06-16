@@ -66,9 +66,13 @@ public partial class ManageClass : System.Web.UI.Page
             {
                 Server.Transfer("CreateClass.aspx?Mode=View&ClassId=" + id);
             }
+            else if (e.CommandName.Equals("Teacher"))
+            {
+                Response.Redirect("default.aspx?Mode=Teacher&ClassId=" + id);
+            }
             else
             {
-                Response.Write("<Script>'Invalid Url'</Script>");
+                Response.Redirect("ClassList.aspx?Mode=ClassList");
             }
         }
         catch (Exception)

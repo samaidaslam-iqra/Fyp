@@ -22,33 +22,48 @@ public partial class _Default : System.Web.UI.Page
                 if (Request.QueryString["Mode"].ToString() == "Start")
                 {
                     int id = Convert.ToInt32(Request.QueryString["ClassId"].ToString());
-                    dvControls.Attributes["class"] = "hidden";
-                    dvControls.Disabled = true;
+                    ClassDetail(id);
+                }
+                else if (Request.QueryString["Mode"].ToString() == "Teacher")
+                {
+                    int id = Convert.ToInt32(Request.QueryString["ClassId"].ToString());
                     ClassDetail(id);
                 }
                 else
                 {
-                    Response.Write("<Script>'Invalid Url'</Script>");
+                    Response.Redirect("ClassList.aspx?Mode=ClassList");
                 }
             }
         }
     }
-   
+
     private void ClassDetail(int classId)
     {
         SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbCon"].ConnectionString);
         try
         {
-            string sql = "Select ClassName from inkClass where ClassId= '" + classId + "'";
-
+            string sql = "Select ClassName  from inkClass where ClassId= '" + classId + "'";
+            string sql1 = "Select ClassCreatedby  from inkClass where ClassId= '" + classId + "'";
             using (SqlCommand sqlCommand = new SqlCommand(sql, sqlConnection))
             {
                 sqlConnection.Open();
                 var temp = sqlCommand.ExecuteScalar();
                 lblClassName.InnerText = temp.ToString();
+                sqlConnection.Close();
+            }
+
+            using (SqlCommand sqlCommand1 = new SqlCommand(sql1, sqlConnection))
+            {
+                sqlConnection.Open();
+                var TeacherId = sqlCommand1.ExecuteScalar();
+                if (Convert.ToInt32(TeacherId) != Convert.ToInt32(Session["UserId"]))
+                {
+                    dvControls.Attributes["Class"] = "hidden";
+                    dvControls.Disabled = true;
+                }
+
             }
         }
-
         catch (Exception exception)
         {
             throw (exception);
@@ -60,6 +75,6 @@ public partial class _Default : System.Web.UI.Page
             Response.Write("<Script> alert('Welcome to the Class " + lblClassName.InnerText + "') </Script>");
         }
     }
-    
+
 
 }

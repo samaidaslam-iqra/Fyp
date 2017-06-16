@@ -32,6 +32,10 @@ public partial class EnrolledClass : System.Web.UI.Page
                     gridList.DataSource = GetAllRecord();
                     gridList.DataBind();
                 }
+                else
+                {
+                    Response.Redirect("ClassList.aspx?Mode=ClassList");
+                }
             }
         }
     }
@@ -42,7 +46,7 @@ public partial class EnrolledClass : System.Web.UI.Page
         SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbCon"].ConnectionString);
         try
         {
-            string sql = "Select c.classId, c.ClassName , c.ClassDescription ,c.ClassStartDate, c.ClassEndDate, c.ClassDays, c.ClassCategory FROM inkclass as c , inkjoinedClasses as j Where c.classid =j.ClassId and j.StudentId=  '" + Session["UserId"] + "'  ";
+            string sql = "Select c.classId, c.ClassName , c.ClassDescription ,c.ClassStartDate, c.ClassEndDate, c.ClassDays, c.ClassCategory FROM inkclass as c , inkJoinedClasses as j Where c.classid =j.ClassId and j.StudentId=  '" + Session["UserId"] + "'  ";
 
             using (SqlCommand sqlCommand = new SqlCommand(sql, sqlConnection))
             {
@@ -104,7 +108,7 @@ public partial class EnrolledClass : System.Web.UI.Page
             using (SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["dbCon"].ConnectionString))
             {
                 sqlcon.Open();
-                string query = @"Delete from inkjoinedClasses where classid='" + ClassId + "' and studentid='" + StudentId + "';";
+                string query = @"Delete from inkJoinedClasses where classid='" + ClassId + "' and studentid='" + StudentId + "';";
                 SqlCommand cmd = new SqlCommand(query, sqlcon);
                 cmd.ExecuteNonQuery();
                 sqlcon.Close();

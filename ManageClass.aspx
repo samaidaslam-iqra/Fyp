@@ -37,6 +37,8 @@
                                     <asp:ImageButton ToolTip=" Edit " ID="Edit" runat="server" CssClass="btnLink" ImageUrl="~/assets/images/edit.png" CausesValidation="False" CommandName="Edt" CommandArgument='<%# Eval("ClassId") %>' Text=" Edit "></asp:ImageButton>
                                     <span style="visibility: hidden;">. .</span>
                                     &nbsp;<asp:ImageButton ToolTip=" View " ID="View" runat="server" CssClass="btnLink" ImageUrl="~/assets/images/view.png" CausesValidation="False" CommandName="View" CommandArgument='<%# Eval("ClassId") %>' Text=" View "></asp:ImageButton>
+                                    <asp:ImageButton ToolTip=" Teach " ID="Teacher" runat="server" CssClass="btn-success"  CausesValidation="False"  CommandName="Teacher" CommandArgument='<%# Eval("ClassId") %>' Text="  Teach  "></asp:ImageButton>
+
                                 </ItemTemplate>
                             </asp:TemplateField>
                         </Columns>

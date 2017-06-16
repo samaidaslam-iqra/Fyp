@@ -75,7 +75,7 @@ public partial class ManageClass : System.Web.UI.Page
         SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbCon"].ConnectionString);
         try
         {
-            string sql = "Select * from inkjoinedClasses where StudentId= '" + Session["UserId"] + "'";
+            string sql = "Select * from inkJoinedClasses where StudentId= '" + Session["UserId"] + "'";
 
             //     string sql = @"select * from inkClass where ClassCreatedBy Not IN ('" + Session["UserId"] + "')";
             using (SqlCommand sqlCommand = new SqlCommand(sql, sqlConnection))
@@ -109,7 +109,7 @@ public partial class ManageClass : System.Web.UI.Page
         SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbCon"].ConnectionString);
         try
         {
-            string sql = "Select * FROM inkclass Where classid not in(select classid from inkjoinedClasses where StudentId= '" + Session["UserId"] + "') and Classcreatedby not in ('" + Session["UserId"] + "')";
+            string sql = "Select * FROM inkclass Where classid not in(select classid from inkJoinedClasses where StudentId= '" + Session["UserId"] + "') and Classcreatedby not in ('" + Session["UserId"] + "')";
 
             //     string sql = @"select * from inkClass where ClassCreatedBy Not IN ('" + Session["UserId"] + "')";
             using (SqlCommand sqlCommand = new SqlCommand(sql, sqlConnection))
@@ -182,7 +182,7 @@ public partial class ManageClass : System.Web.UI.Page
             using (SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["dbCon"].ConnectionString))
             {
                 sqlcon.Open();
-                string query = @"insert into inkjoinedClasses (studentId ,ClassId )values
+                string query = @"insert into inkJoinedClasses (studentId ,ClassId )values
                                ('" + studentId + "','" + classId + "' )";
                 SqlCommand cmd = new SqlCommand(query, sqlcon);
                 cmd.ExecuteNonQuery();
