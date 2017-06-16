@@ -4,6 +4,22 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+    
+<%--     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css"/>
+
+    <link rel="stylesheet" href="../../../../cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css"/>
+
+    <link rel="stylesheet" href="../../../../cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css"/>
+    --%>
+    <link rel="stylesheet" href="../dist/css/AdminLTE.min.css"/>
+  
+      <link rel="stylesheet" href="../../../../cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css"/>
+
+    <link rel="stylesheet" href="../../../../cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css"/>
+
+    
     <title>E-WhiteBoard &copy; Ink</title>
 
     <link rel="stylesheet" href="assets/css/bootstrap-theme.css" media="screen" />
@@ -16,7 +32,9 @@
     <script src="Scripts/jquery.signalR-2.2.1.min.js"></script>
     <script src="signalr/hubs"></script>
 </head>
+
 <body>
+    
     <form id="form1" runat="server">
         <div class="wrapper container">
 
@@ -51,10 +69,91 @@
             </div>
 
             <div class="row">
-                <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12">
+                <div class="col-lg-6 col-sm-6 col-xs-6 col-md-6">
                     <canvas id="canvas" style="border: 5px solid #d3d3d3;">sorry brower not supporting html canvass
                     </canvas>
                 </div>
+                 <div class="col-lg-6 col-sm-6 col-xs-6 col-md-6">
+                
+                         <div class="d">
+
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-9">
+
+                <div class="box box-warning direct-chat direct-chat-warning">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Direct Chat</h3>
+
+                    </div>
+
+                    <div class="box-body">
+
+                        <div class="direct-chat-messages">
+
+                            <div class="direct-chat-msg">
+                                <div class="direct-chat-info clearfix">
+                                    <span id="displayname" runat="server" class="direct-chat-name pull-left"></span>
+                                    <span class="direct-chat-timestamp pull-right">23 Jan 2:00 pm</span>
+                                </div>
+
+                                <!--<img class="direct-chat-img" src="../dist/img/user1-128x128.jpg" alt="Message User Image">-->
+                                <div id="discussion" class="direct-chat-text">
+
+                                </div>
+                            
+
+                            </div>
+
+                  
+                        </div>
+
+                        <div class="direct-chat-contacts">
+                            <ul class="contacts-list">
+                                <li>
+                                    <a href="#">
+                                        <img class="contacts-list-img" src="../dist/img/user1-128x128.jpg" alt="User Image"/>
+                                        <div class="contacts-list-info">
+                                            <span class="contacts-list-name">
+                                                Count Dracula
+                                                <small class="contacts-list-date pull-right">2/28/2015</small>
+                                            </span>
+                                            <span class="contacts-list-msg">How have you been? I was...</span>
+                                        </div>
+                                    </a>
+                                </li>
+
+                            </ul>
+
+                        </div>
+
+                    </div>
+
+                    <div class="box-footer" style="margin-top:300px;">
+
+                        <div class="input-group">
+                            <input type="text" id="message" placeholder="Type Message ..." class="form-control"/>
+                            <span class="input-group-btn">
+                                <button type="button" id="sendmessage" value="send" class="btn btn-warning btn-flat">Send</button>
+                            </span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+  <%--  <script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <script src="../bootstrap/js/bootstrap.min.js"></script>--%>
+
+
+                 </div>
             </div>
         </div>
 
@@ -73,11 +172,24 @@
             };
             image.src = data;
         };
+        chat.client.broadcastMessage = function (name, message) {
+
+            var encodedName = $('<div/>').text(name).html();
+            var encodedMsg = $('<div/>').text(message).html();
+            $('#discussion').append('<li><strong>' + encodedName + '</strong> :&nbsp;' + encodedMsg + '</li>');
+        };
+        //$('#displayname').val(prompt('Enter Your Name', ""));
+        $('#message').focus();
 
         $.connection.hub.start().done(function () {
             $('#canvas').click(function () {
                 console.log(data);
                 chat.server.sendCanvas(data);
+            });
+            $('#sendmessage').click(function () {
+                var name = $('#displayname').text();
+                chat.server.send(name, $('#message').val());
+                $('#message').val('').focus();
             });
         });
     });
@@ -97,62 +209,9 @@
         eraser = document.getElementById('eraser'),
         pencil = document.getElementById('pencil');
 
-    canvas.width = 1170;
+    canvas.width = 1170/2;
     canvas.height = 445;
     context.lineWidth = radius * 2;
-
-    ////window.addEventListener('resize', resizeCanvas, false);
-    ////window.addEventListener('orientationchange', resizeCanvas, false);
-    ////resizeCanvas();
-
-    ////function resizeCanvas() {
-    ////    var imgData = context.getImageData(0, 0, canvas.width, canvas.height);
-    ////    canvas.width = window.innerWidth;
-    ////    canvas.height = window.innerHeight;
-    ////   // context = canvas.getContext('2d');
-    ////    context.putImageData(imgData, 0, 0);
-    ////}
-
-
-    //---------------------------
-
-    //////var stage = new Stage("canvas11");
-
-    //////stage.addChild(canvas);
-
-    //////window.addEventListener("resize", handleResize);
-    //////function handleResize() {
-    //////    var w = window.innerWidth - 50; // -2 accounts for the border
-    //////    var h = window.innerHeight - 50;
-    //////    stage.canvas.width = w;
-    //////    stage.canvas.height = h;
-    //////    //
-    //////    var ratio = 100 / 100; // 100 is the width and height of the circle content.
-    //////    var windowRatio = w / h;
-    //////    var scale = w / 100;
-    //////    if (windowRatio > ratio) {
-    //////        scale = h / 100;
-    //////    }
-    //////    // Scale up to fit width or height
-    //////  canvas.scaleX = canvas.scaleY = scale;
-
-    //////    // Center the shape
-    //////    //c.x = w / 2;
-    //////    //c.y = h / 2;
-
-    //////    stage.update();
-    //////}
-
-    //////handleResize(); // First draw
-
-
-
-
-
-
-
-
-
 
     decreaseRad.addEventListener('click', function () {
         setRadius(radius - interval);
@@ -214,6 +273,10 @@
     canvas.addEventListener('mousedown', startdraw);
     canvas.addEventListener('mousemove', drawing);
     canvas.addEventListener('mouseup', stopdraw);
+
+    
+   
+
 
 </script>
 

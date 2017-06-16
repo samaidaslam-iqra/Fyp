@@ -9,6 +9,7 @@ using System.Web.UI.WebControls;
 
 public partial class _Default : System.Web.UI.Page
 {
+    public static String name;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Session["UserEmail"] == null && Session["UserPassword"] == null)
@@ -17,6 +18,8 @@ public partial class _Default : System.Web.UI.Page
         }
         else
         {
+            name = Session["UserFirstName"].ToString() + " " + Session["UserLastName"].ToString(); 
+            displayname.InnerText = Session["UserFirstName"].ToString() + " " + Session["UserLastName"].ToString();
             if (!IsPostBack)
             {
                 if (Request.QueryString["Mode"].ToString() == "Start")
@@ -35,6 +38,11 @@ public partial class _Default : System.Web.UI.Page
                 }
             }
         }
+    }
+
+    public static String getSessionName() { 
+    String newname = name;
+    return newname;
     }
 
     private void ClassDetail(int classId)
@@ -72,7 +80,8 @@ public partial class _Default : System.Web.UI.Page
         {
             sqlConnection.Close();
             sqlConnection.Dispose();
-            Response.Write("<Script> alert('Welcome to the Class " + lblClassName.InnerText + "') </Script>");
+           // Response.Write("<Script> alert('Welcome to the Class " + lblClassName.InnerText + "') </Script>");
+        
         }
     }
 
