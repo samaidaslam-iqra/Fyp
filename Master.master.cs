@@ -11,7 +11,7 @@ using System.Web.UI.WebControls;
 
 public partial class Master : System.Web.UI.MasterPage
 {
-    public int UserId;
+   // public int UserId;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -56,16 +56,19 @@ public partial class Master : System.Web.UI.MasterPage
             try
             {
                 FileInfo inf = new FileInfo(FileUpload1.PostedFile.FileName);
-                FileUpload1.PostedFile.SaveAs(Server.MapPath("~/UserProfilePictures/") + Session["UserEmail"].ToString() + "_" + Session["UserId"].ToString() + inf.Extension);
+                string name = "/UserProfilePictures/" + Session["UserEmail"] + "_" + Session["UserId"] + inf.Extension;
+                FileUpload1.PostedFile.SaveAs(Server.MapPath(name));
+
+                //FileUpload1.PostedFile.SaveAs(Server.MapPath("~/UserProfilePictures/") + Session["UserEmail"].ToString() + "_" + Session["UserId"].ToString() + inf.Extension);
                 SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbCon"].ConnectionString);
-                UserId = Convert.ToInt32(hfId.Value);
+             //   UserId = Convert.ToInt32(hfId.Value);
                 string sql = @"Update inkUserDetail set UserPhoto=@Userphoto WHERE inkUserDetail.UserId = @UserId";
 
                 using (SqlCommand sqlCommand = new SqlCommand(sql, sqlConnection))
                 {
                     sqlConnection.Open();
-                    sqlCommand.Parameters.AddWithValue("@UserId", UserId);
-                    sqlCommand.Parameters.AddWithValue("@UserPhoto", FileUpload1.PostedFile.FileName);
+                    sqlCommand.Parameters.AddWithValue("@UserId", Session["UserId"]);
+                    sqlCommand.Parameters.AddWithValue("@UserPhoto", name);
                     sqlCommand.ExecuteNonQuery();
                 }
                 Response.Write("<Script>alert('Uploaded Successully') </Script>");
@@ -85,16 +88,16 @@ public partial class Master : System.Web.UI.MasterPage
 
     protected void ImageLoader(int id)
     {
-       try
+        try
         {
             SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbCon"].ConnectionString);
-            UserId = Convert.ToInt32(hfId.Value);
+           // UserId = Convert.ToInt32(hfId.Value);
             string sql = @"  select UserPhoto from inkUserDetail where Userid= @UserId and UserPhoto Is Not Null ";
 
             using (SqlCommand sqlCommand = new SqlCommand(sql, sqlConnection))
             {
                 sqlConnection.Open();
-                sqlCommand.Parameters.AddWithValue("@UserId", UserId);
+                sqlCommand.Parameters.AddWithValue("@UserId", Session["UserId"]);
                 DataSet ds = new DataSet();
                 SqlDataAdapter da = new SqlDataAdapter(sqlCommand);
                 da.Fill(ds);
@@ -102,7 +105,8 @@ public partial class Master : System.Web.UI.MasterPage
                 {
                     //string str
                     FileInfo inf = new FileInfo((dr["UserPhoto"].ToString()));
-                    userImage1.Src = "~/UserProfilePictures/" + Session["UserEmail"].ToString() + "_" + Session["UserId"].ToString() + inf.Extension;
+                    userImage1.Src = inf.ToString();
+                    // userImage1.Src = "~/UserProfilePictures/" + Session["UserEmail"].ToString() + "_" + Session["UserId"].ToString() + inf.Extension;
                     userImage2.Src = userImage3.Src = userImage1.Src;
                 }
             }
@@ -113,16 +117,18 @@ public partial class Master : System.Web.UI.MasterPage
         }
     }
 
-    protected void btnSearch_Click(object sender, EventArgs e) {
+    protected void btnSearch_Click(object sender, EventArgs e)
+    {
 
-        if (txtSearch.Text != " ") {
-            Response.Redirect("Search.aspx?User="+txtSearch.Text);
+        if (txtSearch.Text != " ")
+        {
+            Response.Redirect("Search.aspx?User=" + txtSearch.Text);
         }
 
     }
-    
-    public Int32 ids
-    {
-        get { return Convert.ToInt32(Session["UserId"]); }
-    }
+
+    //public Int32 ids
+    //{
+    //    get { return Convert.ToInt32(Session["UserId"]); }
+    //}
 }
