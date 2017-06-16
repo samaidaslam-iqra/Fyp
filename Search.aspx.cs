@@ -54,21 +54,39 @@ public partial class Search : System.Web.UI.Page
         foreach (DataRow dr in dt.Rows) {
             //Users.InnerHtml = Users.InnerHtml+"<div class=\"row\"><div class=\"jumbotron\">hello</div></div>";
 
-            String img = getUserPhoto(dr["UserId"].ToString(), dr["UserEmail"].ToString());
-            Users.InnerHtml = Users.InnerHtml + "<div class=\"container\" ><div class=\"row well col-lg-10\" ><div class=\"media\" ><div class=\"media-left\"><img src=" + img + " class=\"media-object\" style=\"width:100px\"></div><div class=\"media-body\"><h4 class=\"media-heading\">" + dr["UserFirstName"].ToString() + " " + dr["UserLastName"] + "</h4><p>Lorem ipsum...</p><h2><a class = \"btn btn-info pull-right\"href=\"UserProfile.aspx\">View Profile</a></h2></div></div></div></div>";
+            String img = getUserPhoto(dr["UserId"].ToString());
+            Users.InnerHtml = Users.InnerHtml + "<div class=\"container\" ><div class=\"row well col-lg-10\" ><div class=\"media\" ><div class=\"media-left\"><img src=" + img + " class=\"media-object\" style=\"width:100px\"></div><div class=\"media-body\"><h4 class=\"media-heading\">" + dr["UserFirstName"].ToString() + " " + dr["UserLastName"] + "</h4><p>Lorem ipsum...</p><h2><a class = \"btn btn-info pull-right\"href=\"UserProfile.aspx?Mode=View&UserId="+dr["UserId"].ToString()+ "\">View Profile</a></h2></div></div></div></div>";
 
         
         }
 
      }
 
-    private String getUserPhoto(String id,String email)
+    private String getUserPhoto(String id)
     {
-        string fileName ="/UserProfilePictures/"+email+"_"+id+".png ";
-         
-      
-        return fileName;
-
+        SqlConnection sqlConnection = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["dbCon"].ConnectionString);
+        try
+        {
+            string sql = "select UserPhoto from inkUserDetail where UserId =" + id + "";
+            using (SqlCommand sqlCommand = new SqlCommand(sql, sqlConnection))
+            {
+                sqlConnection.Open();
+                var temp = sqlCommand.ExecuteScalar();
+                if (temp != null)
+                {
+                    return temp.ToString();
+                }
+            }
+            return "False";
+        }
+        catch (Exception exception)
+        {
+            throw exception;
+        }
+        finally
+        {
+            sqlConnection.Close();
+            sqlConnection.Dispose();
+        }
     }
-    
-}
+    }
