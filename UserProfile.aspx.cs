@@ -43,7 +43,7 @@ public partial class UserProfile : System.Web.UI.Page
        
         try
         {
-            int id = Master.ids;
+            //int id = Master.ids;
             DataTable dt = new DataTable();
           
             SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbCon"].ConnectionString);
