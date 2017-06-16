@@ -18,18 +18,23 @@ public partial class UserProfile : System.Web.UI.Page
         {
             Response.Redirect("SignIn.aspx");
         }
-        else
+        else if (Request.QueryString["Mode"] == null)
         {
             getGridData();
-            getData();
+            getData(Session["UserId"].ToString());
+        }
+        else if (Request.QueryString["Mode"] == "View")
+        {
+            getGridData();
+            getData(Request.QueryString["UserId"]);
         }
     }
 
-    public void getData()
+    public void getData(string id)
     {
         try
         {
-            int id = Master.ids;
+          //  int id = Master.ids;
             DataTable dt = new DataTable();
 
             SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbCon"].ConnectionString);
@@ -100,7 +105,7 @@ public partial class UserProfile : System.Web.UI.Page
     {
         try
         {
-            int id = Master.ids;
+           // int id = Master.ids;
             DataTable dt = new DataTable();
 
             SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbCon"].ConnectionString);
@@ -109,7 +114,7 @@ public partial class UserProfile : System.Web.UI.Page
             using (SqlCommand sqlCommand = new SqlCommand(sql, sqlConnection))
             {
                 sqlConnection.Open();
-                sqlCommand.Parameters.AddWithValue("@UserId", id);
+                sqlCommand.Parameters.AddWithValue("@UserId", Session["UserId"]);
                 SqlDataAdapter sqlAdapter = new SqlDataAdapter(sqlCommand);
                 sqlAdapter.Fill(dt);
                 sqlCommand.ExecuteNonQuery();

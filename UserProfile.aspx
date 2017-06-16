@@ -7,52 +7,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <section class="content">
 
-        <div class="row">
-            <div class="col-md-12">
-
-                <!-- About Me Box -->
-                <div class="box box-primary">
-                    <div class="box-header with-border"><strong class="box-title">Stats <i class="fa fa-bar-chart"></i></strong></div>
-                    <div class="row">
-                        <div class="col-md-3 col-sm-6 col-xs-12">
-
-
-                            <div class="info-box">
-                                <span class="info-box-icon bg-aqua"><i class="fa fa-bar-chart-o"></i></span>
-
-                                <div class="info-box-content">
-                                    <span class="info-box-text">No. Of Activities</span>
-                                    <span class="info-box-number">90<small></small></span>
-                                </div>
-                                <!-- /.info-box-content -->
-                            </div>
-                            <!-- /.info-box -->
-                        </div>
-                        <!-- /.col -->
-
-
-                        <div class="col-md-3 col-sm-6 col-xs-12">
-
-                            <div class="info-box">
-                                <span class="info-box-icon bg-red"><i class="fa fa-star-half-empty"></i></span>
-
-                                <div class="info-box-content">
-                                    <span class="info-box-text">Rank</span>
-                                    <span class="info-box-number">Advance</span>
-                                </div>
-                                <!-- /.info-box-content -->
-                            </div>
-                            <!-- /.info-box -->
-                        </div>
-                        <!-- /.col -->
-
-                        <!-- fix for small devices only -->
-                        <!-- /.col -->
-                    </div>
-                </div>
-            </div>
-        </div>
-
+       
         <div class="row">
             <div class="col-md-12">
 
