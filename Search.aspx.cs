@@ -55,7 +55,7 @@ public partial class Search : System.Web.UI.Page
             //Users.InnerHtml = Users.InnerHtml+"<div class=\"row\"><div class=\"jumbotron\">hello</div></div>";
 
             String img = getUserPhoto(dr["UserId"].ToString(), dr["UserEmail"].ToString());
-            Users.InnerHtml = Users.InnerHtml + "<div class=\"container\" ><div class=\"row well col-lg-10\" ><div class=\"media\" ><div class=\"media-left\"><img src=" + img + " class=\"media-object\" style=\"width:100px\"></div><div class=\"media-body\"><h4 class=\"media-heading\">" + dr["UserFirstName"].ToString() + " " + dr["UserLastName"] + "</h4><p>Lorem ipsum...</p><h2><a class = \"btn btn-info pull-right\"href=\"UserProfile.aspx\">View Profile</a></h2></div></div></div></div>";
+            Users.InnerHtml = Users.InnerHtml + "<div class=\"container\" ><div class=\"row well col-lg-10\" ><div class=\"media\" ><div class=\"media-left\"><img src=" + img + " class=\"media-object\" style=\"width:100px\"></div><div class=\"media-body\"><h4 class=\"media-heading\">" + dr["UserFirstName"].ToString() + " " + dr["UserLastName"] + "</h4><p>Lorem ipsum...</p><h2><a class = \"btn btn-info pull-right\" href=\"UserProfile.aspx?profileId="+dr["UserId"].ToString()+"\"> View Profile</a></h2></div></div></div></div>";
 
         
         }

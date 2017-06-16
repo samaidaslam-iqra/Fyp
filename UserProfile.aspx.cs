@@ -11,15 +11,25 @@ using System.Web.UI.WebControls;
 
 public partial class UserProfile : System.Web.UI.Page
 {
+    String profileId;
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        
         if (Session["UserId"] == null || Session["UserEmail"] == null || Session["UserFirstName"] == null)
         {
             Response.Redirect("SignIn.aspx");
         }
         else
         {
+            
+            if (Request.QueryString["profileId"] != null)
+            {
+                profileId = Request.QueryString["profileId"].ToString();
+            }
+            else {
+                profileId = Session["UserId"].ToString();
+            }
+
             getGridData();
             getData();
         }
@@ -27,18 +37,22 @@ public partial class UserProfile : System.Web.UI.Page
 
     public void getData()
     {
+        int pid = Convert.ToInt32(profileId);
+        String imagepath = ClassHelper.ImageLoader(pid);
+        userImage1.Src = imagepath;
+       
         try
         {
             int id = Master.ids;
             DataTable dt = new DataTable();
-
+          
             SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbCon"].ConnectionString);
-            string sql = @"select * from inkUserDetail  WHERE inkUserDetail.UserId = @UserId";
+            string sql = @"select * from inkUserDetail  WHERE inkUserDetail.UserId ="+profileId+"";
 
             using (SqlCommand sqlCommand = new SqlCommand(sql, sqlConnection))
             {
                 sqlConnection.Open();
-                sqlCommand.Parameters.AddWithValue("@UserId", id);
+                sqlCommand.Parameters.AddWithValue("@UserId", profileId);
                 SqlDataAdapter sqlAdapter = new SqlDataAdapter(sqlCommand);
                 sqlAdapter.Fill(dt);
                 sqlCommand.ExecuteNonQuery();
@@ -100,16 +114,16 @@ public partial class UserProfile : System.Web.UI.Page
     {
         try
         {
-            int id = Master.ids;
+           // int id = Master.ids;
             DataTable dt = new DataTable();
-
+            
             SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbCon"].ConnectionString);
-            string sql = @"select * from inkFieldsOfInterest  WHERE inkFieldsOfInterest.UserId = @UserId";
+            string sql = "select * from inkFieldsOfInterest  WHERE inkFieldsOfInterest.UserId ="+profileId+"";
 
             using (SqlCommand sqlCommand = new SqlCommand(sql, sqlConnection))
             {
                 sqlConnection.Open();
-                sqlCommand.Parameters.AddWithValue("@UserId", id);
+                sqlCommand.Parameters.AddWithValue("@UserId", profileId);
                 SqlDataAdapter sqlAdapter = new SqlDataAdapter(sqlCommand);
                 sqlAdapter.Fill(dt);
                 sqlCommand.ExecuteNonQuery();
