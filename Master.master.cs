@@ -11,7 +11,7 @@ using System.Web.UI.WebControls;
 
 public partial class Master : System.Web.UI.MasterPage
 {
-   // public int UserId;
+    // public int UserId;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -61,7 +61,7 @@ public partial class Master : System.Web.UI.MasterPage
 
                 //FileUpload1.PostedFile.SaveAs(Server.MapPath("~/UserProfilePictures/") + Session["UserEmail"].ToString() + "_" + Session["UserId"].ToString() + inf.Extension);
                 SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbCon"].ConnectionString);
-             //   UserId = Convert.ToInt32(hfId.Value);
+                //   UserId = Convert.ToInt32(hfId.Value);
                 string sql = @"Update inkUserDetail set UserPhoto=@Userphoto WHERE inkUserDetail.UserId = @UserId";
 
                 using (SqlCommand sqlCommand = new SqlCommand(sql, sqlConnection))
@@ -91,7 +91,7 @@ public partial class Master : System.Web.UI.MasterPage
         try
         {
             SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbCon"].ConnectionString);
-           // UserId = Convert.ToInt32(hfId.Value);
+            // UserId = Convert.ToInt32(hfId.Value);
             string sql = @"  select UserPhoto from inkUserDetail where Userid= @UserId and UserPhoto Is Not Null ";
 
             using (SqlCommand sqlCommand = new SqlCommand(sql, sqlConnection))
