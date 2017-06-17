@@ -38,8 +38,10 @@
                         <asp:LinkButton ID="LinkButton1" runat="server" CommandArgument='<%# Eval("File")%>' CommandName="Download" Text='<%# Eval("File") %>'></asp:LinkButton>
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:BoundField DataField="Size" HeaderText="Size in Bytes" />
-                <asp:BoundField DataField="Type" HeaderText="File Type" />
+                <asp:BoundField DataField="File" HeaderText="File Name" />
+                <asp:BoundField DataField="Size" HeaderText="Size" />
+                  <asp:BoundField DataField="Type" HeaderText="Type" />
+                <%--<asp:BoundField DataField="FileUrl" HeaderText="" />--%>
             </Columns>
             <EditRowStyle BackColor="#999999" />
             <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />

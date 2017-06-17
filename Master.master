@@ -20,6 +20,7 @@
     <script type="text/javascript">
         function openfileDialog() {
             $("#FileUpload1").click();
+            document.getElementById("<%=btnUpload.ClientID %>").disabled = false;
         }
         function UploadFile(fileUpload) {
             var numBytes = document.getElementById("FileUpload1").files[0].size;
@@ -135,7 +136,7 @@
 
                         </li>
 
-                           <li class="treeview">
+                        <li class="treeview">
                             <a href="CreateClass.aspx?Mode=New">
                                 <i class="fa fa-plus-square-o"></i>
                                 <span>Create Class </span>
@@ -172,7 +173,7 @@
 
             <footer class="main-footer">
                 <asp:FileUpload ID="FileUpload1" runat="server" CssClass="hidden" />
-                <asp:Button ID="btnUpload" runat="server" OnClientClick="validate()" Text="Upload" OnClick="btnUpload_Click" CssClass="hidden" />
+                <asp:Button ID="btnUpload" runat="server" OnClientClick="validate()" Text="Upload" Enabled="false" OnClick="btnUpload_Click" CssClass="hidden" />
                 <div class="pull-right hidden-xs">
                     <b>Ink </b>Online Academy
                 </div>

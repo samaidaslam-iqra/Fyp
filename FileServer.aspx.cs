@@ -9,30 +9,44 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+//CREATE TABLE inkFile (
+//    [UploadId]   INT          NOT NULL IDENTITY,
+//    [UploadedBy] INT          NULL,
+//    [FileName]   VARCHAR (45) NULL,
+//    [FileType]   VARCHAR (45) NULL,
+//    [FileUrl] NVARCHAR(100) NULL, 
+//    FOREIGN KEY ([UploadedBy]) REFERENCES [dbo].[inkUser] ([UserId])
+//);
+
 public partial class FileServer : System.Web.UI.Page
 {
-    String userPath;
-    String File;
+    string pathId;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Session["UserId"] == null || Session["UserEmail"] == null || Session["UserFirstName"] == null)
         {
             Response.Redirect("SignIn.aspx");
         }
-
-
-        userName.InnerText = Session["UserFirstName"].ToString() + " " + Session["UserLastName"].ToString();
-        //FileUpload1.Visible = false;
-        userPath = "~/Files/" + Session["UserFirstName"].ToString() + " " + Session["UserLastName"].ToString() + "/";
-
-        if (!(Directory.Exists(Server.MapPath(userPath))))
+        else
         {
-            Directory.CreateDirectory(Server.MapPath(userPath));
+            if (Request.QueryString["pathId"] != null)
+            {
+                pathId = Request.QueryString["pathId"].ToString();
+            }
+            else
+            {
+                pathId = Session["UserId"].ToString();
+            }
+
+
+            userName.InnerText = Session["UserFirstName"].ToString().ToUpper() + " " + Session["UserLastName"].ToString().ToUpperInvariant();
+            //FileUpload1.Visible = false;
+            // userPath = "~/Files/" + Session["UserFirstName"].ToString() + " " + Session["UserLastName"].ToString() + "/";
+            GridView1.DataSource = getDataTable(pathId);
+            GridView1.DataBind();
         }
-        
-        getDataTable();
     }
-  
+
     protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
     {
         if (e.CommandName == "Download")
@@ -40,56 +54,95 @@ public partial class FileServer : System.Web.UI.Page
             Response.Clear();
             Response.ContentType = "application/octect-stream";
             Response.AppendHeader("content-disposition", "filename=" + e.CommandArgument);
-            Response.TransmitFile(Server.MapPath(userPath) + e.CommandArgument);
+            Response.TransmitFile(Server.MapPath("~/Files/" + pathId + "/") + e.CommandArgument);
             Response.End();
         }
     }
 
     protected void Button1_Click(object sender, EventArgs e)
     {
-        if (FileUpload1.HasFile)   {
-            FileUpload1.PostedFile.SaveAs(Server.MapPath(userPath) + FileUpload1.FileName);
+        if (FileUpload1.HasFile)
+        {
+            FileInfo inf = new FileInfo(FileUpload1.PostedFile.FileName);
+            string url = "~/Files/" + Session["UserId"].ToString() + "/";
+            if (!(Directory.Exists(Server.MapPath(url))))
+            {
+                Directory.CreateDirectory(Server.MapPath(url));
+            }
+            FileUpload1.PostedFile.SaveAs(Server.MapPath(url + inf));
+            insertToDb(Session["UserId"].ToString(), inf.Name.ToString(), inf.Extension.ToString(), url + inf);
         }
-        //insertToDb();
-        getDataTable();
+        getDataTable(Session["UserId"].ToString());
+
     }
 
-    private void getDataTable()
+    private DataTable getDataTable(string id)
     {
+        string url = "~/Files/" + id + "/";
         DataTable dt = new DataTable();
         dt.Columns.Add("File");
         dt.Columns.Add("Size");
         dt.Columns.Add("Type");
-        foreach (string strfile in Directory.GetFiles(Server.MapPath(userPath)))
+        foreach (string strfile in Directory.GetFiles(Server.MapPath(url)))
         {
-           FileInfo fi = new FileInfo(strfile);
+            FileInfo fi = new FileInfo(strfile);
             dt.Rows.Add(fi.Name, fi.Length.ToString(), GetFileTypeByExtension(fi.Extension));
-                 
+
         } GridView1.DataSource = dt;
         GridView1.DataBind();
-        
-        
+        //DataTable dt = new DataTable();
+        //SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbCon"].ConnectionString);
+        //try
+        //{
+        //    string sql = @"select * from inkFile where UploadId =" + id + "";
+        //    using (SqlCommand sqlCommand = new SqlCommand(sql, sqlConnection))
+        //    {
+        //        sqlConnection.Open();
+        //        SqlDataAdapter sqlAdapter = new SqlDataAdapter(sqlCommand);
+        //        sqlAdapter.Fill(dt);
+        //        sqlAdapter.Dispose();
+        //    }
+        //}
+        //catch (Exception exception)
+        //{
+        //    throw new Exception(string.Format("Error occured while getting AllRecord: {0}", exception.Message), exception);
+        //}
+        //finally
+        //{
+        //    sqlConnection.Close();
+        //    sqlConnection.Dispose();
+        //}
+
+        //foreach (DataRow dr in dt.Rows)
+        //{
+        //    userPath = dr["FileUrl"].ToString();
+        //} 
+        return dt;
+
     }
 
-    private void insertToDb()
+    private void insertToDb(string id, string name, string type, string url)
     {
-    //     try  {
-    //        using (SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["dbCon"].ConnectionString))
-    //        {
-    //            sqlcon.Open();
-    //          //  string query = @"insert into inkFile (UploadedBy,FileName,FileType) values('" + Session["UserId"].ToString() + "','" + userPath + "','"++"' )";
-    //            SqlCommand cmd = new SqlCommand(query, sqlcon);
-    //            cmd.ExecuteNonQuery();
-    //            sqlcon.Close();
-    //        }
-    //    }
-    //    catch (Exception)
-    //    {
-    //        throw;
-    //    }
-    }    
-    
-    
+        try
+        {
+            using (SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["dbCon"].ConnectionString))
+            {
+                sqlcon.Open();
+                string query = @"insert into inkFile (UploadedBy,FileName,FileType, FileUrl) values(@UploadedBy, @FileName, @FileType, @FileUrl)";
+                SqlCommand sqlCommand = new SqlCommand(query, sqlcon);
+                sqlCommand.Parameters.AddWithValue("@UploadedBy", id);
+                sqlCommand.Parameters.AddWithValue("@FileName", name);
+                sqlCommand.Parameters.AddWithValue("@FileType", type);
+                sqlCommand.Parameters.AddWithValue("@FileUrl", url);
+                sqlCommand.ExecuteNonQuery();
+                sqlcon.Close();
+            }
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+    }
 
     private String GetFileTypeByExtension(string fileExtension)
     {
@@ -99,8 +152,10 @@ public partial class FileServer : System.Web.UI.Page
             case ".doc": return "Microsoft Word Document";
             case ".xlsx":
             case ".xls": return "Microsoft Excel Document";
+            case ".pdf": return "Adobe Pdf Document";
             case ".txt": return "Text Document";
             case ".jpg":
+            case ".gif":
             case ".png": return "Image";
             default: return "Unknown";
         }

@@ -149,6 +149,6 @@ public partial class UserProfile : System.Web.UI.Page
     }
     protected void File_Click(object sender, EventArgs e)
     {
-        Server.Transfer("FileServer.aspx");
+        Response.Redirect("FileServer.aspx?pathId=" + profileId);
     }
 }
