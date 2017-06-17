@@ -103,6 +103,7 @@ public partial class Register : System.Web.UI.Page
                 SqlCommand cmd = new SqlCommand(query, sqlcon);
                 cmd.ExecuteNonQuery();
                 sqlcon.Close();
+
             }
 
             Session["UserId"] = userId;
@@ -110,6 +111,8 @@ public partial class Register : System.Web.UI.Page
             Session["UserLastName"] = dt.Rows[0]["UserLastName"].ToString();
             Session["UserPassword"] = dt.Rows[0]["UserPassword"].ToString();
             Session["UserEmail"] = dt.Rows[0]["UserEmail"].ToString();
+            string url = "~/Files/" + Session["UserId"].ToString() + "/";
+            Directory.CreateDirectory(Server.MapPath(url));
             Session.Timeout = 30;
             Response.Redirect("Dashboard.aspx");
         }

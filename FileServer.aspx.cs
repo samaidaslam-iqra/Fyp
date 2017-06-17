@@ -9,15 +9,6 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-//CREATE TABLE inkFile (
-//    [UploadId]   INT          NOT NULL IDENTITY,
-//    [UploadedBy] INT          NULL,
-//    [FileName]   VARCHAR (45) NULL,
-//    [FileType]   VARCHAR (45) NULL,
-//    [FileUrl] NVARCHAR(100) NULL, 
-//    FOREIGN KEY ([UploadedBy]) REFERENCES [dbo].[inkUser] ([UserId])
-//);
-
 public partial class FileServer : System.Web.UI.Page
 {
     string pathId;
