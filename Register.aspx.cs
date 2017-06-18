@@ -98,7 +98,7 @@ public partial class Register : System.Web.UI.Page
                 userId = Convert.ToInt32(dt.Rows[0]["UserId"]);
                 cmd1.ExecuteNonQuery();
 
-                string query = "insert into inkUserDetail (UserId , UserAboutMe, UserEducation, UserEmployement , UserSkills, UserPhoto) values( '" + userId + "' , null , null , null , null , null )";
+                string query = "insert into inkUserDetail (UserId , UserAboutMe, UserEducation, UserEmployement , UserSkills, UserPhoto) values( '" + userId + "' , null , null , null , null , '/UserProfilePictures/default.png' )";
 
                 SqlCommand cmd = new SqlCommand(query, sqlcon);
                 cmd.ExecuteNonQuery();
