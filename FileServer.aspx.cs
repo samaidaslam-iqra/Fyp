@@ -49,7 +49,7 @@ public partial class FileServer : System.Web.UI.Page
     {
         if (FileUpload1.HasFile)   {
             FileUpload1.PostedFile.SaveAs(Server.MapPath(userPath) + FileUpload1.FileName);
-        }
+         }
         //insertToDb();
         getDataTable();
     }
