@@ -28,7 +28,7 @@ public partial class Master : System.Web.UI.MasterPage
                 hfId.Value = (Session["UserId"].ToString());
                 p1.InnerText = p2.InnerText = span1.InnerText = Session["UserFirstName"].ToString() + " " + Session["UserLastName"].ToString();
                 p2 = p1;
-                ImageLoader(Convert.ToInt32(Session["UserId"]));
+                userImage1.Src = userImage2.Src = userImage3.Src = ClassHelper.ImageLoader(Convert.ToInt32(Session["UserId"]));
             }
 
         }
@@ -41,6 +41,7 @@ public partial class Master : System.Web.UI.MasterPage
             Session.Abandon();
             Session.Clear();
             Session.RemoveAll();
+            SqlConnection.ClearAllPools();
             Response.Redirect("SignIn.aspx");
         }
         catch (Exception)
@@ -79,6 +80,10 @@ public partial class Master : System.Web.UI.MasterPage
             {
                 throw;
             }
+            finally
+            {
+                SqlConnection.ClearAllPools();
+            }
         }
         else
         {
@@ -86,36 +91,40 @@ public partial class Master : System.Web.UI.MasterPage
         }
     }
 
-    protected void ImageLoader(int id)
-    {
-        try
-        {
-            SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbCon"].ConnectionString);
-            // UserId = Convert.ToInt32(hfId.Value);
-            string sql = @"  select UserPhoto from inkUserDetail where Userid= @UserId and UserPhoto Is Not Null ";
+    //protected void ImageLoader(int id)
+    //{
+    //    try
+    //    {
+    //        SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbCon"].ConnectionString);
+    //        // UserId = Convert.ToInt32(hfId.Value);
+    //        string sql = @"  select UserPhoto from inkUserDetail where Userid= @UserId and UserPhoto Is Not Null ";
 
-            using (SqlCommand sqlCommand = new SqlCommand(sql, sqlConnection))
-            {
-                sqlConnection.Open();
-                sqlCommand.Parameters.AddWithValue("@UserId", Session["UserId"]);
-                DataSet ds = new DataSet();
-                SqlDataAdapter da = new SqlDataAdapter(sqlCommand);
-                da.Fill(ds);
-                foreach (DataRow dr in ds.Tables[0].Rows)
-                {
-                    //string str
-                    FileInfo inf = new FileInfo((dr["UserPhoto"].ToString()));
-                    userImage1.Src = inf.ToString();
-                    // userImage1.Src = "~/UserProfilePictures/" + Session["UserEmail"].ToString() + "_" + Session["UserId"].ToString() + inf.Extension;
-                    userImage2.Src = userImage3.Src = userImage1.Src;
-                }
-            }
-        }
-        catch (Exception)
-        {
-            throw;
-        }
-    }
+    //        using (SqlCommand sqlCommand = new SqlCommand(sql, sqlConnection))
+    //        {
+    //            sqlConnection.Open();
+    //            sqlCommand.Parameters.AddWithValue("@UserId", Session["UserId"]);
+    //            DataSet ds = new DataSet();
+    //            SqlDataAdapter da = new SqlDataAdapter(sqlCommand);
+    //            da.Fill(ds);
+    //            foreach (DataRow dr in ds.Tables[0].Rows)
+    //            {
+    //                //string str
+    //                FileInfo inf = new FileInfo((dr["UserPhoto"].ToString()));
+    //                userImage1.Src = inf.ToString();
+    //                // userImage1.Src = "~/UserProfilePictures/" + Session["UserEmail"].ToString() + "_" + Session["UserId"].ToString() + inf.Extension;
+    //                userImage2.Src = userImage3.Src = userImage1.Src;
+    //            }
+    //        }
+    //    }
+    //    catch (Exception)
+    //    {
+    //        throw;
+    //    }
+    //    finally
+    //    {
+    //        SqlConnection.ClearAllPools();
+    //    }
+    //}
 
     protected void btnSearch_Click(object sender, EventArgs e)
     {

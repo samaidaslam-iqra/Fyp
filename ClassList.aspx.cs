@@ -62,9 +62,11 @@ public partial class ManageClass : System.Web.UI.Page
         catch (Exception exception) {
             throw new Exception(string.Format("Error occured while getting AllRecord: {0}", exception.Message), exception);
         }
-        finally {
-            sqlConnection.Close();
+        finally
+        {
             sqlConnection.Dispose();
+            sqlConnection.Close();
+            SqlConnection.ClearPool(sqlConnection);
         }
         return dt;
 
@@ -97,6 +99,7 @@ public partial class ManageClass : System.Web.UI.Page
         {
             sqlConnection.Close();
             sqlConnection.Dispose();
+            SqlConnection.ClearPool(sqlConnection);
         }
 
         return false;

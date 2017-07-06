@@ -7,7 +7,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <section class="content">
 
-       <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+     
         <style>
             
 
@@ -252,31 +252,31 @@
     margin-bottom: 17px;
 }
 
-.btn{ border-radius: 50%; width:32px; height:32px; line-height:18px;  }
+/*.btn{ border-radius: 50%; width:32px; height:32px; line-height:18px;  }*/
 
 
 
         </style>
 <div class="container">
 	<div class="row">
-		<div class="col-lg-10 col-sm-6">
+		<div class="col-md-11 col-sm-11">
 
             <div class="card hovercard">
                 <div class="cardheader">
 
                 </div>
                 <div class="avatar">
-                    <img id="userImage1" runat="server" alt="" >
+                    <img id="imgCard" runat="server" alt="" src="#"/>
                 </div>
                 <div class="info">
                     <div class="title">
-                        <a target="_blank" href="http://scripteden.com/">Script Eden</a>
+                        <p runat="server" id="title">__________</p>
                     </div>
-                    <div class="desc">Passionate designer</div>
-                    <div class="desc">Curious developer</div>
-                    <div class="desc">Tech geek</div>
+                    <div runat="server" class="desc" id="edu">__________</div>
+                    <div runat="server" class="desc" id="emp">___________</div>
+                   
                 </div>
-                <div class="bottom">
+              <%--  <div class="bottom">
                     <a class="btn btn-primary btn-twitter btn-sm" href="https://twitter.com/webmaniac">
                         <i class="fa fa-twitter"></i>
                     </a>
@@ -291,7 +291,7 @@
                     <a class="btn btn-warning btn-sm" rel="publisher" href="https://plus.google.com/shahnuralam">
                         <i class="fa fa-behance"></i>
                     </a>
-                </div>
+                </div>--%>
             </div>
 
         </div>

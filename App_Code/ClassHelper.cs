@@ -7,28 +7,22 @@ using System.IO;
 using System.Linq;
 using System.Web;
 
-/// <summary>
-/// Summary description for ClassHelper
-/// </summary>
 public class ClassHelper
 {
     public static String imagePath;
 
-	public ClassHelper()
-	{
-		
-	}
+    public ClassHelper()
+    {
+
+    }
 
     public static String ImageLoader(int id)
     {
-         
         try
         {
-            
             SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbCon"].ConnectionString);
-
-            string sql = @" select i.UserPhoto,u.UserEmail,u.Userid from inkUserDetail i INNER JOIN inkUser u ON i.Userid=u.Userid where i.Userid='"+id+"' and UserPhoto Is Not Null ";
-
+            //string sql = @" select i.UserPhoto,u.UserEmail,u.Userid from inkUserDetail i INNER JOIN inkUser u ON i.Userid=u.Userid where i.Userid='" + id + "' and UserPhoto Is Not Null ";
+            string sql = @"select UserPhoto from inkUserDetail where UserId=@UserId";
             using (SqlCommand sqlCommand = new SqlCommand(sql, sqlConnection))
             {
                 sqlConnection.Open();
@@ -40,14 +34,20 @@ public class ClassHelper
                 {
                     foreach (DataRow dr in ds.Tables[0].Rows)
                     {
-                        //string str
-                        FileInfo inf = new FileInfo((dr["UserPhoto"].ToString()));
-                        imagePath = "~/UserProfilePictures/" + dr["UserEmail"].ToString() + "_" + dr["UserId"].ToString() + inf.Extension;
-
+                        if (dr["UserPhoto"] != null || dr["UserPhoto"] != "" || !string.IsNullOrEmpty(dr["UserPhoto"].ToString()) || dr["UserPhoto"].ToString() != " ")
+                        {
+                            imagePath = dr["UserPhoto"].ToString();
+                        }
+                        else
+                        {
+                            imagePath = "/UserProfilePictures/default.png";
+                        }
                     }
                     return imagePath;
                 }
-
+                sqlConnection.Dispose();
+                sqlConnection.Close();
+                SqlConnection.ClearPool(sqlConnection);
             }
         }
         catch (Exception)
@@ -56,5 +56,4 @@ public class ClassHelper
         }
         return null;
     }
-
 }
