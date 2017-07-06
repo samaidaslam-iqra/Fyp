@@ -77,7 +77,8 @@ public partial class FileServer : System.Web.UI.Page
         foreach (string strfile in Directory.GetFiles(Server.MapPath(url)))
         {
             FileInfo fi = new FileInfo(strfile);
-            dt.Rows.Add(fi.Name, fi.Length.ToString(), GetFileTypeByExtension(fi.Extension));
+            double ss = Convert.ToDouble(fi.Length) / 1048576;
+            dt.Rows.Add(fi.Name, Math.Round(ss,2).ToString()+" MB", GetFileTypeByExtension(fi.Extension));
 
         } GridView1.DataSource = dt;
         GridView1.DataBind();
