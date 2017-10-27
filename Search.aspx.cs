@@ -15,7 +15,18 @@ public partial class Search : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
 
-        getSearchUsers();
+        if (Session["UserEmail"] == null && Session["UserPassword"] == null)
+        {
+            Response.Redirect("SignIn.aspx");
+        }
+        else
+        {
+            if (!IsPostBack)
+            {
+                getSearchUsers();
+            }
+        }
+
 
     }
 
@@ -63,11 +74,5 @@ public partial class Search : System.Web.UI.Page
             Users.InnerHtml = Users.InnerHtml + "<div class=\"container\" ><div class=\"row well col-lg-10\" ><div class=\"media\" ><div class=\"media-left\"><img src=" + img + " class=\"media-object\" style=\"width:100px\"></div><div class=\"media-body\"><h4 class=\"media-heading\">" + dr["UserFirstName"].ToString() + " " + dr["UserLastName"] + "</h4><p>" + dr["UserCountry"] + "</p><h2><a class = \"btn btn-info pull-right\" href=\"UserProfile.aspx?profileId=" + dr["UserId"].ToString() + "\"> View Profile</a></h2></div></div></div></div>";
         }
     }
-
-    //private String getUserPhoto(String id, String email)
-    //{
-    //    string fileName = "/UserProfilePictures/" + email + "_" + id + ".png ";
-    //    return fileName;
-    //}
 
 }

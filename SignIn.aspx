@@ -10,8 +10,8 @@
     <meta name="author" content="Ink" />
 
     <title>Ink 'Online Volunteer Academy'</title>
-    
-  <link rel="shortcut icon" runat="server" href="~/assets/images/favicon.ico"  type="image/x-icon" />
+
+    <link rel="shortcut icon" runat="server" href="~/assets/images/favicon.ico" type="image/x-icon" />
 
     <link href="assets/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" />
     <link href="assets/css/font-awesome.min.css" rel="stylesheet" />
@@ -63,7 +63,7 @@
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Password missing" ControlToValidate="txtPassword" EnableClientScript="False" ForeColor="Red"></asp:RequiredFieldValidator>
             </p>
             <p>
-                <asp:Button runat="server" UseSubmitBehavior="true"  ID="btnLogin" Text="Log in" OnClick="btnLogin_Click" />
+                <asp:Button runat="server" UseSubmitBehavior="true" ID="btnLogin" Text="Log in" OnClick="btnLogin_Click" />
                 <asp:Label ID="lbl" runat="server" ForeColor="Red"></asp:Label>
 
             </p>

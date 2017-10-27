@@ -64,7 +64,7 @@ public partial class SignIn : System.Web.UI.Page
                     Session["UserLastName"] = dt.Rows[0]["UserLastName"].ToString();
                     Session["UserPassword"] = dt.Rows[0]["UserPassword"].ToString();
                     Session["UserEmail"] = dt.Rows[0]["UserEmail"].ToString();
-                    Session.Timeout = 30;
+                    Session.Timeout = 60;
                     Response.Redirect("Dashboard.aspx");
                     Response.Write("<Script>alert('Welcome')</Script>");
                 }

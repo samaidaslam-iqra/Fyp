@@ -205,7 +205,7 @@
 }
 
 .card.hovercard .cardheader {
-    background: url("http://cdn.wall-pix.net/albums/art-abstract/00000505.jpg");
+    background: url("assets/images/bg_header2.jpg");
     background-size: cover;
     height: 250px;
 }
@@ -276,22 +276,7 @@
                     <div runat="server" class="desc" id="emp">___________</div>
                    
                 </div>
-              <%--  <div class="bottom">
-                    <a class="btn btn-primary btn-twitter btn-sm" href="https://twitter.com/webmaniac">
-                        <i class="fa fa-twitter"></i>
-                    </a>
-                    <a class="btn btn-danger btn-sm" rel="publisher"
-                       href="https://plus.google.com/+ahmshahnuralam">
-                        <i class="fa fa-google-plus"></i>
-                    </a>
-                    <a class="btn btn-primary btn-sm" rel="publisher"
-                       href="https://plus.google.com/shahnuralam">
-                        <i class="fa fa-facebook"></i>
-                    </a>
-                    <a class="btn btn-warning btn-sm" rel="publisher" href="https://plus.google.com/shahnuralam">
-                        <i class="fa fa-behance"></i>
-                    </a>
-                </div>--%>
+           
             </div>
 
         </div>

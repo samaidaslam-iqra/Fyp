@@ -42,7 +42,7 @@ public partial class Master : System.Web.UI.MasterPage
             Session.Clear();
             Session.RemoveAll();
             SqlConnection.ClearAllPools();
-            Response.Redirect("SignIn.aspx");
+            Response.Redirect("SignIn.aspx?SigningOut");
         }
         catch (Exception)
         {

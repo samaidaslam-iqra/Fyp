@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    
+
     <title>E-WhiteBoard &copy; Ink</title>
     <link href="assets/css/font-awesome.min.css" rel="stylesheet" />
     <link href="assets/css/AdminLTE.min.css" rel="stylesheet" />
@@ -20,12 +20,12 @@
 </head>
 
 <body>
-    
+
     <form id="form1" runat="server">
         <div class="wrapper container">
 
             <div class="row">
-                <div class="col-lg-2 col-sm-2 col-xs-2 col-md-2"></div>
+                <div class="col-lg-1 col-sm-1 col-xs-1 col-md-1"></div>
                 <div class="col-lg-8 col-sm-8 col-xs-8 col-md-8">
                     <div id="dvControls" runat="server" class="navbar center-block">
 
@@ -39,6 +39,9 @@
                             </li>
                             <li>
                                 <button type="button" id="pencil" class="btn btn-success">Pencil </button>
+                            </li>
+                            <li>
+                                <button type="button" id="blue" class="btn btn-success">blue Pencil </button>
                             </li>
                             <li>
                                 <button type="button" id="eraser" class="btn btn-danger">Erase </button>
@@ -55,91 +58,86 @@
             </div>
 
             <div class="row">
-                <div class="col-lg-6 col-sm-6 col-xs-6 col-md-6">
+                <div class="col-lg-8 col-sm-8 col-xs-8 col-md-8">
                     <canvas id="canvas" style="border: 5px solid #d3d3d3;">sorry brower not supporting html canvass
                     </canvas>
                 </div>
-                 <div class="col-lg-6 col-sm-6 col-xs-6 col-md-6">
-                
-                         <div class="d">
 
-        <div class="row">
-            <div class="col-md-3"></div>
-            <div class="col-md-9">
 
-                <div class="box box-warning direct-chat direct-chat-warning">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">Direct Chat</h3>
+                <div class="col-lg-4 col-sm-4 col-xs-4 col-md-4">
 
-                    </div>
 
-                    <div class="box-body">
 
-                        <div class="direct-chat-messages">
+                    <div class="row">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-3"></div>
+                        <div class="col-md-9">
 
-                            <div class="direct-chat-msg">
-                                <div class="direct-chat-info clearfix">
-                                    <span id="displayname" runat="server" class="direct-chat-name pull-left"></span>
-                                    <span class="direct-chat-timestamp pull-right">23 Jan 2:00 pm</span>
-                                </div>
-
-                                <!--<img class="direct-chat-img" src="../dist/img/user1-128x128.jpg" alt="Message User Image">-->
-                                <div id="discussion" class="direct-chat-text">
+                            <div class="box box-warning direct-chat direct-chat-warning">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Direct Chat</h3>
 
                                 </div>
-                            
+
+                                <div class="box-body">
+
+                                    <div class="direct-chat-messages">
+
+                                        <div class="direct-chat-msg">
+                                            <div class="direct-chat-info clearfix">
+                                                <span id="displayname" runat="server" class="direct-chat-name pull-left"></span>
+                                                <span class="direct-chat-timestamp pull-right">23 Jan 2:00 pm</span>
+                                            </div>
+
+                                            <!--<img class="direct-chat-img" src="../dist/img/user1-128x128.jpg" alt="Message User Image">-->
+                                            <div id="discussion" class="direct-chat-text">
+                                            </div>
+
+
+                                        </div>
+
+
+                                    </div>
+
+                                    <div class="direct-chat-contacts">
+                                        <ul class="contacts-list">
+                                            <li>
+                                                <a href="#">
+                                                    <img class="contacts-list-img" src="../dist/img/user1-128x128.jpg" alt="User Image" />
+                                                    <div class="contacts-list-info">
+                                                        <span class="contacts-list-name">Count Dracula
+                                                <small class="contacts-list-date pull-right">2/28/2015</small>
+                                                        </span>
+                                                        <span class="contacts-list-msg">How have you been? I was...</span>
+                                                    </div>
+                                                </a>
+                                            </li>
+
+                                        </ul>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="box-footer" style="margin-top: 300px;">
+
+                                    <div class="input-group">
+                                        <input type="text" id="message" placeholder="Type Message ..." class="form-control" />
+                                        <span class="input-group-btn">
+                                            <button type="button" id="sendmessage" value="send" class="btn btn-warning btn-flat">Send</button>
+                                        </span>
+                                    </div>
+
+                                </div>
 
                             </div>
 
-                  
-                        </div>
-
-                        <div class="direct-chat-contacts">
-                            <ul class="contacts-list">
-                                <li>
-                                    <a href="#">
-                                        <img class="contacts-list-img" src="../dist/img/user1-128x128.jpg" alt="User Image"/>
-                                        <div class="contacts-list-info">
-                                            <span class="contacts-list-name">
-                                                Count Dracula
-                                                <small class="contacts-list-date pull-right">2/28/2015</small>
-                                            </span>
-                                            <span class="contacts-list-msg">How have you been? I was...</span>
-                                        </div>
-                                    </a>
-                                </li>
-
-                            </ul>
-
-                        </div>
-
-                    </div>
-
-                    <div class="box-footer" style="margin-top:300px;">
-
-                        <div class="input-group">
-                            <input type="text" id="message" placeholder="Type Message ..." class="form-control"/>
-                            <span class="input-group-btn">
-                                <button type="button" id="sendmessage" value="send" class="btn btn-warning btn-flat">Send</button>
-                            </span>
                         </div>
 
                     </div>
 
                 </div>
 
-            </div>
-
-        </div>
-
-    </div>
-
-
-  <%--  <script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
-    <script src="../bootstrap/js/bootstrap.min.js"></script>--%>
-
-
-                 </div>
             </div>
         </div>
 
@@ -193,10 +191,11 @@
         decreaseRad = document.getElementById('decrad'),
         increaseRad = document.getElementById('incrad'),
         eraser = document.getElementById('eraser'),
-        pencil = document.getElementById('pencil');
+        pencil = document.getElementById('pencil'),
+    blue = document.getElementById('blue');
 
-    canvas.width = 1170/2;
-    canvas.height = 445;
+    canvas.width = window.innerWidth / 2;
+    canvas.height = window.innerHeight / 2;
     context.lineWidth = radius * 2;
 
     decreaseRad.addEventListener('click', function () {
@@ -229,6 +228,10 @@
         context.fillStyle = "black";
         context.strokeStyle = "black";
     });
+    blue.addEventListener('click', function () {
+        context.fillStyle = "blue";
+        context.strokeStyle = "blue";
+    });
 
     var drawing = function (e) {
         if (draw) {
@@ -260,8 +263,8 @@
     canvas.addEventListener('mousemove', drawing);
     canvas.addEventListener('mouseup', stopdraw);
 
-    
-   
+
+
 
 
 </script>
