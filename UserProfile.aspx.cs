@@ -32,7 +32,29 @@ public partial class UserProfile : System.Web.UI.Page
 
             getGridData();
             getData();
+            getDetail();
         }
+    }
+
+
+    public void getDetail()
+    {
+        DataTable dt = new DataTable(); 
+           
+            SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbCon"].ConnectionString);
+            string sql = "select * from inkUserStat WHERE inkUserStat.UserId =" + profileId + " ";
+            
+        using(SqlCommand sqlCommand = new SqlCommand(sql, sqlConnection))
+            {
+                sqlConnection.Open();
+                SqlDataAdapter sqlAdapter = new SqlDataAdapter(sqlCommand);
+                sqlAdapter.Fill(dt);
+                sqlCommand.ExecuteNonQuery();
+            }
+            lblNoOfActivity.InnerText = dt.Rows[0]["NoOfLinks"].ToString();
+            lblNoOfFiles.InnerText = dt.Rows[0]["ExperineceLevel"].ToString();
+            lblNoOfLinks.InnerText = dt.Rows[0]["Ranks"].ToString();
+            lblRank.InnerText = dt.Rows[0]["Remarks"].ToString();
     }
 
     public void getData()
@@ -108,8 +130,6 @@ public partial class UserProfile : System.Web.UI.Page
             throw;
         }
     }
-
-
     public void getGridData()
     {
         try
@@ -137,18 +157,16 @@ public partial class UserProfile : System.Web.UI.Page
             throw;
         }
     }
-
     protected void linkbtnEdit_Click(object sender, EventArgs e)
     {
         Server.Transfer("EditDetails.aspx");
     }
-
     protected void linkbtnEdit1_Click(object sender, EventArgs e)
     {
         Server.Transfer("EditInterest.aspx");
     }
     protected void File_Click(object sender, EventArgs e)
     {
-        Server.Transfer("FileServer.aspx");
+        Response.Redirect("FileServer.aspx?pathId=" + profileId);
     }
 }

@@ -314,7 +314,7 @@
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">No. Of Activities</span>
-                                    <span class="info-box-number">90<small></small></span>
+                                    <span class="info-box-number" id="lblNoOfActivity" runat="server">*<small></small></span>
                                 </div>
                                 <!-- /.info-box-content -->
                             </div>
@@ -330,7 +330,7 @@
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">Rank</span>
-                                    <span class="info-box-number">Advance</span>
+                                    <span class="info-box-number" id="lblRank" runat="server">Advance</span>
                                 </div>
                                 <!-- /.info-box-content -->
                             </div>
@@ -348,7 +348,10 @@
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">Files Uploaded</span>
-                                    <span class="info-box-number"> <asp:LinkButton ID="LinkButton1" runat="server" OnClick="File_Click"> <i class="fa fa-pencil"></i> File Server </asp:LinkButton>
+                                    <span class="info-box-text" id="lblNoOfFiles" runat="server">No of files</span>
+
+                                    <span class="info-box-number"> 
+                                        <asp:LinkButton ID="LinkButton1" runat="server" OnClick="File_Click"> <i class="fa fa-pencil"></i> File Server </asp:LinkButton>
                     
                                     </span>
                                 </div>
@@ -366,7 +369,7 @@
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">No. Of Links</span>
-                                    <span class="info-box-number">2,000</span>
+                                    <span class="info-box-number" id="lblNoOfLinks" runat="server">2,000</span>
                                 </div>
                                 <!-- /.info-box-content -->
                             </div>
