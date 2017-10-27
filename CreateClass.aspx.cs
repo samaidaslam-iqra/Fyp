@@ -202,7 +202,7 @@ public partial class CreateClass : System.Web.UI.Page
                 else
                 {
                     Response.Write("<Script>'Invalid'</Script>");
-                }
+                }   
             }
         }
         catch (Exception)
