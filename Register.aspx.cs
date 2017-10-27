@@ -98,11 +98,12 @@ public partial class Register : System.Web.UI.Page
                 userId = Convert.ToInt32(dt.Rows[0]["UserId"]);
                 cmd1.ExecuteNonQuery();
 
-                string query = "insert into inkUserDetail (UserId , UserAboutMe, UserEducation, UserEmployement , UserSkills, UserPhoto) values( '" + userId + "' , null , null , null , null , null )";
+                string query = "insert into inkUserDetail (UserId , UserAboutMe, UserEducation, UserEmployement , UserSkills, UserPhoto) values( '" + userId + "' , null , null , null , null , '/UserProfilePictures/default.png' )";
 
                 SqlCommand cmd = new SqlCommand(query, sqlcon);
                 cmd.ExecuteNonQuery();
                 sqlcon.Close();
+
             }
 
             Session["UserId"] = userId;
@@ -110,6 +111,8 @@ public partial class Register : System.Web.UI.Page
             Session["UserLastName"] = dt.Rows[0]["UserLastName"].ToString();
             Session["UserPassword"] = dt.Rows[0]["UserPassword"].ToString();
             Session["UserEmail"] = dt.Rows[0]["UserEmail"].ToString();
+            string url = "~/Files/" + Session["UserId"].ToString() + "/";
+            Directory.CreateDirectory(Server.MapPath(url));
             Session.Timeout = 30;
             Response.Redirect("Dashboard.aspx");
         }

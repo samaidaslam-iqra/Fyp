@@ -15,6 +15,7 @@ public partial class SignIn : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        this.Page.Form.DefaultButton = btnLogin.ID;
         if (Session["UserEmail"] != null && Session["UserFirstName"] != null)
         {
             Response.Redirect("Dashboard.aspx", false);
@@ -44,6 +45,7 @@ public partial class SignIn : System.Web.UI.Page
         {
             sqlcon.Dispose();
             sqlcon.Close();
+            SqlConnection.ClearPool(sqlcon);
         }
         return dt;
     }
