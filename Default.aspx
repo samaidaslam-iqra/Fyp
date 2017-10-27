@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    
+
     <title>E-WhiteBoard &copy; Ink</title>
     <link href="assets/css/font-awesome.min.css" rel="stylesheet" />
     <link href="assets/css/AdminLTE.min.css" rel="stylesheet" />
@@ -17,33 +17,32 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport" />
     <script src="Scripts/jquery.signalR-2.2.1.min.js"></script>
     <script src="signalr/hubs"></script>
-      <link href="assets/css/example.css" rel="stylesheet" />
-     <script src="../lib/XSockets.latest.js"></script>
+    <link href="assets/css/example.css" rel="stylesheet" />
+    <script src="../lib/XSockets.latest.js"></script>
     <script src="../../src/js/XSockets.WebRTC.latest.js"></script>
-   
+
 </head>
 
 <body>
-    <div class="row"> 
-        
-         <h1>Welcome to class </h1>
-    <div class="localvideo">
-        <video autoplay ="true"></video>
+    <div class="row">
+
+        <h1>Welcome to class </h1>
+        <div class="localvideo">
+            <video autoplay="true"></video>
+        </div>
+
+        <h2>Online users </h2>
+        <div class="remotevideos">
+        </div>
+        <h2>Recordings  ( Click on your camera stream to start record)</h2>
+        <ul></ul>
+
+
+        <h2>Trace</h2>
+        <div id="immediate"></div>
+
+
     </div>
-
-    <h2>Online users </h2>
-    <div class="remotevideos">
-
-    </div>
-    <h2>Recordings  ( Click on your camera stream to start record)</h2>
-    <ul></ul>
-
-
-    <h2>Trace</h2>
-    <div id="immediate"></div>
-   
-    
-    </div>   
 
 
     <form id="form1" runat="server">
@@ -65,7 +64,7 @@
                             <li>
                                 <button type="button" id="pencil" class="btn btn-success">Pencil </button>
                             </li>
-                             <li>
+                            <li>
                                 <button type="button" id="pencilblue" class="btn btn-success">blue Pencil </button>
                             </li>
                             <li>
@@ -87,87 +86,83 @@
                     <canvas id="canvas" style="border: 5px solid #d3d3d3;">sorry brower not supporting html canvass
                     </canvas>
                 </div>
-                 <div class="col-lg-6 col-sm-6 col-xs-6 col-md-6">
-                
-                         <div class="d">
+                <div class="col-lg-6 col-sm-6 col-xs-6 col-md-6">
 
-        <div class="row">
-            <div class="col-md-3"></div>
-            <div class="col-md-9">
+                    <div class="d">
 
-                <div class="box box-warning direct-chat direct-chat-warning">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">Direct Chat</h3>
+                        <div class="row">
+                            <div class="col-md-3"></div>
+                            <div class="col-md-9">
 
-                    </div>
+                                <div class="box box-warning direct-chat direct-chat-warning">
+                                    <div class="box-header with-border">
+                                        <h3 class="box-title">Direct Chat</h3>
 
-                    <div class="box-body">
+                                    </div>
 
-                        <div class="direct-chat-messages">
+                                    <div class="box-body">
 
-                            <div class="direct-chat-msg">
-                                <div class="direct-chat-info clearfix">
-                                    <span id="displayname" runat="server" class="direct-chat-name pull-left"></span>
-                                    <span class="direct-chat-timestamp pull-right">23 Jan 2:00 pm</span>
+                                        <div class="direct-chat-messages">
+
+                                            <div class="direct-chat-msg">
+                                                <div class="direct-chat-info clearfix">
+                                                    <span id="displayname" runat="server" class="direct-chat-name pull-left"></span>
+                                                    <span class="direct-chat-timestamp pull-right">23 Jan 2:00 pm</span>
+                                                </div>
+
+                                                <!--<img class="direct-chat-img" src="../dist/img/user1-128x128.jpg" alt="Message User Image">-->
+                                                <div id="discussion" class="direct-chat-text">
+                                                </div>
+
+
+                                            </div>
+
+
+                                        </div>
+
+                                        <div class="direct-chat-contacts">
+                                            <ul class="contacts-list">
+                                                <li>
+                                                    <a href="#">
+                                                        <img class="contacts-list-img" src="../dist/img/user1-128x128.jpg" alt="User Image" />
+                                                        <div class="contacts-list-info">
+                                                            <span class="contacts-list-name">Count Dracula
+                                                <small class="contacts-list-date pull-right">2/28/2015</small>
+                                                            </span>
+                                                            <span class="contacts-list-msg">How have you been? I was...</span>
+                                                        </div>
+                                                    </a>
+                                                </li>
+
+                                            </ul>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="box-footer" style="margin-top: 300px;">
+
+                                        <div class="input-group">
+                                            <input type="text" id="message" placeholder="Type Message .." class="form-control" />
+                                            <span class="input-group-btn">
+                                                <button type="button" id="sendmessage" value="send" class="btn btn-warning btn-flat">Send <i class="fa fa-send "></i></button>
+                                            </span>
+                                        </div>
+
+                                    </div>
+
                                 </div>
-
-                                <!--<img class="direct-chat-img" src="../dist/img/user1-128x128.jpg" alt="Message User Image">-->
-                                <div id="discussion" class="direct-chat-text">
-
-                                </div>
-                            
 
                             </div>
 
-                  
-                        </div>
-
-                        <div class="direct-chat-contacts">
-                            <ul class="contacts-list">
-                                <li>
-                                    <a href="#">
-                                        <img class="contacts-list-img" src="../dist/img/user1-128x128.jpg" alt="User Image"/>
-                                        <div class="contacts-list-info">
-                                            <span class="contacts-list-name">
-                                                Count Dracula
-                                                <small class="contacts-list-date pull-right">2/28/2015</small>
-                                            </span>
-                                            <span class="contacts-list-msg">How have you been? I was...</span>
-                                        </div>
-                                    </a>
-                                </li>
-
-                            </ul>
-
                         </div>
 
                     </div>
 
-                    <div class="box-footer" style="margin-top:300px;">
 
-                        <div class="input-group">
-                            <input type="text" id="message" placeholder="Type Message ..." class="form-control"/>
-                            <span class="input-group-btn">
-                                <button type="button" id="sendmessage" value="send" class="btn btn-warning btn-flat">Send</button>
-                            </span>
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-  <%--  <script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
+                    <%--  <script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
     <script src="../bootstrap/js/bootstrap.min.js"></script>--%>
-
-
-                 </div>
+                </div>
             </div>
         </div>
 
@@ -176,8 +171,13 @@
 </body>
 <script>
 
-   
 
+    $('input[type="text"]').keydown(function (event) {
+        if (event.keyCode == 13) {
+            event.preventDefault();
+            return false;
+        }
+    });
     var data = "shezy";
     $(function () {
 
@@ -190,7 +190,7 @@
                 context.drawImage(image, 0, 0);
             };
             image.src = data;
-  
+
         };
         chat.client.broadcastMessage = function (name, message) {
 
@@ -231,7 +231,7 @@
         eraser = document.getElementById('eraser'),
         pencil = document.getElementById('pencil');
 
-    canvas.width = 1170/2;
+    canvas.width = 1170 / 2;
     canvas.height = 445;
     context.lineWidth = radius * 2;
 
@@ -300,16 +300,16 @@
     canvas.addEventListener('mousemove', drawing);
     canvas.addEventListener('mouseup', stopdraw);
 
-    
+
     var vdo = function (selector, el) {
         if (!el) el = document;
-       return el.querySelector(selector);
+        return el.querySelector(selector);
     }
 
     var trace = function (what, obj) {
         var pre = document.createElement("pre");
         pre.textContent = JSON.stringify(what) + " - " + JSON.stringify(obj || "");
-       // vdo("#immediate").appendChild(pre);
+        // vdo("#immediate").appendChild(pre);
     };
 
     var main = (function () {

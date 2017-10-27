@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Master.master.cs" Inherits="Master" %>
+﻿﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Master.master.cs" Inherits="Master" %>
 
 <!DOCTYPE html>
 
@@ -11,7 +11,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <title>Ink Online Volunteer Academy</title>
-
+   
     <link rel="shortcut icon" runat="server" href="~/assets/images/favicon.ico" type="image/x-icon" />
     <link href="assets/css/skins/skin-blue.min.css" rel="stylesheet" />
     <link href="assets/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" />
@@ -20,7 +20,6 @@
     <script type="text/javascript">
         function openfileDialog() {
             $("#FileUpload1").click();
-            document.getElementById("<%=btnUpload.ClientID %>").disabled = false;
         }
         function UploadFile(fileUpload) {
             var numBytes = document.getElementById("FileUpload1").files[0].size;
@@ -37,7 +36,6 @@
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
-
 <body class="hold-transition skin-blue sidebar-mini">
     <form id="form1" runat="server">
         <div class="wrapper">
@@ -187,7 +185,7 @@
 
     <script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
     <script src="assets/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    <script src="dist/js/app.min.js"></script>
+    <script src="assets/js/app.min.js"></script>
 </body>
 
 </html>
