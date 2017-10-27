@@ -14,62 +14,63 @@ public partial class UserProfile : System.Web.UI.Page
     String profileId;
     protected void Page_Load(object sender, EventArgs e)
     {
-        
+
         if (Session["UserId"] == null || Session["UserEmail"] == null || Session["UserFirstName"] == null)
         {
             Response.Redirect("SignIn.aspx");
         }
         else
         {
-            
             if (Request.QueryString["profileId"] != null)
             {
                 profileId = Request.QueryString["profileId"].ToString();
             }
-            else {
+            else
+            {
                 profileId = Session["UserId"].ToString();
             }
-
+            title.InnerText = Session["UserFirstName"].ToString().ToUpper() + " " + Session["UserLastName"].ToString().ToUpper();
             getGridData();
             getData();
             getDetail();
         }
     }
-
-
     public void getDetail()
     {
-        DataTable dt = new DataTable(); 
-           
-            SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbCon"].ConnectionString);
-            string sql = "select * from inkUserStat WHERE inkUserStat.UserId =" + profileId + " ";
-            
-        using(SqlCommand sqlCommand = new SqlCommand(sql, sqlConnection))
-            {
-                sqlConnection.Open();
-                SqlDataAdapter sqlAdapter = new SqlDataAdapter(sqlCommand);
-                sqlAdapter.Fill(dt);
-                sqlCommand.ExecuteNonQuery();
-            }
-            lblNoOfActivity.InnerText = dt.Rows[0]["NoOfLinks"].ToString();
-            lblNoOfFiles.InnerText = dt.Rows[0]["ExperineceLevel"].ToString();
-            lblNoOfLinks.InnerText = dt.Rows[0]["Ranks"].ToString();
-            lblRank.InnerText = dt.Rows[0]["Remarks"].ToString();
-    }
+        DataTable dt = new DataTable();
 
+        SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbCon"].ConnectionString);
+        string sql = "select * from inkUserStat WHERE inkUserStat.UserId =" + profileId + " ";
+
+        using (SqlCommand sqlCommand = new SqlCommand(sql, sqlConnection))
+        {
+            sqlConnection.Open();
+            SqlDataAdapter sqlAdapter = new SqlDataAdapter(sqlCommand);
+            sqlAdapter.Fill(dt);
+            sqlCommand.ExecuteNonQuery();
+        }
+        lblNoOfActivity.InnerText = dt.Rows[0]["NoOfLinks"].ToString();
+        lblNoOfFiles.InnerText = dt.Rows[0]["ExperineceLevel"].ToString();
+        lblNoOfLinks.InnerText = dt.Rows[0]["Ranks"].ToString();
+        lblRank.InnerText = dt.Rows[0]["Remarks"].ToString();
+
+        sqlConnection.Dispose();
+        sqlConnection.Close();
+        SqlConnection.ClearPool(sqlConnection);
+
+    }
     public void getData()
     {
         int pid = Convert.ToInt32(profileId);
         String imagepath = ClassHelper.ImageLoader(pid);
-        userImage1.Src = imagepath;
-       
+        imgCard.Src = imagepath;
         try
         {
             //int id = Master.ids;
             DataTable dt = new DataTable();
-          
+
             SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbCon"].ConnectionString);
-            string sql = @"select * from inkUserDetail  WHERE inkUserDetail.UserId ="+profileId+"";
+            string sql = @"select * from inkUserDetail  WHERE inkUserDetail.UserId =" + profileId + "";
 
             using (SqlCommand sqlCommand = new SqlCommand(sql, sqlConnection))
             {
@@ -80,8 +81,8 @@ public partial class UserProfile : System.Web.UI.Page
                 sqlCommand.ExecuteNonQuery();
             }
             aboutMe.InnerText = dt.Rows[0]["UserAboutMe"].ToString();
-            Education.InnerText = dt.Rows[0]["UserEducation"].ToString();
-            Employee.InnerText = dt.Rows[0]["UserEmployement"].ToString();
+            edu.InnerText = Education.InnerText = dt.Rows[0]["UserEducation"].ToString();
+            emp.InnerText = dt.Rows[0]["UserEmployement"].ToString();
             string value;
 
             value = dt.Rows[0]["UserSkills"].ToString();
@@ -134,11 +135,11 @@ public partial class UserProfile : System.Web.UI.Page
     {
         try
         {
-           // int id = Master.ids;
+            // int id = Master.ids;
             DataTable dt = new DataTable();
-            
+
             SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbCon"].ConnectionString);
-            string sql = "select * from inkFieldsOfInterest  WHERE inkFieldsOfInterest.UserId ="+profileId+"";
+            string sql = "select * from inkFieldsOfInterest  WHERE inkFieldsOfInterest.UserId =" + profileId + "";
 
             using (SqlCommand sqlCommand = new SqlCommand(sql, sqlConnection))
             {
@@ -149,6 +150,7 @@ public partial class UserProfile : System.Web.UI.Page
                 sqlCommand.ExecuteNonQuery();
                 gridDetail.DataSource = dt;
                 gridDetail.DataBind();
+                sqlConnection.Close();
             }
         }
 
