@@ -79,6 +79,9 @@
                             <li>
                                 <button type="button" id="pencil" class="btn btn-success">Pencil </button>
                             </li>
+                             <li>
+                                <button type="button" id="pencilblue" class="btn btn-success">blue Pencil </button>
+                            </li>
                             <li>
                                 <button type="button" id="eraser" class="btn btn-danger">Erase </button>
                             </li>
@@ -192,7 +195,9 @@
     var data = "shezy";
     $(function () {
 
+        //var chat = $(connection.chatHub);
         var chat = $.connection.chatHub;
+
         chat.client.broadcastCanvas = function (data) {
             var image = new Image();
             image.onload = function () {
@@ -274,6 +279,10 @@
         context.fillStyle = "black";
         context.strokeStyle = "black";
     });
+    pencilblue.addEventListener('click', function () {
+        context.fillStyle = "blue";
+        context.strokeStyle = "blue";
+    });
 
     var drawing = function (e) {
         if (draw) {
@@ -306,15 +315,15 @@
     canvas.addEventListener('mouseup', stopdraw);
 
     
-    var $ = function (selector, el) {
+    var vdo = function (selector, el) {
         if (!el) el = document;
-        return el.querySelector(selector);
+       return el.querySelector(selector);
     }
 
     var trace = function (what, obj) {
         var pre = document.createElement("pre");
         pre.textContent = JSON.stringify(what) + " - " + JSON.stringify(obj || "");
-        $("#immediate").appendChild(pre);
+       // vdo("#immediate").appendChild(pre);
     };
 
     var main = (function () {
@@ -347,7 +356,7 @@
                 download.setAttribute("download", XSockets.Utils.randomString(8) + ".webm");
                 download.setAttribute("href", blobUrl);
                 li.appendChild(download);
-                $("ul").appendChild(li);
+                vdo("ul").appendChild(li);
 
             };
         };
@@ -357,13 +366,13 @@
             remoteVideo.setAttribute("autoplay", "autoplay");
             remoteVideo.setAttribute("rel", peerId);
             attachMediaStream(remoteVideo, mediaStream);
-            $(".remotevideos").appendChild(remoteVideo);
+            vdo(".remotevideos").appendChild(remoteVideo);
         };
         var onConnectionLost = function (remotePeer) {
             trace("onconnectionlost", arguments);
             var peerId = remotePeer.PeerId;
-            var videoToRemove = $("video[rel='" + peerId + "']");
-            $(".remotevideos").removeChild(videoToRemove);
+            var videoToRemove = vdo("video[rel='" + peerId + "']");
+            vdo(".remotevideos").removeChild(videoToRemove);
         };
         var oncConnectionCreated = function () {
             console.log(arguments, rtc);
@@ -382,9 +391,9 @@
         };
         var onLocalStream = function (mediaStream) {
             trace("Got a localStream", mediaStream.id);
-            attachMediaStream($(".localvideo video "), mediaStream);
+            attachMediaStream(vdo(".localvideo video "), mediaStream);
             // if user click, video , call the recorder
-            $(".localvideo video ").addEventListener("click", function () {
+            vdo(".localvideo video ").addEventListener("click", function () {
                 recordMediaStream(rtc.getLocalStreams()[0]);
             });
         };
