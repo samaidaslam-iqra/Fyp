@@ -49,11 +49,12 @@ public partial class UserProfile : System.Web.UI.Page
             sqlAdapter.Fill(dt);
             sqlCommand.ExecuteNonQuery();
         }
+        if(dt.Rows.Count != 0){
         lblNoOfActivity.InnerText = dt.Rows[0]["NoOfLinks"].ToString();
         lblNoOfFiles.InnerText = dt.Rows[0]["ExperineceLevel"].ToString();
         lblNoOfLinks.InnerText = dt.Rows[0]["Ranks"].ToString();
         lblRank.InnerText = dt.Rows[0]["Remarks"].ToString();
-
+        }
         sqlConnection.Dispose();
         sqlConnection.Close();
         SqlConnection.ClearPool(sqlConnection);

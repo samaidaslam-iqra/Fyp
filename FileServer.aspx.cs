@@ -74,43 +74,48 @@ public partial class FileServer : System.Web.UI.Page
         dt.Columns.Add("File");
         dt.Columns.Add("Size");
         dt.Columns.Add("Type");
-        foreach (string strfile in Directory.GetFiles(Server.MapPath(url)))
+        try
         {
-            FileInfo fi = new FileInfo(strfile);
-            double ss = Convert.ToDouble(fi.Length) / 1048576;
-            dt.Rows.Add(fi.Name, Math.Round(ss,2).ToString()+" MB", GetFileTypeByExtension(fi.Extension));
+            foreach (string strfile in Directory.GetFiles(Server.MapPath(url)))
+            {
+                FileInfo fi = new FileInfo(strfile);
+                double ss = Convert.ToDouble(fi.Length) / 1048576;
+                dt.Rows.Add(fi.Name, Math.Round(ss, 2).ToString() + " MB", GetFileTypeByExtension(fi.Extension));
 
-        } GridView1.DataSource = dt;
-        GridView1.DataBind();
-        //DataTable dt = new DataTable();
-        //SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbCon"].ConnectionString);
-        //try
-        //{
-        //    string sql = @"select * from inkFile where UploadId =" + id + "";
-        //    using (SqlCommand sqlCommand = new SqlCommand(sql, sqlConnection))
-        //    {
-        //        sqlConnection.Open();
-        //        SqlDataAdapter sqlAdapter = new SqlDataAdapter(sqlCommand);
-        //        sqlAdapter.Fill(dt);
-        //        sqlAdapter.Dispose();
-        //    }
-        //}
-        //catch (Exception exception)
-        //{
-        //    throw new Exception(string.Format("Error occured while getting AllRecord: {0}", exception.Message), exception);
-        //}
-        //finally
-        //{
-        //    sqlConnection.Close();
-        //    sqlConnection.Dispose();
-        //}
+            } GridView1.DataSource = dt;
+            GridView1.DataBind();
+            //DataTable dt = new DataTable();
+            //SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbCon"].ConnectionString);
+            //try
+            //{
+            //    string sql = @"select * from inkFile where UploadId =" + id + "";
+            //    using (SqlCommand sqlCommand = new SqlCommand(sql, sqlConnection))
+            //    {
+            //        sqlConnection.Open();
+            //        SqlDataAdapter sqlAdapter = new SqlDataAdapter(sqlCommand);
+            //        sqlAdapter.Fill(dt);
+            //        sqlAdapter.Dispose();
+            //    }
+            //}
+            //catch (Exception exception)
+            //{
+            //    throw new Exception(string.Format("Error occured while getting AllRecord: {0}", exception.Message), exception);
+            //}
+            //finally
+            //{
+            //    sqlConnection.Close();
+            //    sqlConnection.Dispose();
+            //}
 
-        //foreach (DataRow dr in dt.Rows)
-        //{
-        //    userPath = dr["FileUrl"].ToString();
-        //} 
-        return dt;
-
+            //foreach (DataRow dr in dt.Rows)
+            //{
+            //    userPath = dr["FileUrl"].ToString();
+            //} 
+        }catch(Exception e){
+           // Response.Write("<script> alert('not file found')</script>");
+        }
+            return dt;
+        
     }
 
     private void insertToDb(string id, string name, string type, string url)
