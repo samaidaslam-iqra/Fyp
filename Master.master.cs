@@ -26,7 +26,7 @@ public partial class Master : System.Web.UI.MasterPage
             {
                 FileUpload1.Attributes["onchange"] = "UploadFile(this)";
                 hfId.Value = (Session["UserId"].ToString());
-                p1.InnerText = p2.InnerText = span1.InnerText = Session["UserFirstName"].ToString() + " " + Session["UserLastName"].ToString();
+                p1.InnerText = p2.InnerText = span1.InnerText = Session["UserFirstName"].ToString().ToUpper() + " " + Session["UserLastName"].ToString().ToUpper();
                 p2 = p1;
                 userImage1.Src = userImage2.Src = userImage3.Src = ClassHelper.ImageLoader(Convert.ToInt32(Session["UserId"]));
             }

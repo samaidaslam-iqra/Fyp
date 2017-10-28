@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" EnableViewState="false" EnableSessionState="False"  AutoEventWireup="true" CodeFile="About.aspx.cs" Inherits="About" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="About.aspx.cs" Inherits="About" %>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -95,21 +95,21 @@
         <div class="row">
             <!-- main content -->
             <section class="col-sm-8 maincontent">
-                <h3>Our Institute</h3>
+                <h3>Over view</h3>
                 <p>
                     <img src="assets/images/about1.jpg" alt="" class="img-rounded pull-right" width="300" />
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet, consequuntur eius repellendus eos aliquid molestiae ea laborum ex Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet, consequuntur eius repellendus eos aliquid molestiae ea laborum ex quibusdam laudantium voluptates placeat consectetur quam aliquam beatae soluta accusantium iusto nihil nesciunt unde veniam magnam repudiandae sapiente.
+                    After great effort we have reached the result with the grace of Allah that Our project named “INK” has been developed. We will never forget the teachings and support of our respected project supervisor DR. Syed Hasan adil as they assist in every huddle faced during development tenure.
                 </p>
-                <p>Consectetur adipisicing elit. Eveniet, consequuntur eius repellendus eos aliquid molestiae ea laborum ex quibusdam laudantium voluptates placeat consectetur quam aliquam beatae soluta accusantium iusto nihil nesciunt unde veniam magnam repudiandae sapiente.</p>
-                <h3>Our Achievements</h3>
-                <strong>2014</strong>
+                <p>The name of our Final Year Project (FYP) is ‘INK (INNOVATION AND KNOWLEDGE)' by which you can conduct class of multiple students by broadcasting feature of web application. Anyone who is skilled in any specific domain can educate people by using e-white board feature and other major tools, major objective is to provide people a platform through which they can get education by sitting on their stations, Promoting e-learning system is the core aim of this project.</p>
+                <h2><b>Detailed Model</b></h2>
+                <strong>MOTIVATION</strong>
+                <p>Our project scope is to target virtual education system. The idea is to make feasibility for people to get home based education; it is an opportunity to promote online education system in our society. Everyone wants to get education but some of them cannot afford the fee of courses so it’s an educational tool to get benefit.</p>
+                <strong>SCOPE</strong>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet, consequuntur eius repellendus eos aliquid molestiae ea laborum ex quibusdam laudantium voluptates placeat consectetur quam aliquam beatae soluta accusantium iusto nihil nesciunt unde veniam magnam repudiandae sapiente. consequuntur eius repellendus eos aliquid molestiae ea laborum ex quibusdam laudantium voluptates placeat consectetur quam aliquam!</p>
-                <strong>2013</strong>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet, consequuntur eius repellendus eos aliquid molestiae ea laborum ex quibusdam laudantium voluptates placeat consectetur quam aliquam beatae soluta accusantium iusto nihil nesciunt unde veniam magnam repudiandae sapiente. consequuntur eius repellendus eos aliquid molestiae ea laborum ex quibusdam laudantium voluptates placeat consectetur quam aliquam!</p>
-                <strong>2012</strong>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet, consequuntur eius repellendus eos aliquid molestiae ea laborum ex quibusdam laudantium voluptates placeat consectetur quam aliquam beatae soluta accusantium iusto nihil nesciunt unde veniam magnam repudiandae sapiente. consequuntur eius repellendus eos aliquid molestiae ea laborum ex quibusdam laudantium voluptates placeat consectetur quam aliquam!</p>
-                <strong>2011</strong>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet, consequuntur eius repellendus eos aliquid molestiae ea laborum ex quibusdam laudantium voluptates placeat consectetur quam aliquam beatae soluta accusantium iusto nihil nesciunt unde veniam magnam repudiandae sapiente. consequuntur eius repellendus eos aliquid molestiae ea laborum ex quibusdam laudantium voluptates placeat consectetur quam aliquam!</p>
+                <strong>STATEMENT</strong>
+                <p>We create this application because we want to make deliverance of education easier and feasible. In locality everyone use to go physically in institutes to get education but if education comes to you then what better than this, so focusing these problems a virtual system is required to make education uncomplicated and comfortable for all.</p>
+                <strong>SOLUTION</strong>
+                <p>Everyone wish to get quality education so for this purpose we created a dynamic platform where everyone can utilize his/her skills by educating society. Both student and teacher can play role to enhance the system of education in different colors. Meetings and conferences can be made easily through online communication.</p>
             </section>
             <!-- /main -->
 
@@ -117,18 +117,18 @@
             <aside class="col-sm-4 sidebar sidebar-right">
 
                 <div class="panel">
-                    <h4>Latest News</h4>
+                    <h4>Behaviour</h4>
                     <ul class="list-unstyled list-spaces">
                         <li><a href="#">Responsive Design</a><br/>
-                            <span class="small text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, laborum.</span></li>
+                            <span class="small text-muted">The development platform used in this project is ASP.Net, SQL SERVER and Signal-R API to integrate path to communicate.</span></li>
                         <li><a href="#">HTML5, CSS3 and JavaScript</a><br/>
-                            <span class="small text-muted">Consequuntur eius repellendus eos aliquid molestiae ea laborum ex quibusdam</span></li>
+                            <span class="small text-muted">This phase get completed when all the data collected from different sources. R&D performed and visited different web Applications to complete analysis. </span></li>
                         <li><a href="#">Bootstrap</a><br/>
-                            <span class="small text-muted">Eveniet, consequuntur eius repellendus eos aliquid molestiae ea</span></li>
+                            <span class="small text-muted">The application involves user friendly environment as the friendly environment is created to interact with the system.</span></li>
                         <li><a href="#">Clean Template</a><br/>
-                            <span class="small text-muted">Sed, mollitia earum debitis est itaque esse reiciendis amet cupiditate.</span></li>
+                            <span class="small text-muted">App works efficiently. Multiple tools are used to build communication between users. Library and lecture sharing feature is included.</span></li>
                         <li><a href="#">Premium Quality</a><br/>
-                            <span class="small text-muted">Voluptate minus illo tenetur sint ab in culpa cumque impedit quibusdam. Saepe, molestias quia.</span></li>
+                            <span class="small text-muted">Capturing students and their difficulties regarding education is the major background of this project which lead us to make this online education system. </span></li>
                     </ul>
                 </div>
 
@@ -142,13 +142,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h3>Meet Teachers</h3>
-                    <p>Voluptate minus illo tenetur sint ab in culpa cumque impedit quibusdam. Saepe, molestias quia.Voluptate minus illo tenetur sint ab in culpa cumque impedit quibusdam. Saepe, molestias quia.Voluptate minus illo tenetur sint ab in culpa cumque impedit quibusdam. Saepe, molestias quia.</p>
+                    <h3>Contribution</h3>
+                    <p> As the big picture of this project reflects the idea of e-learning system, work with efficient manner is done by the team. At each level research and development was a major role to defend the features of application.</p>
                     <br />
                 </div>
             </div>
             <div class="row">
-
+                
                 <div class="col-md-4 col-sm-4 col-xs-4">
                     <!-- Team Member -->
                     <div class="team-member">
